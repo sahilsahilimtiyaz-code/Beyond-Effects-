@@ -16,6 +16,12 @@ This repository revision contains ONLY:
   traced): `GoldStartupActivity` + `$3/$5/$5$3/$6/$6$4` — crimson primary buttons
   + progress tints, near-white headlines/status/button text, Beyond Effects
   headlines. No structural, id, manifest, or navigation changes.
+- `overlay-9a/` — Octavian identity + loading + promo-source (additive branch work):
+  edited `AndroidManifest.xml` (package `com.octavian`, 12 authorities, permission,
+  4 Octavian labels), `res/xml/dev_preferences.xml` intent, 4 renamed smali
+  authority literals, `GoldStartupActivity` loading sequence (`showLoading` + `$9`
+  ticker, onboarding screens bypassed, engine-gated via `GmFxStatus`), `WelcomeDialog.show()`
+  disabled at entry. Smali pre-verified with pinned smali-2.5.2.
 - `.github/workflows/canary.yml` — toolchain canary (manual trigger, no secrets,
   no APK build).
 - `.github/workflows/rebuild.yml` — APK reconstruction (manual trigger; original

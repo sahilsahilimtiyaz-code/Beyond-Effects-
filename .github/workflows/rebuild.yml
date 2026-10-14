@@ -56,6 +56,9 @@ jobs:
           test -f overlay-fx/gm_custom_bloom_region_plus.png
           test -f overlay-8e/gold_motion_launcher.png
           test -f overlay-8e/gold_motion_logo_splash.png
+          test -f overlay-9a/AndroidManifest.xml
+          test -f overlay-9a/smali_classes25/com/goldmotion/startup/GoldStartupActivity.smali
+          test -f overlay-9a/smali_classes25/com/goldmotion/update/WelcomeDialog.smali
           echo OVERLAYS-PRESENT
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
@@ -102,6 +105,22 @@ jobs:
           cp "$S/GoldStartupActivity\$6.smali" "$T/GoldStartupActivity\$6.smali"
           cp "$S/GoldStartupActivity\$6\$4.smali" "$T/GoldStartupActivity\$6\$4.smali"
           echo SMALI-APPLIED
+      - name: Apply Octavian identity (9A manifest + res + smali + promo-source)
+        run: |
+          T=work/tree
+          cp overlay-9a/AndroidManifest.xml "$T/AndroidManifest.xml"
+          cp overlay-9a/res/xml/dev_preferences.xml "$T/res/xml/dev_preferences.xml"
+          S9=overlay-9a/smali_classes25/com/goldmotion/startup
+          T9="$T/smali_classes25/com/goldmotion/startup"
+          cp "$S9/GoldStartupActivity.smali" "$T9/GoldStartupActivity.smali"
+          cp "$S9/GoldStartupActivity\$2.smali" "$T9/GoldStartupActivity\$2.smali"
+          cp "$S9/GoldStartupActivity\$9.smali" "$T9/GoldStartupActivity\$9.smali"
+          cp overlay-9a/smali_classes25/com/goldmotion/update/WelcomeDialog.smali "$T/smali_classes25/com/goldmotion/update/WelcomeDialog.smali"
+          cp overlay-9a/smali_classes10/com/alightcreative/share/NS.smali "$T/smali_classes10/com/alightcreative/share/NS.smali"
+          cp "overlay-9a/smali_classes13/XBJ/cn\$NS.smali" "$T/smali_classes13/XBJ/cn\$NS.smali"
+          cp overlay-9a/smali_classes2/com/alightcreative/app/motion/activities/ExportPreviewActivity.smali "$T/smali_classes2/com/alightcreative/app/motion/activities/ExportPreviewActivity.smali"
+          cp overlay-9a/smali_classes3/com/alightcreative/widget/TimelineBackgroundView.smali "$T/smali_classes3/com/alightcreative/widget/TimelineBackgroundView.smali"
+          echo IDENTITY-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Align + sign with in-run throwaway key (test lineage only)
@@ -116,7 +135,8 @@ jobs:
           BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"
           "$BT/zipalign" -c 4 work/be-rebuilt-signed.apk && echo ZIPALIGN-OK
           "$BT/apksigner" verify --print-certs work/be-rebuilt-signed.apk
-          "$BT/aapt2" dump badging work/be-rebuilt-signed.apk | head -1 | grep -F "package: name='com.goldmotion.pnkj'" && echo PACKAGE-OK
+          "$BT/aapt2" dump badging work/be-rebuilt-signed.apk | head -1 | grep -F "package: name='com.octavian'" && echo PACKAGE-OK
+          "$BT/aapt2" dump badging work/be-rebuilt-signed.apk | grep -F "application-label:'Octavian'" && echo LABEL-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'be_final_fg|activity_home_screen' && echo ENTRIES-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'effects_custom/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.xml' && echo FX-XML-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'assets/thumb/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.png' && echo FX-THUMB-OK

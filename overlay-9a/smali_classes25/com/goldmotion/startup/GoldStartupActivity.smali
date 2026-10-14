@@ -1469,132 +1469,11 @@
 .end method
 
 .method private showLoading()V
-    .locals 12
+    .locals 10
 
     iget-object v0, p0, Lcom/goldmotion/startup/GoldStartupActivity;->stage:Landroid/widget/LinearLayout;
 
     invoke-virtual {v0}, Landroid/widget/LinearLayout;->removeAllViews()V
-
-    new-instance v0, Landroid/widget/FrameLayout;
-
-    invoke-direct {v0, p0}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;)V
-
-    new-instance v1, Landroid/widget/ImageView;
-
-    invoke-direct {v1, p0}, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
-
-    invoke-virtual {p0}, Lcom/goldmotion/startup/GoldStartupActivity;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v2
-
-    const-string v3, "drawable"
-
-    invoke-virtual {p0}, Lcom/goldmotion/startup/GoldStartupActivity;->getPackageName()Ljava/lang/String;
-
-    move-result-object v4
-
-    const-string v5, "gold_motion_icon"
-
-    invoke-virtual {v2, v5, v3, v4}, Landroid/content/res/Resources;->getIdentifier(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
-
-    move-result v2
-
-    if-eqz v2, :cond_logo
-
-    invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setImageResource(I)V
-
-    :cond_logo
-    sget-object v2, Landroid/widget/ImageView$ScaleType;->FIT_CENTER:Landroid/widget/ImageView$ScaleType;
-
-    invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
-
-    const/16 v2, 0x78
-
-    invoke-direct {p0, v2}, Lcom/goldmotion/startup/GoldStartupActivity;->dp(I)I
-
-    move-result v2
-
-    new-instance v3, Landroid/widget/FrameLayout$LayoutParams;
-
-    const/16 v4, 0x11
-
-    invoke-direct {v3, v2, v2, v4}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
-
-    invoke-virtual {v0, v1, v3}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-
-    new-instance v1, Landroid/widget/ImageView;
-
-    invoke-direct {v1, p0}, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
-
-    const/4 v3, 0x0
-
-    const v4, -0x37efd2
-
-    const/4 v5, 0x3
-
-    invoke-direct {p0, v3, v4, v5}, Lcom/goldmotion/startup/GoldStartupActivity;->oval(III)Landroid/graphics/drawable/GradientDrawable;
-
-    move-result-object v3
-
-    invoke-virtual {v1, v3}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
-
-    const/16 v3, 0xaa
-
-    invoke-direct {p0, v3}, Lcom/goldmotion/startup/GoldStartupActivity;->dp(I)I
-
-    move-result v3
-
-    new-instance v4, Landroid/widget/FrameLayout$LayoutParams;
-
-    const/16 v5, 0x11
-
-    invoke-direct {v4, v3, v3, v5}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
-
-    invoke-virtual {v0, v1, v4}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-
-    new-instance v5, Landroid/view/animation/RotateAnimation;
-
-    const/4 v6, 0x0
-
-    const/high16 v7, 0x43b40000    # 360.0f
-
-    const/4 v8, 0x1
-
-    const/high16 v9, 0x3f000000    # 0.5f
-
-    const/4 v10, 0x1
-
-    const/high16 v11, 0x3f000000    # 0.5f
-
-    invoke-direct/range {v5 .. v11}, Landroid/view/animation/RotateAnimation;-><init>(FFIFIF)V
-
-    const-wide/16 v2, 0x578
-
-    invoke-virtual {v5, v2, v3}, Landroid/view/animation/RotateAnimation;->setDuration(J)V
-
-    const/4 v2, -0x1
-
-    invoke-virtual {v5, v2}, Landroid/view/animation/RotateAnimation;->setRepeatCount(I)V
-
-    new-instance v2, Landroid/view/animation/LinearInterpolator;
-
-    invoke-direct {v2}, Landroid/view/animation/LinearInterpolator;-><init>()V
-
-    invoke-virtual {v5, v2}, Landroid/view/animation/RotateAnimation;->setInterpolator(Landroid/view/animation/Interpolator;)V
-
-    invoke-virtual {v1, v5}, Landroid/widget/ImageView;->startAnimation(Landroid/view/animation/Animation;)V
-
-    iget-object v1, p0, Lcom/goldmotion/startup/GoldStartupActivity;->stage:Landroid/widget/LinearLayout;
-
-    new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
-
-    const/4 v3, -0x1
-
-    const/4 v4, -0x2
-
-    invoke-direct {v2, v3, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-
-    invoke-virtual {v1, v0, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     const-string v0, "STARTING THE ENGINE\u2026"
 
@@ -1606,7 +1485,7 @@
 
     invoke-direct {p0, v0, v1, v2, v3}, Lcom/goldmotion/startup/GoldStartupActivity;->label(Ljava/lang/String;IIZ)Landroid/widget/TextView;
 
-    move-result-object v7
+    move-result-object v4
 
     iget-object v0, p0, Lcom/goldmotion/startup/GoldStartupActivity;->stage:Landroid/widget/LinearLayout;
 
@@ -1618,19 +1497,19 @@
 
     invoke-direct {v1, v2, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v0, v7, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v0, v4, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    new-instance v8, Landroid/widget/ProgressBar;
+    new-instance v5, Landroid/widget/ProgressBar;
 
     const v0, 0x1010078
 
     const/4 v1, 0x0
 
-    invoke-direct {v8, p0, v1, v0}, Landroid/widget/ProgressBar;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+    invoke-direct {v5, p0, v1, v0}, Landroid/widget/ProgressBar;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
     const/16 v0, 0x64
 
-    invoke-virtual {v8, v0}, Landroid/widget/ProgressBar;->setMax(I)V
+    invoke-virtual {v5, v0}, Landroid/widget/ProgressBar;->setMax(I)V
 
     iget-object v0, p0, Lcom/goldmotion/startup/GoldStartupActivity;->stage:Landroid/widget/LinearLayout;
 
@@ -1642,7 +1521,7 @@
 
     invoke-direct {v1, v2, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v0, v8, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v0, v5, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     const-string v0, "0%"
 
@@ -1654,7 +1533,7 @@
 
     invoke-direct {p0, v0, v1, v2, v3}, Lcom/goldmotion/startup/GoldStartupActivity;->label(Ljava/lang/String;IIZ)Landroid/widget/TextView;
 
-    move-result-object v9
+    move-result-object v6
 
     iget-object v0, p0, Lcom/goldmotion/startup/GoldStartupActivity;->stage:Landroid/widget/LinearLayout;
 
@@ -1666,7 +1545,7 @@
 
     invoke-direct {v1, v2, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v0, v9, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v0, v6, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     new-instance v0, Lcom/goldmotion/startup/GmLaunchRetry;
 
@@ -1676,7 +1555,7 @@
 
     new-instance v0, Lcom/goldmotion/startup/GoldStartupActivity$9;
 
-    invoke-direct {v0, p0, v8, v7, v9}, Lcom/goldmotion/startup/GoldStartupActivity$9;-><init>(Lcom/goldmotion/startup/GoldStartupActivity;Landroid/widget/ProgressBar;Landroid/widget/TextView;Landroid/widget/TextView;)V
+    invoke-direct {v0, p0, v5, v4, v6}, Lcom/goldmotion/startup/GoldStartupActivity$9;-><init>(Lcom/goldmotion/startup/GoldStartupActivity;Landroid/widget/ProgressBar;Landroid/widget/TextView;Landroid/widget/TextView;)V
 
     invoke-static {p0}, Lcom/goldmotion/startup/GoldStartupActivity;->access$1400(Lcom/goldmotion/startup/GoldStartupActivity;)Landroid/os/Handler;
 

@@ -37,7 +37,7 @@
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
     <permission android:name="com.octavian.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature"/>
     <uses-permission android:name="com.octavian.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
-    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:fullBackupContent="false" android:hardwareAccelerated="true" android:icon="@drawable/gold_motion_icon" android:label="Octavian" android:largeHeap="true" android:name="arm.EpicVm" android:networkSecurityConfig="@xml/network_security_config" android:requestLegacyExternalStorage="true" android:roundIcon="@drawable/gold_motion_icon" android:supportsRtl="true" android:theme="@style/AppTheme.NoActionBar" android:usesCleartextTraffic="true">
+    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:fullBackupContent="false" android:hardwareAccelerated="true" android:icon="@drawable/gold_motion_icon" android:label="Beyond Effects" android:largeHeap="true" android:name="arm.EpicVm" android:networkSecurityConfig="@xml/network_security_config" android:requestLegacyExternalStorage="true" android:roundIcon="@drawable/gold_motion_icon" android:supportsRtl="true" android:theme="@style/AppTheme.NoActionBar" android:usesCleartextTraffic="true">
         <activity android:name="com.alightcreative.app.motion.activities.DeviceMismatchNoticeActivity"/>
         <provider android:authorities="com.octavian.goldai.init" android:exported="false" android:initOrder="100" android:name="com.goldmotion.ai.GoldAiInitProvider"/>
         <provider android:authorities="com.octavian.goldupdate.init" android:exported="false" android:initOrder="90" android:name="com.goldmotion.update.ForceUpdateInitProvider"/>
@@ -71,14 +71,14 @@
         <meta-data android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT" android:value="true"/>
         <meta-data android:name="applovin.sdk.key" android:value="CP6wULIVzxoRdrEz130IlL7mRDBDktcW4qq0FhFvMkwPOoHmOdaAO3dQpT7kAA4MV8aUK7RLkNmWAzowzoVAtQ"/>
         <meta-data android:name="firebase_analytics_collection_enabled" android:value="false"/>
-        <activity android:exported="true" android:label="Octavian" android:name="com.goldmotion.startup.GoldStartupActivity" android:screenOrientation="portrait" android:theme="@style/Theme.App.Starting">
+        <activity android:exported="true" android:label="Beyond Effects" android:name="com.goldmotion.startup.GoldStartupActivity" android:screenOrientation="portrait" android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:excludeFromRecents="true" android:exported="false" android:name="com.goldmotion.startup.OnboardingDoneActivity" android:noHistory="true" android:theme="@style/AppTheme.MainScreen"/>
-        <activity android:exported="true" android:label="Octavian" android:launchMode="singleTask" android:name="com.alightcreative.app.motion.activities.main.MainActivity" android:screenOrientation="portrait" android:theme="@style/AppTheme.MainScreen" android:windowSoftInputMode="adjustResize">
+        <activity android:exported="true" android:label="Beyond Effects" android:launchMode="singleTask" android:name="com.alightcreative.app.motion.activities.main.MainActivity" android:screenOrientation="portrait" android:theme="@style/AppTheme.MainScreen" android:windowSoftInputMode="adjustResize">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -126,7 +126,7 @@
         </provider>
         <receiver android:name="com.alightcreative.share.ChooserResultReceiver"/>
         <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:label="Octavian" android:name="com.facebook.FacebookActivity" android:theme="@style/com_facebook_activity_theme"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:label="Beyond Effects" android:name="com.facebook.FacebookActivity" android:theme="@style/com_facebook_activity_theme"/>
         <activity android:exported="true" android:name="com.facebook.CustomTabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

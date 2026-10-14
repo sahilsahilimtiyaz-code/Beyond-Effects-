@@ -22,6 +22,11 @@ This repository revision contains ONLY:
   authority literals, `GoldStartupActivity` loading sequence (`showLoading` + `$9`
   ticker, onboarding screens bypassed, engine-gated via `GmFxStatus`), `WelcomeDialog.show()`
   disabled at entry. Smali pre-verified with pinned smali-2.5.2.
+- `overlay-9b/` — Beyond identity on live paths: launch-mark text
+  (`StudioLaunch`: `B E Y O N D   E F F E C T S`), crimson launch ring
+  (`StudioLaunch$Mark`), drawer follow row removed (`snsHolder → gone` in
+  `project_list_sidemenu_header.xml`). Manifest labels now `Beyond Effects`
+  (package stays `com.octavian`).
 - `.github/workflows/canary.yml` — toolchain canary (manual trigger, no secrets,
   no APK build).
 - `.github/workflows/rebuild.yml` — APK reconstruction (manual trigger; original

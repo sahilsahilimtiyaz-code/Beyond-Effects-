@@ -59,6 +59,8 @@ jobs:
           test -f overlay-9a/AndroidManifest.xml
           test -f overlay-9a/smali_classes25/com/goldmotion/startup/GoldStartupActivity.smali
           test -f overlay-9a/smali_classes25/com/goldmotion/update/WelcomeDialog.smali
+          test -f overlay-9b/res/layout/project_list_sidemenu_header.xml
+          test -f overlay-9b/smali_classes32/com/goldmotion/ui/StudioLaunch.smali
           echo OVERLAYS-PRESENT
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
@@ -121,6 +123,13 @@ jobs:
           cp overlay-9a/smali_classes2/com/alightcreative/app/motion/activities/ExportPreviewActivity.smali "$T/smali_classes2/com/alightcreative/app/motion/activities/ExportPreviewActivity.smali"
           cp overlay-9a/smali_classes3/com/alightcreative/widget/TimelineBackgroundView.smali "$T/smali_classes3/com/alightcreative/widget/TimelineBackgroundView.smali"
           echo IDENTITY-APPLIED
+      - name: Apply Beyond identity fixes (9B launch-mark + sns-row removal)
+        run: |
+          T=work/tree
+          cp overlay-9b/res/layout/project_list_sidemenu_header.xml "$T/res/layout/project_list_sidemenu_header.xml"
+          cp overlay-9b/smali_classes32/com/goldmotion/ui/StudioLaunch.smali "$T/smali_classes32/com/goldmotion/ui/StudioLaunch.smali"
+          cp "overlay-9b/smali_classes32/com/goldmotion/ui/StudioLaunch\$Mark.smali" "$T/smali_classes32/com/goldmotion/ui/StudioLaunch\$Mark.smali"
+          echo BEYOND-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Align + sign with in-run throwaway key (test lineage only)
@@ -136,7 +145,7 @@ jobs:
           "$BT/zipalign" -c 4 work/be-rebuilt-signed.apk && echo ZIPALIGN-OK
           "$BT/apksigner" verify --print-certs work/be-rebuilt-signed.apk
           "$BT/aapt2" dump badging work/be-rebuilt-signed.apk | head -1 | grep -F "package: name='com.octavian'" && echo PACKAGE-OK
-          "$BT/aapt2" dump badging work/be-rebuilt-signed.apk | grep -F "application-label:'Octavian'" && echo LABEL-OK
+          "$BT/aapt2" dump badging work/be-rebuilt-signed.apk | grep -F "application-label:'Beyond Effects'" && echo LABEL-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'be_final_fg|activity_home_screen' && echo ENTRIES-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'effects_custom/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.xml' && echo FX-XML-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'assets/thumb/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.png' && echo FX-THUMB-OK

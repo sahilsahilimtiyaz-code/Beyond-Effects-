@@ -48,6 +48,12 @@ jobs:
           test -f overlay-8d/be_final_launcher_192.png
           test -f overlay-8d/staged_ic_launcher.xml
           test -f overlay-8d/staged_ic_launcher_round.xml
+          test -f overlay-fx/gm_custom_letterbox.xml
+          test -f overlay-fx/gm_custom_bloom_saturation_plus.xml
+          test -f overlay-fx/gm_custom_bloom_region_plus.xml
+          test -f overlay-fx/gm_custom_letterbox.png
+          test -f overlay-fx/gm_custom_bloom_saturation_plus.png
+          test -f overlay-fx/gm_custom_bloom_region_plus.png
           echo OVERLAYS-PRESENT
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
@@ -64,6 +70,17 @@ jobs:
           cp overlay-8d/staged_ic_launcher.xml "$T/res/mipmap-anydpi-v26/ic_launcher.xml"
           cp overlay-8d/staged_ic_launcher_round.xml "$T/res/mipmap-anydpi-v26/ic_launcher_round.xml"
           echo OVERLAYS-APPLIED
+      - name: Apply custom effects (2P letterbox + 2X sat+ + 6B region+; 2N placement precedent)
+        run: |
+          T=work/tree
+          mkdir -p "$T/assets/effects_custom" "$T/assets/thumb"
+          cp overlay-fx/gm_custom_letterbox.xml "$T/assets/effects_custom/gm_custom_letterbox.xml"
+          cp overlay-fx/gm_custom_bloom_saturation_plus.xml "$T/assets/effects_custom/gm_custom_bloom_saturation_plus.xml"
+          cp overlay-fx/gm_custom_bloom_region_plus.xml "$T/assets/effects_custom/gm_custom_bloom_region_plus.xml"
+          cp overlay-fx/gm_custom_letterbox.png "$T/assets/thumb/gm_custom_letterbox.png"
+          cp overlay-fx/gm_custom_bloom_saturation_plus.png "$T/assets/thumb/gm_custom_bloom_saturation_plus.png"
+          cp overlay-fx/gm_custom_bloom_region_plus.png "$T/assets/thumb/gm_custom_bloom_region_plus.png"
+          echo FX-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Align + sign with in-run throwaway key (test lineage only)
@@ -80,6 +97,8 @@ jobs:
           "$BT/apksigner" verify --print-certs work/be-rebuilt-signed.apk
           "$BT/aapt2" dump badging work/be-rebuilt-signed.apk | head -1 | grep -F "package: name='com.goldmotion.pnkj'" && echo PACKAGE-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'be_final_fg|activity_home_screen' && echo ENTRIES-OK
+          unzip -l work/be-rebuilt-signed.apk | grep -E 'effects_custom/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.xml' && echo FX-XML-OK
+          unzip -l work/be-rebuilt-signed.apk | grep -E 'assets/thumb/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.png' && echo FX-THUMB-OK
           sha256sum work/be-rebuilt-signed.apk
       - name: Upload rebuilt APK (only if requested)
         if: ${{ inputs.upload_artifact }}

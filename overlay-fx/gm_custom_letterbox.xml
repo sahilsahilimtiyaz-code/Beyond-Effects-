@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="gm.custom.letterbox" name="GM Letterbox" desc="Cinematic top/bottom bars with adjustable height, color and opacity. Beyond Effects Phase 2B validation effect." category="custom" tags="gm,custom,letterbox,cinematic,bars" thumb="thumb/gm_custom_letterbox.png" experimental="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<section text="Bars" />
+<spinner id="barHeight" default="0.12" min="0.0" max="0.40" step="0.005" label="Bar Height" type="percent" />
+<color id="barColor" default="#FF000000" label="Bar Color" alpha="false" />
+<section text="Output" />
+<spinner id="opacity" default="1.0" min="0.0" max="1.0" step="0.01" label="Opacity" type="percent" />
+</params>
+<shader type="fragment" precision="medium"><![CDATA[
+void main() {
+vec2 uv = acScreenNorm;
+vec4 src = texture2DCv(inputImg.texture, uv);
+float bar = step(uv.y, barHeight) + step(1.0 - barHeight, uv.y);
+bar = clamp(bar, 0.0, 1.0);
+vec3 outRgb = mix(src.rgb, barColor.rgb, bar * opacity);
+gl_FragColor = vec4(outRgb, src.a);
+}]]></shader>
+</effect>

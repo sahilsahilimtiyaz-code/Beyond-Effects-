@@ -11,4 +11,27 @@ jobs:
       - run: |
           mkdir -p fx/res/drawable
           printf '<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24"><path android:fillColor="#FF000000" android:pathData="M0,0h24v24H0z"/></vector>' > 'fx/res/drawable/$probe__0.xml'
-          "$ANDROID_SDK_ROOT/build-tools/"*/aapt2 compile --dir fx/res -o fx/out.zip
+          printf '<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24"><path android:fillColor="#FF000000" android:pathData="M0,0h24v24H0z"/></vector>' > 'fx/res/drawable/probe_control.xml'
+          ls -la fx/res/drawable/
+          pass=0
+          for bt in 35.0.0 34.0.0; do
+            echo "=== build-tools $bt: control (no \$) ==="
+            if "$ANDROID_SDK_ROOT/build-tools/$bt/aapt2" compile 'fx/res/drawable/probe_control.xml' -o "fx/out-control-$bt.zip"; then
+              echo "CONTROL-OK $bt"
+            else
+              echo "CONTROL-FAIL $bt"
+            fi
+            echo "=== build-tools $bt: fixture (\$ name) ==="
+            if "$ANDROID_SDK_ROOT/build-tools/$bt/aapt2" compile 'fx/res/drawable/$probe__0.xml' -o "fx/out-fixture-$bt.zip"; then
+              echo "FIXTURE-OK $bt"
+              pass=1
+            else
+              echo "FIXTURE-FAIL $bt"
+            fi
+          done
+          if [ "$pass" = "1" ]; then
+            echo "CANARY-PASS: at least one build-tools compiles \$ names"
+          else
+            echo "CANARY-FAIL: no build-tools compiles \$ names"
+            exit 1
+          fi

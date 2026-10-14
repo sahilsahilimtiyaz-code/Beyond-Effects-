@@ -66,6 +66,9 @@ jobs:
           test -f overlay-9e/res/values/colors.xml
           test -f overlay-9g/res/values/strings.xml
           test -f overlay-9g/res/layout/gm_projects_page.xml
+          test -f overlay-9h/res/drawable/gm_create_primary.xml
+          test -f overlay-9h/res/drawable/gm_projects_fab.xml
+          test -f overlay-9h/res/drawable/gm_project_selection_bg.xml
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -161,6 +164,13 @@ jobs:
           cp overlay-9g/res/values/strings.xml "$T/res/values/strings.xml"
           cp overlay-9g/res/layout/gm_projects_page.xml "$T/res/layout/gm_projects_page.xml"
           echo WORKSPACE-BRAND-APPLIED
+      - name: Apply action surfaces (9H crimson primary buttons + selection)
+        run: |
+          T=work/tree
+          cp overlay-9h/res/drawable/gm_create_primary.xml "$T/res/drawable/gm_create_primary.xml"
+          cp overlay-9h/res/drawable/gm_projects_fab.xml "$T/res/drawable/gm_projects_fab.xml"
+          cp overlay-9h/res/drawable/gm_project_selection_bg.xml "$T/res/drawable/gm_project_selection_bg.xml"
+          echo ACTIONS-APPLIED
       - name: Apply storage fix (9F MANAGE redirect removal; MediaStore path kept)
         run: |
           T=work/tree

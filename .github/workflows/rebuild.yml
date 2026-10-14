@@ -71,7 +71,7 @@ jobs:
           BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"
           "$BT/zipalign" -f 4 work/be-rebuilt-unsigned.apk work/be-rebuilt-aligned.apk
           keytool -genkeypair -keystore work/tmp/testkey.jks -alias test -keyalg RSA -keysize 2048 -validity 3650 -storepass testtest -keypass testtest -dname "CN=BeyondEffects-Test, OU=Test, O=Test, L=Test, ST=Test, C=US"
-          "$BT/apksigner" sign --ks work/tmp/testkey.jks --ks-pass:pass:testtest --key-pass:pass:testtest --out work/be-rebuilt-signed.apk work/be-rebuilt-aligned.apk
+          "$BT/apksigner" sign --ks work/tmp/testkey.jks --ks-pass pass:testtest --key-pass pass:testtest --out work/be-rebuilt-signed.apk work/be-rebuilt-aligned.apk
           echo SIGNED
       - name: Verification gates (packaging only, never runtime)
         run: |

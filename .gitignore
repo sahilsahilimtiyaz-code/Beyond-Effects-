@@ -1,0 +1,18 @@
+# Beyond Effects overlay set — first-push candidate (toolchain canary only).
+# No APK is built from this content. No decompiled commercial content is included.
+# See README-scope note below.
+*.apk
+*.apks
+*.idsig
+*.jks
+*.keystore
+.env
+*token*
+*pat*
+/apktool_out/
+/jadx_out/
+/_tools/
+*.log
+*.tmp
+/phase2h_apk/
+/GoldMotionBackup*/

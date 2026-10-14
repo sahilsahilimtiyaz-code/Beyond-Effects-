@@ -1,0 +1,14 @@
+name: toolchain-canary
+on: [workflow_dispatch]
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - run: uname -m && java -version && ls "$ANDROID_SDK_ROOT/build-tools"
+      - run: |
+          mkdir -p fx/res/drawable
+          printf '<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24"><path android:fillColor="#FF000000" android:pathData="M0,0h24v24H0z"/></vector>' > 'fx/res/drawable/$probe__0.xml'
+          "$ANDROID_SDK_ROOT/build-tools/"*/aapt2 compile --dir fx/res -o fx/out.zip

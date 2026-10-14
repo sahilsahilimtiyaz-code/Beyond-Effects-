@@ -54,6 +54,8 @@ jobs:
           test -f overlay-fx/gm_custom_letterbox.png
           test -f overlay-fx/gm_custom_bloom_saturation_plus.png
           test -f overlay-fx/gm_custom_bloom_region_plus.png
+          test -f overlay-8e/gold_motion_launcher.png
+          test -f overlay-8e/gold_motion_logo_splash.png
           echo OVERLAYS-PRESENT
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
@@ -81,6 +83,12 @@ jobs:
           cp overlay-fx/gm_custom_bloom_saturation_plus.png "$T/assets/thumb/gm_custom_bloom_saturation_plus.png"
           cp overlay-fx/gm_custom_bloom_region_plus.png "$T/assets/thumb/gm_custom_bloom_region_plus.png"
           echo FX-APPLIED
+      - name: Apply displayed-surface fixes (8E icon + splash, manifest/theme live paths)
+        run: |
+          T=work/tree
+          cp overlay-8e/gold_motion_launcher.png "$T/res/drawable-nodpi/gold_motion_launcher.png"
+          cp overlay-8e/gold_motion_logo_splash.png "$T/res/drawable-nodpi/gold_motion_logo_splash.png"
+          echo DISPLAY-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Align + sign with in-run throwaway key (test lineage only)
@@ -99,6 +107,10 @@ jobs:
           unzip -l work/be-rebuilt-signed.apk | grep -E 'be_final_fg|activity_home_screen' && echo ENTRIES-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'effects_custom/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.xml' && echo FX-XML-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'assets/thumb/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.png' && echo FX-THUMB-OK
+          unzip -l work/be-rebuilt-signed.apk | grep 'gold_motion_launcher.png'
+          test "$(unzip -l work/be-rebuilt-signed.apk | awk '/res\/drawable-nodpi\/gold_motion_launcher.png/{print $1}')" != "226477" && echo ICON-REPLACED
+          unzip -l work/be-rebuilt-signed.apk | grep 'gold_motion_logo_splash.png'
+          test "$(unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_logo_splash.png/{print $1}')" != "77662" && echo SPLASH-REPLACED
           sha256sum work/be-rebuilt-signed.apk
       - name: Upload rebuilt APK (only if requested)
         if: ${{ inputs.upload_artifact }}

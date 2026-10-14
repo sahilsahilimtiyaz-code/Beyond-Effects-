@@ -8,6 +8,10 @@ This repository revision contains ONLY:
 - `overlay-fx/` — custom-effect payloads, byte-identical to phase pins (2P
   letterbox, 2X bloom saturation+, 6B bloom region+; thumbs renamed to packaged
   `assets/thumb/<name>.png` per `thumb=` attrs, 2N precedent).
+- `overlay-8e/` — display-path corrections (root-cause fix for unchanged installs):
+  `gold_motion_launcher.png` (576², manifest `icon`/`roundIcon` live path) +
+  `gold_motion_logo_splash.png` (1024², splash-theme live path) + generator
+  provenance. Replaces same-path originals only; no XML/manifest/smali touched.
 - `.github/workflows/canary.yml` — toolchain canary (manual trigger, no secrets,
   no APK build).
 - `.github/workflows/rebuild.yml` — APK reconstruction (manual trigger; original

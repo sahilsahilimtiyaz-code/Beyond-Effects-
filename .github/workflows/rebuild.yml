@@ -66,6 +66,8 @@ jobs:
           test -f overlay-9e/res/values/colors.xml
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
+          test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
+          test -f overlay-9f/smali_classes24/com/goldmotion/update/WelcomeDialog.smali
           echo OVERLAYS-PRESENT
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
@@ -156,6 +158,8 @@ jobs:
           T=work/tree
           cp overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali "$T/smali_classes29/com/goldmotion/backup/GMBackup.smali"
           cp overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali "$T/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali"
+          cp overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali "$T/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali"
+          cp overlay-9f/smali_classes24/com/goldmotion/update/WelcomeDialog.smali "$T/smali_classes24/com/goldmotion/update/WelcomeDialog.smali"
           echo STORAGE-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk

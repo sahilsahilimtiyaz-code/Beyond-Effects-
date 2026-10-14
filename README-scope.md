@@ -37,7 +37,8 @@ This repository revision contains ONLY:
   never redirects to all-files settings (MediaStore backup path kept; manifest
   `MANAGE_EXTERNAL_STORAGE` line removed after tracing sole-consumer +
   fallback); `ForceUpdateManager` fetch + dialog-show disabled at source
-  (server-gated promo/update dialog can no longer trigger).
+  (server-gated promo/update dialog can no longer trigger). Twin-dex copies in
+  `smali_classes24` (which win at runtime) patched identically.
 - `overlay-9c/` — workspace slice A: home-stage follow block removed at its source
   (`StudioAppearance.apply`: `FOLLOW ME` + Instagram/Telegram rows never built;
   workspace-link row, prefs toggles, and settings screen preserved).

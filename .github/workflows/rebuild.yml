@@ -62,6 +62,7 @@ jobs:
           test -f overlay-9b/res/layout/project_list_sidemenu_header.xml
           test -f overlay-9b/smali_classes32/com/goldmotion/ui/StudioLaunch.smali
           test -f overlay-9c/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
+          test -f overlay-9d/smali_classes32/com/goldmotion/ui/GmUiFixes.smali
           echo OVERLAYS-PRESENT
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
@@ -136,6 +137,11 @@ jobs:
           T=work/tree
           cp overlay-9c/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
           echo WORKSPACE-APPLIED
+      - name: Apply editor shell theming (9D toolbar + holders, live MainActivity path)
+        run: |
+          T=work/tree
+          cp overlay-9d/smali_classes32/com/goldmotion/ui/GmUiFixes.smali "$T/smali_classes32/com/goldmotion/ui/GmUiFixes.smali"
+          echo SHELL-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Align + sign with in-run throwaway key (test lineage only)
@@ -162,6 +168,7 @@ jobs:
           CNT=$(for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -o 'BEYOND EFFECTS' | wc -l); echo "BEYOND-DEX-COUNT=$CNT"
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -q 'WELCOME TO BEYOND EFFECTS' && echo SMALI-WELCOME-OK || exit 1
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -q 'ENTER BEYOND EFFECTS' && echo SMALI-ENTER-OK || exit 1
+          for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -o 'Beyond Effects' | wc -l | grep -q -E '[1-9]' && echo WORDMARK-OK || exit 1
           sha256sum work/be-rebuilt-signed.apk
       - name: Upload rebuilt APK (only if requested)
         if: ${{ inputs.upload_artifact }}

@@ -46,15 +46,49 @@
 
     if-eqz v0, :cond_0
 
-    const/4 v2, 0x0
+    const/high16 v2, 0x3f800000    # 1.0f, crimson divider accent (was hidden)
 
     .line 52
     invoke-virtual {v0, v2}, Landroid/view/View;->setAlpha(F)V
 
-    invoke-virtual {v0, v1}, Landroid/view/View;->setBackgroundColor(I)V
+    const v3, -0x1ee2c1    # 0xFFE11D3F
+
+    invoke-virtual {v0, v3}, Landroid/view/View;->setBackgroundColor(I)V
 
     .line 53
     :cond_0
+    const-string v0, "goldMotionWordmark"
+
+    invoke-static {p0, v0}, Lcom/goldmotion/ui/StudioAppearance;->find(Landroid/app/Activity;Ljava/lang/String;)Landroid/view/View;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_be1
+
+    check-cast v0, Landroid/widget/TextView;
+
+    const-string v1, "Beyond Effects"
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    const v1, -0xa0c11
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setTextColor(I)V
+
+    :cond_be1
+    const-string v0, "topBar"
+
+    invoke-static {p0, v0}, Lcom/goldmotion/ui/StudioAppearance;->find(Landroid/app/Activity;Ljava/lang/String;)Landroid/view/View;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_be2
+
+    const v1, -0xe6e3de    # 0xFF191C22 raised graphite
+
+    invoke-virtual {v0, v1}, Landroid/view/View;->setBackgroundColor(I)V
+
+    :cond_be2
     const-string v0, "instaHolder"
 
     const-string v2, "https://www.instagram.com/okpnkj/"

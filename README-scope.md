@@ -12,6 +12,10 @@ This repository revision contains ONLY:
   `gold_motion_launcher.png` (576², manifest `icon`/`roundIcon` live path) +
   `gold_motion_logo_splash.png` (1024², splash-theme live path) + generator
   provenance. Replaces same-path originals only; no XML/manifest/smali touched.
+- `overlay-8f/` — onboarding rebrand (literal-only smali edits, exact class/method
+  traced): `GoldStartupActivity` + `$3/$5/$5$3/$6/$6$4` — crimson primary buttons
+  + progress tints, near-white headlines/status/button text, Beyond Effects
+  headlines. No structural, id, manifest, or navigation changes.
 - `.github/workflows/canary.yml` — toolchain canary (manual trigger, no secrets,
   no APK build).
 - `.github/workflows/rebuild.yml` — APK reconstruction (manual trigger; original

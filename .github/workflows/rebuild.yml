@@ -91,6 +91,17 @@ jobs:
           cp overlay-8e/gold_motion_launcher.png "$T/unknown/res/drawable-nodpi-v4/gold_motion_launcher.png"
           cp overlay-8e/gold_motion_logo_splash.png "$T/unknown/res/drawable-nodpi-v4/gold_motion_logo_splash.png"
           echo DISPLAY-APPLIED
+      - name: Apply onboarding rebrand (8F smali literals, GoldStartupActivity screens)
+        run: |
+          T=work/tree/smali_classes25/com/goldmotion/startup
+          S=overlay-8f/smali_classes25/com/goldmotion/startup
+          cp "$S/GoldStartupActivity.smali" "$T/GoldStartupActivity.smali"
+          cp "$S/GoldStartupActivity\$3.smali" "$T/GoldStartupActivity\$3.smali"
+          cp "$S/GoldStartupActivity\$5.smali" "$T/GoldStartupActivity\$5.smali"
+          cp "$S/GoldStartupActivity\$5\$3.smali" "$T/GoldStartupActivity\$5\$3.smali"
+          cp "$S/GoldStartupActivity\$6.smali" "$T/GoldStartupActivity\$6.smali"
+          cp "$S/GoldStartupActivity\$6\$4.smali" "$T/GoldStartupActivity\$6\$4.smali"
+          echo SMALI-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Align + sign with in-run throwaway key (test lineage only)
@@ -113,6 +124,7 @@ jobs:
           unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_launcher\.png/ && $1 == 226477 {bad=1} END {exit bad}' && echo ICON-REPLACED
           unzip -l work/be-rebuilt-signed.apk | grep 'gold_motion_logo_splash.png'
           unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_logo_splash\.png/ && $1 == 77662 {bad=1} END {exit bad}' && echo SPLASH-REPLACED
+          test "$(unzip -p work/be-rebuilt-signed.apk classes25.dex | grep -a -o 'BEYOND EFFECTS' | wc -l)" = "3" && echo SMALI-OK
           sha256sum work/be-rebuilt-signed.apk
       - name: Upload rebuilt APK (only if requested)
         if: ${{ inputs.upload_artifact }}

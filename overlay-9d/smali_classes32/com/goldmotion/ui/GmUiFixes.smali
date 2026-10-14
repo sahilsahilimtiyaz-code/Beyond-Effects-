@@ -184,7 +184,9 @@
 
     if-nez v0, :cond_1
 
-    goto/16 :goto_1
+    # Beyond Effects: run home theming on MainActivity too (all finds null-safe,
+    # bindLink/tag-guarded, stage work pref-gated). Previously skipped here.
+    goto :cond_1
 
     .line 64
     :cond_1

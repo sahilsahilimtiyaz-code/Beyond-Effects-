@@ -63,6 +63,7 @@ jobs:
           test -f overlay-9b/smali_classes32/com/goldmotion/ui/StudioLaunch.smali
           test -f overlay-9c/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-9d/smali_classes32/com/goldmotion/ui/GmUiFixes.smali
+          test -f overlay-9e/res/values/colors.xml
           echo OVERLAYS-PRESENT
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
@@ -142,6 +143,12 @@ jobs:
           T=work/tree
           cp overlay-9d/smali_classes32/com/goldmotion/ui/GmUiFixes.smali "$T/smali_classes32/com/goldmotion/ui/GmUiFixes.smali"
           echo SHELL-APPLIED
+      - name: Apply palette restyle (9E gold-to-crimson resource tokens)
+        run: |
+          T=work/tree
+          cp overlay-9e/res/values/colors.xml "$T/res/values/colors.xml"
+          python3 -c "import re; d=open('overlay-9e/res/values/colors.xml',encoding='utf-8').read(); old=re.findall(r'f6c945|ffe08a|e6a817|b87800|f9de66|fad961|ffd76a|efcc76|f4e0af|efd8a1|ffcd4b', d, re.I); print('residual gold hexes:', len(old)); raise SystemExit(1 if old else 0)"
+          echo PALETTE-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Align + sign with in-run throwaway key (test lineage only)

@@ -124,7 +124,7 @@ jobs:
           unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_launcher\.png/ && $1 == 226477 {bad=1} END {exit bad}' && echo ICON-REPLACED
           unzip -l work/be-rebuilt-signed.apk | grep 'gold_motion_logo_splash.png'
           unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_logo_splash\.png/ && $1 == 77662 {bad=1} END {exit bad}' && echo SPLASH-REPLACED
-          test "$(unzip -p work/be-rebuilt-signed.apk classes25.dex | grep -a -o 'BEYOND EFFECTS' | wc -l)" = "3" && echo SMALI-OK
+          CNT=$(for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -o 'BEYOND EFFECTS' | wc -l); echo "BEYOND-DEX-COUNT=$CNT"; test "$CNT" = "3" && echo SMALI-OK || exit 1
           sha256sum work/be-rebuilt-signed.apk
       - name: Upload rebuilt APK (only if requested)
         if: ${{ inputs.upload_artifact }}

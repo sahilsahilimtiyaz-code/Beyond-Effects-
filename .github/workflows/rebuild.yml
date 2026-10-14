@@ -52,8 +52,8 @@ jobs:
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
           T=work/tree
+          mkdir -p "$T/res/layout" "$T/res/drawable" "$T/res/mipmap-mdpi" "$T/res/mipmap-hdpi" "$T/res/mipmap-xhdpi" "$T/res/mipmap-xxhdpi" "$T/res/mipmap-xxxhdpi" "$T/res/mipmap-anydpi-v26"
           cp overlay-8c/activity_home_screen.xml "$T/res/layout/activity_home_screen.xml"
-          mkdir -p "$T/res/mipmap-xxxhdpi"
           cp overlay-8d/be_final_launcher_192.png "$T/res/mipmap-xxxhdpi/ic_launcher.png"
           cp overlay-8d/be_final_launcher_144.png "$T/res/mipmap-xxhdpi/ic_launcher.png"
           cp overlay-8d/be_final_launcher_96.png "$T/res/mipmap-xhdpi/ic_launcher.png"

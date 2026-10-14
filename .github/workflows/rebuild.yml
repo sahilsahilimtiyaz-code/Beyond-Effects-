@@ -22,12 +22,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: '17' }
-      - uses: android-actions/setup-android@v3
-      - name: Install SDK packages (platform-35 + build-tools 35.0.0)
+      - name: Install SDK packages (platform-35 + build-tools 35.0.0; SDK preinstalled on runner)
         run: |
-          yes | sdkmanager --licenses >/dev/null
-          sdkmanager "platforms;android-35" "build-tools;35.0.0"
-          "$ANDROID_SDK_ROOT/build-tools/35.0.0/aapt2" version
+          export SDK="$ANDROID_SDK_ROOT"
+          echo "SDK=$SDK"
+          ls "$SDK/build-tools"
+          yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null
+          "$SDK/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
+          "$SDK/build-tools/35.0.0/aapt2" version
       - name: Fetch Apktool 3.0.3 (checksum-pinned)
         run: |
           curl -sL -o /tmp/apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar

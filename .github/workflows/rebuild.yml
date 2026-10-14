@@ -88,6 +88,8 @@ jobs:
           T=work/tree
           cp overlay-8e/gold_motion_launcher.png "$T/res/drawable-nodpi/gold_motion_launcher.png"
           cp overlay-8e/gold_motion_logo_splash.png "$T/res/drawable-nodpi/gold_motion_logo_splash.png"
+          cp overlay-8e/gold_motion_launcher.png "$T/unknown/res/drawable-nodpi-v4/gold_motion_launcher.png"
+          cp overlay-8e/gold_motion_logo_splash.png "$T/unknown/res/drawable-nodpi-v4/gold_motion_logo_splash.png"
           echo DISPLAY-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
@@ -108,9 +110,9 @@ jobs:
           unzip -l work/be-rebuilt-signed.apk | grep -E 'effects_custom/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.xml' && echo FX-XML-OK
           unzip -l work/be-rebuilt-signed.apk | grep -E 'assets/thumb/gm_custom_(letterbox|bloom_saturation_plus|bloom_region_plus)\.png' && echo FX-THUMB-OK
           unzip -l work/be-rebuilt-signed.apk | grep 'gold_motion_launcher.png'
-          test "$(unzip -l work/be-rebuilt-signed.apk | awk '/res\/drawable-nodpi\/gold_motion_launcher.png/{print $1}')" != "226477" && echo ICON-REPLACED
+          unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_launcher\.png/ && $1 == 226477 {bad=1} END {exit bad}' && echo ICON-REPLACED
           unzip -l work/be-rebuilt-signed.apk | grep 'gold_motion_logo_splash.png'
-          test "$(unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_logo_splash.png/{print $1}')" != "77662" && echo SPLASH-REPLACED
+          unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_logo_splash\.png/ && $1 == 77662 {bad=1} END {exit bad}' && echo SPLASH-REPLACED
           sha256sum work/be-rebuilt-signed.apk
       - name: Upload rebuilt APK (only if requested)
         if: ${{ inputs.upload_artifact }}

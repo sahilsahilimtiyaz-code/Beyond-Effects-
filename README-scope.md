@@ -27,6 +27,9 @@ This repository revision contains ONLY:
   (`StudioLaunch$Mark`), drawer follow row removed (`snsHolder → gone` in
   `project_list_sidemenu_header.xml`). Manifest labels now `Beyond Effects`
   (package stays `com.octavian`).
+- `overlay-9c/` — workspace slice A: home-stage follow block removed at its source
+  (`StudioAppearance.apply`: `FOLLOW ME` + Instagram/Telegram rows never built;
+  workspace-link row, prefs toggles, and settings screen preserved).
 - `.github/workflows/canary.yml` — toolchain canary (manual trigger, no secrets,
   no APK build).
 - `.github/workflows/rebuild.yml` — APK reconstruction (manual trigger; original

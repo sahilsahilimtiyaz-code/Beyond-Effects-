@@ -61,6 +61,7 @@ jobs:
           test -f overlay-9a/smali_classes25/com/goldmotion/update/WelcomeDialog.smali
           test -f overlay-9b/res/layout/project_list_sidemenu_header.xml
           test -f overlay-9b/smali_classes32/com/goldmotion/ui/StudioLaunch.smali
+          test -f overlay-9c/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           echo OVERLAYS-PRESENT
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
@@ -130,6 +131,11 @@ jobs:
           cp overlay-9b/smali_classes32/com/goldmotion/ui/StudioLaunch.smali "$T/smali_classes32/com/goldmotion/ui/StudioLaunch.smali"
           cp "overlay-9b/smali_classes32/com/goldmotion/ui/StudioLaunch\$Mark.smali" "$T/smali_classes32/com/goldmotion/ui/StudioLaunch\$Mark.smali"
           echo BEYOND-APPLIED
+      - name: Apply workspace promo removal (9C home-stage follow block)
+        run: |
+          T=work/tree
+          cp overlay-9c/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
+          echo WORKSPACE-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Align + sign with in-run throwaway key (test lineage only)

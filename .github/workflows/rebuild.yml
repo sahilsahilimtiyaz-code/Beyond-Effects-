@@ -189,6 +189,7 @@ jobs:
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -q 'ENTER BEYOND EFFECTS' && echo SMALI-ENTER-OK || exit 1
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -o 'Beyond Effects' | wc -l | grep -q -E '[1-9]' && echo WORDMARK-OK || exit 1
           test "$(unzip -p work/be-rebuilt-signed.apk AndroidManifest.xml | grep -a -c 'MANAGE_EXTERNAL_STORAGE')" = "0" && echo MANAGE-GONE || exit 1
+          "$BT/aapt2" dump xmltree work/be-rebuilt-signed.apk --file res/layout/project_list_sidemenu_header.xml > /tmp/be_header.txt 2>&1; grep -c 'Beyond Effects' /tmp/be_header.txt | grep -q -E '[1-9]' && echo DRAWER-BRAND-OK || exit 1
           sha256sum work/be-rebuilt-signed.apk
       - name: Upload rebuilt APK (only if requested)
         if: ${{ inputs.upload_artifact }}

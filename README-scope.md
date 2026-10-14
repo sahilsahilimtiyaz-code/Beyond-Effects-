@@ -27,6 +27,9 @@ This repository revision contains ONLY:
   (`StudioLaunch$Mark`), drawer follow row removed (`snsHolder → gone` in
   `project_list_sidemenu_header.xml`). Manifest labels now `Beyond Effects`
   (package stays `com.octavian`).
+  Drawer brand block: B icon + `Beyond Effects` title + crimson divider inserted
+  at the top of the drawer header (new `@+id/beBrand*` hierarchy; sns row stays
+  gone; settings/menu content untouched).
 - `overlay-9d/` — editor shell slice B (live `MainActivity` path via `GmUiFixes`):
   crimson topBar divider, guaranteed `Beyond Effects` wordmark, graphite topBar,
   whitened export/cover holders. All null-safe `find()`-based, no structural edits.

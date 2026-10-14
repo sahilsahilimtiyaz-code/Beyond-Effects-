@@ -33,6 +33,11 @@ This repository revision contains ONLY:
 - `overlay-9e/` — app-wide palette restyle (scripted, 25 gold→crimson token remaps,
   hue-rotated at constant lightness/saturation/alpha; functional hues, SDK colors,
   and effect-viz groups untouched; everything else byte-identical).
+- `overlay-9f/` — storage discipline + update-popup removal: `GMBackup`
+  never redirects to all-files settings (MediaStore backup path kept; manifest
+  `MANAGE_EXTERNAL_STORAGE` line removed after tracing sole-consumer +
+  fallback); `ForceUpdateManager` fetch + dialog-show disabled at source
+  (server-gated promo/update dialog can no longer trigger).
 - `overlay-9c/` — workspace slice A: home-stage follow block removed at its source
   (`StudioAppearance.apply`: `FOLLOW ME` + Instagram/Telegram rows never built;
   workspace-link row, prefs toggles, and settings screen preserved).

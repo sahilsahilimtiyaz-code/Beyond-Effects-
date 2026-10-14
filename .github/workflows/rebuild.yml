@@ -64,6 +64,8 @@ jobs:
           test -f overlay-9c/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-9d/smali_classes32/com/goldmotion/ui/GmUiFixes.smali
           test -f overlay-9e/res/values/colors.xml
+          test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
+          test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           echo OVERLAYS-PRESENT
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
@@ -149,6 +151,12 @@ jobs:
           cp overlay-9e/res/values/colors.xml "$T/res/values/colors.xml"
           python3 -c "import re; d=open('overlay-9e/res/values/colors.xml',encoding='utf-8').read(); old=re.findall(r'f6c945|ffe08a|e6a817|b87800|f9de66|fad961|ffd76a|efcc76|f4e0af|efd8a1|ffcd4b', d, re.I); print('residual gold hexes:', len(old)); raise SystemExit(1 if old else 0)"
           echo PALETTE-APPLIED
+      - name: Apply storage fix (9F MANAGE redirect removal; MediaStore path kept)
+        run: |
+          T=work/tree
+          cp overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali "$T/smali_classes29/com/goldmotion/backup/GMBackup.smali"
+          cp overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali "$T/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali"
+          echo STORAGE-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Align + sign with in-run throwaway key (test lineage only)
@@ -176,6 +184,7 @@ jobs:
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -q 'WELCOME TO BEYOND EFFECTS' && echo SMALI-WELCOME-OK || exit 1
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -q 'ENTER BEYOND EFFECTS' && echo SMALI-ENTER-OK || exit 1
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -o 'Beyond Effects' | wc -l | grep -q -E '[1-9]' && echo WORDMARK-OK || exit 1
+          test "$(unzip -p work/be-rebuilt-signed.apk AndroidManifest.xml | grep -a -c 'MANAGE_EXTERNAL_STORAGE')" = "0" && echo MANAGE-GONE || exit 1
           sha256sum work/be-rebuilt-signed.apk
       - name: Upload rebuilt APK (only if requested)
         if: ${{ inputs.upload_artifact }}

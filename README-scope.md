@@ -7,6 +7,9 @@ This repository revision contains ONLY:
   the generator script (provenance).
 - `.github/workflows/canary.yml` — toolchain canary (manual trigger, no secrets,
   no APK build).
+- `.github/workflows/rebuild.yml` — APK reconstruction (manual trigger; original
+  APK supplied at run time via URL+SHA, never committed; in-run throwaway test
+  key only).
 - `pins.md`, `.gitignore`, this note.
 
 It does NOT contain: the original APK, decompiled sources, DEX, native

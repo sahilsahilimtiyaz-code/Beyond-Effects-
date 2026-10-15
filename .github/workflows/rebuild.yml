@@ -109,6 +109,12 @@ jobs:
           test -f overlay-23a/res/layout/activity_edit.xml
           test -f overlay-23a/res/layout/activity_edit_playbar.xml
           test -f overlay-24a/res/layout/activity_edit.xml
+          test -f overlay-26a/res/layout/activity_edit_navbar.xml
+          test -f overlay-26a/res/layout/activity_edit_playbar.xml
+          test -f overlay-26a/res/layout/activity_edit.xml
+          test -f overlay-26a/smali_classes32/com/goldmotion/ui/GmUiFixes.smali
+          test -f overlay-26a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
+          test -f overlay-26a/smali_classes32/com/goldmotion/ui/GmPerformClick.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali
           test -f overlay-22a/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
@@ -159,6 +165,9 @@ jobs:
               ('overlay-19a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-23a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-24a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-26a/res/layout/activity_edit_navbar.xml', 'work/tree/res/layout/activity_edit_navbar.xml'),
+              ('overlay-26a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
+              ('overlay-26a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-19a/res/layout/effect_item_ver2.xml', 'work/tree/res/layout/effect_item_ver2.xml'),
               ('overlay-23a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-18a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
@@ -177,10 +186,16 @@ jobs:
           bad = 0
           for o, t in pairs:
               if o in ('overlay-23a/res/layout/activity_edit.xml',
-                       'overlay-24a/res/layout/activity_edit.xml'):
-                  # buttonAdd intentionally reparented into the playbar include:
-                  # contract holds over the union of both files in one tree.
-                  oids = ids(o) | ids('overlay-23a/res/layout/activity_edit_playbar.xml')
+                       'overlay-24a/res/layout/activity_edit.xml',
+                       'overlay-26a/res/layout/activity_edit_navbar.xml',
+                       'overlay-26a/res/layout/activity_edit_playbar.xml',
+                       'overlay-26a/res/layout/activity_edit.xml'):
+                  # editTimeView/buttonAdd intentionally reparented across the
+                  # navbar/playbar/activity_edit includes: contract holds over
+                  # the union of the shipped files in one tree.
+                  oids = (ids('overlay-26a/res/layout/activity_edit_navbar.xml')
+                          | ids('overlay-26a/res/layout/activity_edit_playbar.xml')
+                          | ids('overlay-26a/res/layout/activity_edit.xml'))
               else:
                   oids = ids(o)
               missing = ids(t) - oids
@@ -364,6 +379,16 @@ jobs:
           T=work/tree
           cp overlay-24a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
           echo REBALANCE-APPLIED
+      - name: Apply cockpit delegation (26A navbar/export pill, timecode, rail, wiring)
+        run: |
+          T=work/tree
+          cp overlay-26a/res/layout/activity_edit_navbar.xml "$T/res/layout/activity_edit_navbar.xml"
+          cp overlay-26a/res/layout/activity_edit_playbar.xml "$T/res/layout/activity_edit_playbar.xml"
+          cp overlay-26a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-26a/smali_classes32/com/goldmotion/ui/GmUiFixes.smali "$T/smali_classes32/com/goldmotion/ui/GmUiFixes.smali"
+          cp overlay-26a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
+          cp overlay-26a/smali_classes32/com/goldmotion/ui/GmPerformClick.smali "$T/smali_classes32/com/goldmotion/ui/GmPerformClick.smali"
+          echo COCKPIT2-APPLIED
       - name: Apply library navigation (20A tappable empty state via real tab API)
         run: |
           T=work/tree

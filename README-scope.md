@@ -182,3 +182,13 @@ Reconstruction work stays disabled until separately approved.
 - `overlay-24a/` — preview/timeline rebalance: timeline 280→240dp gives the
   stage +40dp (RecyclerView adapts; rows/manager/dimen agree at 34/240);
   timeline overflow moves off the layer-header corner to the trailing corner.
+- `overlay-26a/` — cockpit delegation (mockup-faithful where real): navbar
+  [back][title][undo][redo][settings][Export pill] with share kept gone for
+  the binding; timecode docked in transport; left tool rail
+  (Media/Templates/Audio/Text) over the stage edge. Every new control
+  delegates via performClick to the existing working control (no invented
+  ops); EditActivity wiring via lifecycle hook with null-guards. Declined:
+  landscape (portrait-locked manifest+native), AI Tools/snap/grid/keyframe
+  bar/fullscreen (no backing ops), colored tracks (native never sets them),
+  persistent inspector sliders (needs native panel control), relabeling
+  viewmodes with unverified meanings.

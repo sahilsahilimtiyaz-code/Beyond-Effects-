@@ -213,3 +213,6 @@ Reconstruction work stays disabled until separately approved.
   Plus: layout-guarded editor wiring (fires post-layout when views exist),
   compact centered rail (frees canvas), white eye icon, tap-diagnostic
   toasts naming the fired control (temporary, removable).
+- `overlay-31a/` — Elements rail entry via the proven sheet+tab delegation
+  (object tab). Layers entry declined: no global layers destination exists.
+  Effects entry pending launcher trace.

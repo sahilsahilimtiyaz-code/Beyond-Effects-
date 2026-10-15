@@ -133,6 +133,8 @@ jobs:
           test -f overlay-30a/smali_classes32/com/goldmotion/ui/GmToolLauncher.smali
           test -f overlay-30a/res/layout/activity_edit.xml
           test -f overlay-30a/res/drawable/gm_editor_eye.xml
+          test -f overlay-31a/res/layout/activity_edit.xml
+          test -f overlay-31a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali
           test -f overlay-22a/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
@@ -189,6 +191,7 @@ jobs:
               ('overlay-27a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-28a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-30a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-31a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-19a/res/layout/effect_item_ver2.xml', 'work/tree/res/layout/effect_item_ver2.xml'),
               ('overlay-23a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-18a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
@@ -215,13 +218,14 @@ jobs:
                        'overlay-27a/res/layout/activity_edit_playbar.xml',
                        'overlay-27a/res/layout/activity_edit.xml',
                        'overlay-28a/res/layout/activity_edit.xml',
-                       'overlay-30a/res/layout/activity_edit.xml'):
+                       'overlay-30a/res/layout/activity_edit.xml',
+                       'overlay-31a/res/layout/activity_edit.xml'):
                   # editTimeView/buttonAdd intentionally reparented across the
                   # navbar/playbar/activity_edit includes: contract holds over
                   # the union of the shipped files in one tree.
                   oids = (ids('overlay-27a/res/layout/activity_edit_navbar.xml')
                           | ids('overlay-27a/res/layout/activity_edit_playbar.xml')
-                          | ids('overlay-30a/res/layout/activity_edit.xml'))
+                          | ids('overlay-31a/res/layout/activity_edit.xml'))
               else:
                   oids = ids(o)
               missing = ids(t) - oids
@@ -449,6 +453,12 @@ jobs:
           cp overlay-30a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
           cp overlay-30a/res/drawable/gm_editor_eye.xml "$T/res/drawable/gm_editor_eye.xml"
           echo THEMER-APPLIED
+      - name: Apply Elements rail entry (31A object-tab delegation)
+        run: |
+          T=work/tree
+          cp overlay-31a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-31a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
+          echo RAIL2-APPLIED
       - name: Apply library navigation (20A tappable empty state via real tab API)
         run: |
           T=work/tree

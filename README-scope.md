@@ -69,6 +69,10 @@ This repository revision contains ONLY:
   Aftermotionex Telegram handles stripped (9 intents kept well-formed);
   disguised `support/annotation/B` "Follow @fwpnkj" → Beyond Effects.
   Reachability trace pending; texts neutralized at source regardless.
+- `overlay-9n/` — follow-toast trigger removed: `MainActivity.onResume`
+  called disguised `B.mod` (custom "Follow @fwpnkj" toast over home on every
+  resume; toast-only, no functional side effects). Single straight-line call
+  deleted; resume flow otherwise byte-identical.
 - `overlay-9i/` — gallery card redesign (traced live path `GmProjectsPage`
   `render` → `cols` → `card`; dead `listitem_project_list.xml` untouched):
   thumbs 16:9 → 4:3, grid gap 13 → 16dp, card radius 13 → 18dp,

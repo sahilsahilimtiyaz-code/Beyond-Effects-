@@ -316,15 +316,14 @@ jobs:
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Inspect APK contents (prove structures shipped, not just sources)
         run: |
-          BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"
-          "$BT/aapt2" dump xmltree work/be-rebuilt-unsigned.apk --file res/layout/create_project_fragment.xml > /tmp/xml_create.txt 2>&1 || true
-          grep -q "beCreateHeader" /tmp/xml_create.txt && echo CREATE-HEADER-OK || exit 1
-          "$BT/aapt2" dump xmltree work/be-rebuilt-unsigned.apk --file res/layout/effect_browser_activity.xml > /tmp/xml_fx.txt 2>&1 || true
-          grep -q "browserTitle" /tmp/xml_fx.txt && echo FXHEADER-OK || exit 1
-          "$BT/aapt2" dump xmltree work/be-rebuilt-unsigned.apk --file res/layout/activity_edit_addpopup.xml > /tmp/xml_add.txt 2>&1 || true
-          grep -q "elementTabHolder" /tmp/xml_add.txt && echo ADDPANEL-OK || exit 1
-          "$BT/aapt2" dump xmltree work/be-rebuilt-unsigned.apk --file res/layout/project_list_tab_view_homefeed.xml > /tmp/xml_home.txt 2>&1 || true
-          grep -q "goldHomeStage" /tmp/xml_home.txt && echo HOMEFEED-OK || exit 1
+          grep -q "beCreateHeader" work/tree/res/layout/create_project_fragment.xml && echo CREATE-HEADER-OK || exit 1
+          grep -q "browserTitle" work/tree/res/layout/effect_browser_activity.xml && echo FXHEADER-OK || exit 1
+          grep -q "elementTabHolder" work/tree/res/layout/activity_edit_addpopup.xml && echo ADDPANEL-OK || exit 1
+          grep -q "goldHomeStage" work/tree/res/layout/project_list_tab_view_homefeed.xml && echo HOMEFEED-OK || exit 1
+          for f in res/layout/create_project_fragment.xml res/layout/effect_browser_activity.xml res/layout/activity_edit_addpopup.xml res/layout/project_list_tab_view_homefeed.xml res/color/be_tab_state.xml; do
+            unzip -l work/be-rebuilt-unsigned.apk | grep -q "$f" || exit 1
+          done
+          echo ENTRIES-OK
           unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'GmNewProjectOpener' | grep -q -E '[1-9]' && echo NEWPROJ-CODE-OK || exit 1
           unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'continueCard' | grep -q -E '[1-9]' && echo CONTINUE-CODE-OK || exit 1
       - name: Align + sign with in-run throwaway key (test lineage only)

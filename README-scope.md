@@ -114,6 +114,10 @@ This repository revision contains ONLY:
   primary; SHARE + Close secondary row) and drawer recomposition (WORKSPACE /
   SUPPORT / DEVELOPER section headers with re-chained constraints; promo block
   untouched-gone). All IDs preserved; progress honesty untouched.
+- `overlay-19a/` — editor viewmode recomposition: 56dp vertical edge strip →
+  full-width 52dp horizontal canvas-tool strip under the navbar (pixel/grid/
+  solo/camera + canvas zoom re-chained; preview and floating guides follow);
+  effect grid cards 80→84dp with 11sp names. All IDs/types/parents kept.
 - `overlay-17a/` — inspector + settings: shared `be_inspector_label_text`
   mint active/pressed states across all 7 property rows, slider thumb 18→22dp
   for precise scrubbing, preferences grouped into 3 labeled categories

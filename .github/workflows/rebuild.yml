@@ -104,6 +104,8 @@ jobs:
           test -f overlay-16a/res/layout/effect_detail_frag.xml
           test -f overlay-16a/res/layout/effect_category_recommend_frag.xml
           test -f overlay-16a/res/layout/activity_export_preview.xml
+          test -f overlay-19a/res/layout/activity_edit.xml
+          test -f overlay-19a/res/layout/effect_item_ver2.xml
           test -f overlay-18a/res/layout/activity_export_preview.xml
           test -f overlay-17a/res/color/be_inspector_label_text.xml
           test -f overlay-17a/res/layout/effect_setting_slider.xml
@@ -141,6 +143,8 @@ jobs:
               ('overlay-16a/res/layout/effect_detail_frag.xml', 'work/tree/res/layout/effect_detail_frag.xml'),
               ('overlay-16a/res/layout/effect_category_recommend_frag.xml', 'work/tree/res/layout/effect_category_recommend_frag.xml'),
               ('overlay-16a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
+              ('overlay-19a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-19a/res/layout/effect_item_ver2.xml', 'work/tree/res/layout/effect_item_ver2.xml'),
               ('overlay-18a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
               ('overlay-17a/res/layout/effect_setting_slider.xml', 'work/tree/res/layout/effect_setting_slider.xml'),
               ('overlay-17a/res/layout/effect_setting_color.xml', 'work/tree/res/layout/effect_setting_color.xml'),
@@ -317,6 +321,12 @@ jobs:
           cp overlay-12a/res/layout/activity_edit_addpopup.xml "$T/res/layout/activity_edit_addpopup.xml"
           cp overlay-12a/res/color/be_tab_state.xml "$T/res/color/be_tab_state.xml"
           echo STAGE-APPLIED
+      - name: Apply editor viewmode strip (19A horizontal canvas tools + ver2 tune)
+        run: |
+          T=work/tree
+          cp overlay-19a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-19a/res/layout/effect_item_ver2.xml "$T/res/layout/effect_item_ver2.xml"
+          echo VIEWMODE-APPLIED
       - name: Apply dead-listener URL strip (11A telegram click)
         run: |
           T=work/tree

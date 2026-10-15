@@ -104,6 +104,11 @@ jobs:
           test -f overlay-16a/res/layout/effect_detail_frag.xml
           test -f overlay-16a/res/layout/effect_category_recommend_frag.xml
           test -f overlay-16a/res/layout/activity_export_preview.xml
+          test -f overlay-17a/res/color/be_inspector_label_text.xml
+          test -f overlay-17a/res/layout/effect_setting_slider.xml
+          test -f overlay-17a/res/layout/effect_setting_text.xml
+          test -f overlay-17a/res/xml/preferences.xml
+          test -f overlay-17a/res/values/strings.xml
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -134,6 +139,14 @@ jobs:
               ('overlay-16a/res/layout/effect_detail_frag.xml', 'work/tree/res/layout/effect_detail_frag.xml'),
               ('overlay-16a/res/layout/effect_category_recommend_frag.xml', 'work/tree/res/layout/effect_category_recommend_frag.xml'),
               ('overlay-16a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
+              ('overlay-17a/res/layout/effect_setting_slider.xml', 'work/tree/res/layout/effect_setting_slider.xml'),
+              ('overlay-17a/res/layout/effect_setting_color.xml', 'work/tree/res/layout/effect_setting_color.xml'),
+              ('overlay-17a/res/layout/effect_setting_pos.xml', 'work/tree/res/layout/effect_setting_pos.xml'),
+              ('overlay-17a/res/layout/effect_setting_xyz.xml', 'work/tree/res/layout/effect_setting_xyz.xml'),
+              ('overlay-17a/res/layout/effect_setting_spinner.xml', 'work/tree/res/layout/effect_setting_spinner.xml'),
+              ('overlay-17a/res/layout/effect_setting_selector.xml', 'work/tree/res/layout/effect_setting_selector.xml'),
+              ('overlay-17a/res/layout/effect_setting_text.xml', 'work/tree/res/layout/effect_setting_text.xml'),
+              ('overlay-17a/res/xml/preferences.xml', 'work/tree/res/xml/preferences.xml'),
           ]
           bad = 0
           for o, t in pairs:
@@ -333,6 +346,20 @@ jobs:
           cp overlay-16a/res/layout/effect_category_recommend_frag.xml "$T/res/layout/effect_category_recommend_frag.xml"
           cp overlay-16a/res/layout/activity_export_preview.xml "$T/res/layout/activity_export_preview.xml"
           echo FXDEPTH-APPLIED
+      - name: Apply inspector + settings (17A mint label states, thumb, grouped prefs)
+        run: |
+          T=work/tree
+          cp overlay-17a/res/color/be_inspector_label_text.xml "$T/res/color/be_inspector_label_text.xml"
+          cp overlay-17a/res/layout/effect_setting_slider.xml "$T/res/layout/effect_setting_slider.xml"
+          cp overlay-17a/res/layout/effect_setting_color.xml "$T/res/layout/effect_setting_color.xml"
+          cp overlay-17a/res/layout/effect_setting_pos.xml "$T/res/layout/effect_setting_pos.xml"
+          cp overlay-17a/res/layout/effect_setting_xyz.xml "$T/res/layout/effect_setting_xyz.xml"
+          cp overlay-17a/res/layout/effect_setting_spinner.xml "$T/res/layout/effect_setting_spinner.xml"
+          cp overlay-17a/res/layout/effect_setting_selector.xml "$T/res/layout/effect_setting_selector.xml"
+          cp overlay-17a/res/layout/effect_setting_text.xml "$T/res/layout/effect_setting_text.xml"
+          cp overlay-17a/res/xml/preferences.xml "$T/res/xml/preferences.xml"
+          cp overlay-17a/res/values/strings.xml "$T/res/values/strings.xml"
+          echo INSPECTOR-APPLIED
       # BISECT-2: 9N copy stays disabled (whole-file smali reassembly suspect);
       # follow-toast returns until a surgical single-line patch replaces it.
       # BISECT 2026-10-15: 10A/10B/10C unwired after startup-crash report on

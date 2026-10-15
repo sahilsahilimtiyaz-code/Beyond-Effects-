@@ -110,6 +110,12 @@ This repository revision contains ONLY:
   layer-type strip → neutral (native never recolors it); visibility toggle
   40dp; search header 52dp charcoal zone with centered back action.
   Export strings verified honest (failure + storage guidance, no fake success).
+- `overlay-17a/` — inspector + settings: shared `be_inspector_label_text`
+  mint active/pressed states across all 7 property rows, slider thumb 18→22dp
+  for precise scrubbing, preferences grouped into 3 labeled categories
+  (keys/defaults untouched). Bottom-nav mapping: tab switching lives in
+  Compose/native (`GmNavBar.sync` drives; no MainActivity select-tab API) —
+  documented open, no fake wiring.
 - `overlay-16a/` — effects/export/nav refinement: mint create disc; detail
   panel hierarchy (36dp overlap, 22sp title); recommend density; export SAVE
   primary (1.4 weight, honest spinner/progress kept); drawer social labels

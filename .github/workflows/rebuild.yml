@@ -123,6 +123,8 @@ jobs:
           test -f overlay-28a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
           test -f overlay-28a/smali_classes32/com/goldmotion/ui/GmToolLauncher.smali
           test -f overlay-28a/smali_classes25/com/goldmotion/tools/ToolStudioActivity.smali
+          test -f overlay-29a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
+          test -f overlay-29a/smali_classes32/com/goldmotion/ui/GmRailClick.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali
           test -f overlay-22a/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
@@ -419,6 +421,12 @@ jobs:
           cp overlay-28a/smali_classes32/com/goldmotion/ui/GmToolLauncher.smali "$T/smali_classes32/com/goldmotion/ui/GmToolLauncher.smali"
           cp overlay-28a/smali_classes25/com/goldmotion/tools/ToolStudioActivity.smali "$T/smali_classes25/com/goldmotion/tools/ToolStudioActivity.smali"
           echo AITOOLS-APPLIED
+      - name: Apply rail robustness (29A visibility-aware sheet+tab clicks)
+        run: |
+          T=work/tree
+          cp overlay-29a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
+          cp overlay-29a/smali_classes32/com/goldmotion/ui/GmRailClick.smali "$T/smali_classes32/com/goldmotion/ui/GmRailClick.smali"
+          echo RAIL-APPLIED
       - name: Apply library navigation (20A tappable empty state via real tab API)
         run: |
           T=work/tree

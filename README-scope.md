@@ -202,3 +202,7 @@ Reconstruction work stays disabled until separately approved.
   icon launches ToolStudioActivity via the app's own intent pattern
   (`gold_tool` extra); studio title chrome rebranded, functional help copy
   untouched. Portrait-safe activity; back returns to editor.
+- `overlay-29a/` — rail robustness: sheet+tab rail buttons check addPopup
+  visibility first (no double-toggle when the sheet is already open), then
+  fire the real tab control. Every new button audited end-to-end against an
+  existing working target; null-guarded throughout.

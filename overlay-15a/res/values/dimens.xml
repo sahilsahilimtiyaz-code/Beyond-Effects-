@@ -273,7 +273,7 @@
     <dimen name="editPointsStrokeBgWidth">2.0dp</dimen>
     <dimen name="editPointsStrokeFgWidth">1.0dp</dimen>
     <dimen name="edit_panel_half_height">100.0dp</dimen>
-    <dimen name="edit_panel_height">200.0dp</dimen>
+    <dimen name="edit_panel_height">232.0dp</dimen>
     <dimen name="edit_reward_tooltip_width">174.0dp</dimen>
     <dimen name="edit_timeline_height">240.0dp</dimen>
     <dimen name="effect_item_thumb_size">69.0dp</dimen>
@@ -380,7 +380,7 @@
     <dimen name="labelFontSizeGranularity">2.0dp</dimen>
     <dimen name="labelFontSizeMax">18.0dp</dimen>
     <dimen name="labelFontSizeMin">8.0dp</dimen>
-    <dimen name="list_panel_item_height">37.0dp</dimen>
+    <dimen name="list_panel_item_height">44.0dp</dimen>
     <dimen name="list_panel_padding">6.5dp</dimen>
     <dimen name="m3_alert_dialog_action_bottom_padding">14.0dp</dimen>
     <dimen name="m3_alert_dialog_action_top_padding">14.0dp</dimen>

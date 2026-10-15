@@ -47,6 +47,14 @@ This repository revision contains ONLY:
 - `overlay-9h/` — action surfaces: CREATE button, new-project FAB, and
   multi-select bar gold → crimson (pressed state darker). Shapes, states,
   radii, and users (creation/workspace only) unchanged.
+- `overlay-9i/` — gallery card redesign (traced live path `GmProjectsPage`
+  `render` → `cols` → `card`; dead `listitem_project_list.xml` untouched):
+  thumbs 16:9 → 4:3, grid gap 13 → 16dp, card radius 13 → 18dp,
+  title 12.5 → 14sp / meta 11 → 12sp with looser margins, duration pill
+  10.5 → 11.5sp, check 22 → 26dp, overflow 26x22 → 30x26dp,
+  list thumb 64 → 80dp, section headers 11 → 12sp. No view added/removed;
+  open, long-press select, overflow menu, search, sort, and export callbacks
+  byte-identical.
 - `overlay-9c/` — workspace slice A: home-stage follow block removed at its source
   (`StudioAppearance.apply`: `FOLLOW ME` + Instagram/Telegram rows never built;
   workspace-link row, prefs toggles, and settings screen preserved).

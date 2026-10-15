@@ -69,6 +69,7 @@ jobs:
           test -f overlay-9h/res/drawable/gm_create_primary.xml
           test -f overlay-9h/res/drawable/gm_projects_fab.xml
           test -f overlay-9h/res/drawable/gm_project_selection_bg.xml
+          test -f overlay-9i/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -171,6 +172,11 @@ jobs:
           cp overlay-9h/res/drawable/gm_projects_fab.xml "$T/res/drawable/gm_projects_fab.xml"
           cp overlay-9h/res/drawable/gm_project_selection_bg.xml "$T/res/drawable/gm_project_selection_bg.xml"
           echo ACTIONS-APPLIED
+      - name: Apply gallery card redesign (9I GmProjectsPage geometry)
+        run: |
+          T=work/tree
+          cp overlay-9i/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali "$T/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali"
+          echo GALLERY-APPLIED
       - name: Apply storage fix (9F MANAGE redirect removal; MediaStore path kept)
         run: |
           T=work/tree

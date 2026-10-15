@@ -118,6 +118,11 @@ This repository revision contains ONLY:
   full-width 52dp horizontal canvas-tool strip under the navbar (pixel/grid/
   solo/camera + canvas zoom re-chained; preview and floating guides follow);
   effect grid cards 80→84dp with 11sp names. All IDs/types/parents kept.
+- `overlay-20a/` — real tab navigation mapped: nav taps route
+  `Click(index)` → `pick()` (2→create sheet, else `uRg(Mk)` tab select;
+  index 1 = Projects, same call the nav button makes). Home empty state is
+  now tappable via `pick(activity, 1)` — no invented API. Bottom-nav
+  constraint closed.
 - `overlay-17a/` — inspector + settings: shared `be_inspector_label_text`
   mint active/pressed states across all 7 property rows, slider thumb 18→22dp
   for precise scrubbing, preferences grouped into 3 labeled categories

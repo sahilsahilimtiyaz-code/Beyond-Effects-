@@ -106,6 +106,8 @@ jobs:
           test -f overlay-16a/res/layout/activity_export_preview.xml
           test -f overlay-19a/res/layout/activity_edit.xml
           test -f overlay-19a/res/layout/effect_item_ver2.xml
+          test -f overlay-20a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
+          test -f overlay-20a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali
           test -f overlay-18a/res/layout/activity_export_preview.xml
           test -f overlay-17a/res/color/be_inspector_label_text.xml
           test -f overlay-17a/res/layout/effect_setting_slider.xml
@@ -327,6 +329,12 @@ jobs:
           cp overlay-19a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
           cp overlay-19a/res/layout/effect_item_ver2.xml "$T/res/layout/effect_item_ver2.xml"
           echo VIEWMODE-APPLIED
+      - name: Apply library navigation (20A tappable empty state via real tab API)
+        run: |
+          T=work/tree
+          cp overlay-20a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
+          cp overlay-20a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali "$T/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali"
+          echo NAV-APPLIED
       - name: Apply dead-listener URL strip (11A telegram click)
         run: |
           T=work/tree

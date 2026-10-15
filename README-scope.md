@@ -192,3 +192,8 @@ Reconstruction work stays disabled until separately approved.
   bar/fullscreen (no backing ops), colored tracks (native never sets them),
   persistent inspector sliders (needs native panel control), relabeling
   viewmodes with unverified meanings.
+- `overlay-27a/` — binding-include rule (from device crash: `hoy.Q8S` binds
+  the navbar include subtree, so moved IDs crash native inflate):
+  editTimeView and buttonAdd restored to their native includes; pill,
+  undo/redo, and rail kept as pure additions. Rule hardened: IDs never cross
+  include boundaries; additions only.

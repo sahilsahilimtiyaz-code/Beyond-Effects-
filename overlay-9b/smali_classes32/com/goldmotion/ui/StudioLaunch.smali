@@ -189,7 +189,7 @@
 
     const/16 v1, 0xb
 
-    const v2, -0x264087
+    const v2, -0x9d1a46
 
     .line 21
     const-string v3, "B E Y O N D   E F F E C T S"

@@ -74,7 +74,7 @@
 
     move-result v2
 
-    const v4, 0x70c8102e
+    const v4, 0x7062e5ba
 
     invoke-virtual {v1, v2, v4}, Landroid/graphics/drawable/GradientDrawable;->setStroke(II)V
 

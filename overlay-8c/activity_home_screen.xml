@@ -32,7 +32,7 @@
             <ImageView android:padding="8.0dp" android:layout_width="108.0dp" android:layout_height="108.0dp" android:src="@drawable/gold_motion_icon" android:scaleType="fitCenter" android:contentDescription="@string/app_name" />
             <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="#fffff8e8" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dp" android:text="Opening Beyond Effects" />
             <TextView android:textSize="12.0sp" android:textColor="#ff92949b" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7.0dp" android:text="Preparing your creative workspace" />
-            <ProgressBar android:layout_width="180.0dp" android:layout_height="4.0dp" android:layout_marginTop="24.0dp" android:indeterminate="true" android:indeterminateTint="#ffc8102e" style="?android:progressBarStyleHorizontal" />
+            <ProgressBar android:layout_width="180.0dp" android:layout_height="4.0dp" android:layout_marginTop="24.0dp" android:indeterminate="true" android:indeterminateTint="#ff62e5ba" style="?android:progressBarStyleHorizontal" />
         </LinearLayout>
     </FrameLayout>
     <com.google.android.material.navigation.NavigationView android:layout_gravity="start" android:id="@id/nav_view" android:background="#ff101114" android:fitsSystemWindows="true" android:layout_width="wrap_content" android:layout_height="match_parent" app:headerLayout="@layout/project_list_sidemenu_header" app:itemIconTint="@android:color/white" app:itemTextColor="@android:color/white" />

@@ -88,15 +88,20 @@ All dialog/menu/panel switches preserved; back-stack untouched.
 - Dead layouts (zero dex refs): `activity_project_list_main`,
   `activity_project_list_addpopup_large`, `listitem_project_list` — excluded.
 
-## 4. Component system (black/charcoal + crimson)
-Surfaces: `#ff090a0c` primary, `#ff101114`/`#ff14161b` secondary,
-`#ff191c22` raised. Accent `#ffe11d3f`, pressed `#ffb91431`.
+## 4. Component system — DESIGN TOKENS v2 (master brief)
+Background `#090B0D`, base `#111519`, raised `#191F25`, elevated `#222A32`.
+Primary text `#F2F5F7`, secondary `#B2BDC7`.
+Primary accent **mint `#62E5BA`** (12.6:1 on near-black, computed),
+pressed `#35B184` (7.3:1), med `#7DE9C6`, pale `#C9F5E3`, deep `#1E8A62`.
+Accent foreground (text/badges ON mint) `#062319` (10.7:1, computed).
+Never white-on-mint (1.6:1). Crimson fully migrated out (commit on
+`be/full-overhaul`; 25 palette tokens + 15 flat refs + smali consts).
+Semantic reds (errors, declines, system palettes) intentionally untouched.
 Shared components: `be_tab_state` (activated-tab state list), card radius
 via `StudioAppearance.card` (pref `studio_radius` dp 24), `gm_create_*`
 field/section drawables, `spacegrotesk/roboto` type scale (title 22/18/15,
-body 12/11, micro 10). States: activated/pressed/gone/empty standardized;
-toasts keep native behavior. No gold (`f6c945` family banned — 9E mapped),
-no giant heroes, no fake controls.
+body 12/11, micro 10). Honors `studio_reduce_motion` pref (no decorative
+choreography). 44–48dp touch targets on bars/buttons.
 
 ## 5. Screen-by-screen plan (Phase 2 queue)
 1. Promo sweep completion (S): Telegram listener (done 11a), JayLibu/MOD-by

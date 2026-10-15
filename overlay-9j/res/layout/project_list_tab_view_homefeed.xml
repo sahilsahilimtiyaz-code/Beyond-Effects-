@@ -10,7 +10,7 @@
     <ScrollView android:tag="gmHomeScroll" android:scrollbars="none" android:layout_width="0.0dp" android:layout_height="0.0dp" android:fillViewport="true" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
         <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
             <LinearLayout android:orientation="vertical" android:paddingTop="20.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingStart="20.0dp" android:paddingEnd="20.0dp">
-                <View android:id="@id/goldHomeTopRule" android:background="#ffc8102e" android:layout_width="34.0dp" android:layout_height="2.0dp" />
+                <View android:id="@id/goldHomeTopRule" android:background="#ff62e5ba" android:layout_width="34.0dp" android:layout_height="2.0dp" />
                 <TextView android:textSize="18.0sp" android:textColor="#ffffffff" android:id="@id/goldHomeGreeting" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14.0dp" android:fontFamily="@font/roboto_bold" />
                 <TextView android:textSize="11.0sp" android:textColor="#ff9b9ea4" android:id="@id/goldHomeProfile" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6.0dp" />
             </LinearLayout>
@@ -24,7 +24,7 @@
                         <TextView android:textSize="11.0sp" android:textColor="#ff9b9ea4" android:id="@id/goldHomeTagline" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4.0dp" android:text="Motion, reimagined." android:fontFamily="@font/roboto_medium" />
                     </LinearLayout>
                 </LinearLayout>
-                <View android:background="#ffc8102e" android:layout_width="30.0dp" android:layout_height="2.0dp" android:layout_marginTop="14.0dp" />
+                <View android:background="#ff62e5ba" android:layout_width="30.0dp" android:layout_height="2.0dp" android:layout_marginTop="14.0dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

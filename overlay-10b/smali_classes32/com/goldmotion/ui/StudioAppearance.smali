@@ -2211,13 +2211,13 @@
 
     const/16 v1, 0xf
 
-    const/4 v2, -0x1
+    const v2, -0xf9dce7    # 0xFF062319 dark text on mint
 
     invoke-static {p0, v0, v1, v2}, Lcom/goldmotion/ui/StudioAppearance;->text(Landroid/content/Context;Ljava/lang/String;II)Landroid/widget/TextView;
 
     move-result-object v0
 
-    const v1, -0x1ee2c1
+    const v1, -0x9d1a46
 
     invoke-static {p0, v1}, Lcom/goldmotion/ui/StudioAppearance;->card(Landroid/content/Context;I)Landroid/graphics/drawable/GradientDrawable;
 

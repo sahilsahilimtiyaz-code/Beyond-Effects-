@@ -275,7 +275,7 @@
     <dimen name="edit_panel_half_height">100.0dp</dimen>
     <dimen name="edit_panel_height">200.0dp</dimen>
     <dimen name="edit_reward_tooltip_width">174.0dp</dimen>
-    <dimen name="edit_timeline_height">280.0dp</dimen>
+    <dimen name="edit_timeline_height">240.0dp</dimen>
     <dimen name="effect_item_thumb_size">69.0dp</dimen>
     <dimen name="effect_item_ver2_height">135.0dp</dimen>
     <dimen name="effect_item_ver2_min_spacing">15.0dp</dimen>

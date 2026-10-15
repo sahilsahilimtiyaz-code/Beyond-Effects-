@@ -179,3 +179,6 @@ Reconstruction work stays disabled until separately approved.
   the playbar chain first ([Add][transport][undo/redo][layers][preview]),
   freeing the timeline corner; add sheet 251→300dp. Union ID-contract holds
   (buttonAdd lives in the playbar include within the same tree).
+- `overlay-24a/` — preview/timeline rebalance: timeline 280→240dp gives the
+  stage +40dp (RecyclerView adapts; rows/manager/dimen agree at 34/240);
+  timeline overflow moves off the layer-header corner to the trailing corner.

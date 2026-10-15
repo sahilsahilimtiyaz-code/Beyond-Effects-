@@ -94,6 +94,11 @@ This repository revision contains ONLY:
   shared `be_tab_state` crimson component, light tile neutralized; preview
   stage 8dp charcoal frame, playhead zone 120×44, overflow 44dp with margins,
   viewmode rail 56dp. All IDs/types/parents/visibilities preserved.
+- `overlay-13a/` — creation form hierarchy (header title + subtitle above the
+  type segment, 68dp aspect targets) + effect category `PNKJ` → `BEYOND` +
+  welcome-copy fix. New strings additive; `zNr` IDs preserved.
+- CI now proves APK contents: `aapt2 dump xmltree` markers for create/effects/
+  add-panel/homefeed + dex markers for the injected home code.
 - **BISECT 2026-10-15**: run `38694780463` (incl. 10A/10B/10C) crashes at tap
   on Galaxy A54. `10A/10B/10C` unwired in workflow (overlay dirs retained);
   build output is `0a45c35`-equivalent. Static analysis: none of the 10x code

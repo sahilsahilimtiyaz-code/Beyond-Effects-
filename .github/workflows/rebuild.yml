@@ -93,6 +93,8 @@ jobs:
           test -f overlay-12a/res/layout/activity_edit_addpopup.xml
           test -f overlay-12a/res/color/be_tab_state.xml
           test -f overlay-11a/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity\$GoldTelegramClickListener.smali
+          test -f overlay-13a/res/layout/create_project_fragment.xml
+          test -f overlay-13a/res/values/strings.xml
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -289,6 +291,12 @@ jobs:
           T=work/tree
           cp "overlay-11a/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity\$GoldTelegramClickListener.smali" "$T/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity\$GoldTelegramClickListener.smali"
           echo P0-APPLIED
+      - name: Apply creation form (13A header hierarchy + category rebrand)
+        run: |
+          T=work/tree
+          cp overlay-13a/res/layout/create_project_fragment.xml "$T/res/layout/create_project_fragment.xml"
+          cp overlay-13a/res/values/strings.xml "$T/res/values/strings.xml"
+          echo CREATE-APPLIED
       # BISECT-2: 9N copy stays disabled (whole-file smali reassembly suspect);
       # follow-toast returns until a surgical single-line patch replaces it.
       # BISECT 2026-10-15: 10A/10B/10C unwired after startup-crash report on
@@ -306,6 +314,19 @@ jobs:
           echo STORAGE-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
+      - name: Inspect APK contents (prove structures shipped, not just sources)
+        run: |
+          BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"
+          "$BT/aapt2" dump xmltree work/be-rebuilt-unsigned.apk --file res/layout/create_project_fragment.xml > /tmp/xml_create.txt 2>&1 || true
+          grep -q "beCreateHeader" /tmp/xml_create.txt && echo CREATE-HEADER-OK || exit 1
+          "$BT/aapt2" dump xmltree work/be-rebuilt-unsigned.apk --file res/layout/effect_browser_activity.xml > /tmp/xml_fx.txt 2>&1 || true
+          grep -q "browserTitle" /tmp/xml_fx.txt && echo FXHEADER-OK || exit 1
+          "$BT/aapt2" dump xmltree work/be-rebuilt-unsigned.apk --file res/layout/activity_edit_addpopup.xml > /tmp/xml_add.txt 2>&1 || true
+          grep -q "elementTabHolder" /tmp/xml_add.txt && echo ADDPANEL-OK || exit 1
+          "$BT/aapt2" dump xmltree work/be-rebuilt-unsigned.apk --file res/layout/project_list_tab_view_homefeed.xml > /tmp/xml_home.txt 2>&1 || true
+          grep -q "goldHomeStage" /tmp/xml_home.txt && echo HOMEFEED-OK || exit 1
+          unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'GmNewProjectOpener' | grep -q -E '[1-9]' && echo NEWPROJ-CODE-OK || exit 1
+          unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'continueCard' | grep -q -E '[1-9]' && echo CONTINUE-CODE-OK || exit 1
       - name: Align + sign with in-run throwaway key (test lineage only)
         run: |
           BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"

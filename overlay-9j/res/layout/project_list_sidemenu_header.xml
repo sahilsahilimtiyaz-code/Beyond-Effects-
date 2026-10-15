@@ -59,7 +59,7 @@
                 </RelativeLayout>
                 <RelativeLayout android:id="@id/instaHolder" android:layout_width="match_parent" android:layout_height="44.0dp" android:layout_marginStart="@dimen/margin_5dp" app:layout_constraintBottom_toTopOf="@id/tiktokHolder" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent">
                     <ImageView android:id="@id/instaIcon" android:layout_width="38.0dp" android:layout_height="38.0dp" android:layout_marginEnd="@dimen/margin_10dp" app:srcCompat="@drawable/ic_homefeed_sns_insta" />
-                    <TextView android:textSize="12.0sp" android:textColor="#ffffffff" android:gravity="center_vertical" android:id="@id/instaText" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="@string/instagram" android:fontFamily="@font/roboto_regular" android:layout_toEndOf="@id/instaIcon" />
+                    <TextView android:textSize="12.0sp" android:textColor="#ffffffff" android:gravity="center_vertical" android:id="@id/instaText" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="" android:fontFamily="@font/roboto_regular" android:layout_toEndOf="@id/instaIcon" />
                     <ImageView android:id="@id/instaCue" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignParentEnd="true" app:srcCompat="@drawable/ic_tutorial_cue" />
                     <View android:background="@color/G3" android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_alignParentBottom="true" android:layout_alignStart="@id/instaText" android:layout_alignEnd="@id/instaCue" />
                 </RelativeLayout>
@@ -71,7 +71,7 @@
                 </RelativeLayout>
                 <RelativeLayout android:id="@id/tiktokHolder" android:layout_width="match_parent" android:layout_height="44.0dp" android:layout_marginBottom="@dimen/margin_10dp" android:layout_marginStart="@dimen/margin_5dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent">
                     <ImageView android:id="@id/tiktokIcon" android:padding="7.0dp" android:layout_width="38.0dp" android:layout_height="38.0dp" android:src="@drawable/ic_homefeed_sns_tiktok" android:tint="#ffffffff" android:layout_marginEnd="@dimen/margin_10dp" />
-                    <TextView android:textSize="12.0sp" android:textColor="#ffffffff" android:gravity="center_vertical" android:id="@id/tiktokText" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="Telegram" android:fontFamily="@font/roboto_regular" android:layout_toEndOf="@id/tiktokIcon" />
+                    <TextView android:textSize="12.0sp" android:textColor="#ffffffff" android:gravity="center_vertical" android:id="@id/tiktokText" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="" android:fontFamily="@font/roboto_regular" android:layout_toEndOf="@id/tiktokIcon" />
                     <ImageView android:id="@id/tiktokCue" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignParentEnd="true" app:srcCompat="@drawable/ic_tutorial_cue" />
                 </RelativeLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

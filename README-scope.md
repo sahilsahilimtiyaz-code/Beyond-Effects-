@@ -110,6 +110,11 @@ This repository revision contains ONLY:
   layer-type strip → neutral (native never recolors it); visibility toggle
   40dp; search header 52dp charcoal zone with centered back action.
   Export strings verified honest (failure + storage guidance, no fake success).
+- `overlay-16a/` — effects/export/nav refinement: mint create disc; detail
+  panel hierarchy (36dp overlap, 22sp title); recommend density; export SAVE
+  primary (1.4 weight, honest spinner/progress kept); drawer social labels
+  fully stripped (gone block, no listeners). Layer-tag verified static
+  (zero adapter refs — native never sets it, neutral default correct).
 - **BISECT 2026-10-15**: run `38694780463` (incl. 10A/10B/10C) crashes at tap
   on Galaxy A54. `10A/10B/10C` unwired in workflow (overlay dirs retained);
   build output is `0a45c35`-equivalent. Static analysis: none of the 10x code

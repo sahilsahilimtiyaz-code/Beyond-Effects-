@@ -100,6 +100,10 @@ jobs:
           test -f overlay-15a/res/values/dimens.xml
           test -f overlay-15a/res/layout/timeline_header.xml
           test -f overlay-15a/res/layout/effect_search_frag.xml
+          test -f overlay-16a/res/drawable/gm_nav_plus_bg.xml
+          test -f overlay-16a/res/layout/effect_detail_frag.xml
+          test -f overlay-16a/res/layout/effect_category_recommend_frag.xml
+          test -f overlay-16a/res/layout/activity_export_preview.xml
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -127,6 +131,9 @@ jobs:
               ('overlay-14a/res/layout/gm_projects_page.xml', 'work/tree/res/layout/gm_projects_page.xml'),
               ('overlay-15a/res/layout/timeline_header.xml', 'work/tree/res/layout/timeline_header.xml'),
               ('overlay-15a/res/layout/effect_search_frag.xml', 'work/tree/res/layout/effect_search_frag.xml'),
+              ('overlay-16a/res/layout/effect_detail_frag.xml', 'work/tree/res/layout/effect_detail_frag.xml'),
+              ('overlay-16a/res/layout/effect_category_recommend_frag.xml', 'work/tree/res/layout/effect_category_recommend_frag.xml'),
+              ('overlay-16a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
           ]
           bad = 0
           for o, t in pairs:
@@ -318,6 +325,14 @@ jobs:
           cp overlay-15a/res/layout/timeline_header.xml "$T/res/layout/timeline_header.xml"
           cp overlay-15a/res/layout/effect_search_frag.xml "$T/res/layout/effect_search_frag.xml"
           echo TIMELINE-APPLIED
+      - name: Apply effects/export/nav refinement (16A detail, recommend, export, plus)
+        run: |
+          T=work/tree
+          cp overlay-16a/res/drawable/gm_nav_plus_bg.xml "$T/res/drawable/gm_nav_plus_bg.xml"
+          cp overlay-16a/res/layout/effect_detail_frag.xml "$T/res/layout/effect_detail_frag.xml"
+          cp overlay-16a/res/layout/effect_category_recommend_frag.xml "$T/res/layout/effect_category_recommend_frag.xml"
+          cp overlay-16a/res/layout/activity_export_preview.xml "$T/res/layout/activity_export_preview.xml"
+          echo FXDEPTH-APPLIED
       # BISECT-2: 9N copy stays disabled (whole-file smali reassembly suspect);
       # follow-toast returns until a surgical single-line patch replaces it.
       # BISECT 2026-10-15: 10A/10B/10C unwired after startup-crash report on

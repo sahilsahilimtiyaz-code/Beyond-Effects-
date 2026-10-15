@@ -56,6 +56,12 @@
     .line 53
     :cond_0
     # Beyond Effects: promo holders unwired (views removed from drawer).
+    # Register-definition stubs: later (unreachable) code consumes v2/v3
+    # as Strings; deleting the consts left them Undefined on one path
+    # and ART rejects the whole class (VerifyError at launch).
+    const-string v2, ""
+
+    const-string v3, ""
     .line 55
     const-string v0, "tiktokIcon"
 

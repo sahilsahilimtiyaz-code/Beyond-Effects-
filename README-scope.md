@@ -172,3 +172,6 @@ This repository revision contains ONLY:
 It does NOT contain: the original APK, decompiled sources, DEX, native
 libraries, shipped assets, signing keys, backups, logs, or intermediates.
 Reconstruction work stays disabled until separately approved.
+- `overlay-21a/` — layer action bar 42→48dp with 44dp targets; transform
+  numeric chips 63×25→68×30 with 7sp axis labels, mint active states,
+  widened XY holder. Native gesture pads, spinners, link toggles untouched.

@@ -114,6 +114,8 @@ jobs:
           test -f overlay-17a/res/layout/effect_setting_text.xml
           test -f overlay-17a/res/xml/preferences.xml
           test -f overlay-17a/res/values/strings.xml
+          test -f overlay-21a/res/layout/fragment_element_actionbar.xml
+          test -f overlay-21a/res/layout/fragment_move_transform.xml
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -156,6 +158,8 @@ jobs:
               ('overlay-17a/res/layout/effect_setting_selector.xml', 'work/tree/res/layout/effect_setting_selector.xml'),
               ('overlay-17a/res/layout/effect_setting_text.xml', 'work/tree/res/layout/effect_setting_text.xml'),
               ('overlay-17a/res/xml/preferences.xml', 'work/tree/res/xml/preferences.xml'),
+              ('overlay-21a/res/layout/fragment_element_actionbar.xml', 'work/tree/res/layout/fragment_element_actionbar.xml'),
+              ('overlay-21a/res/layout/fragment_move_transform.xml', 'work/tree/res/layout/fragment_move_transform.xml'),
           ]
           bad = 0
           for o, t in pairs:
@@ -386,6 +390,12 @@ jobs:
           cp overlay-17a/res/xml/preferences.xml "$T/res/xml/preferences.xml"
           cp overlay-17a/res/values/strings.xml "$T/res/values/strings.xml"
           echo INSPECTOR-APPLIED
+      - name: Apply layer action bar + transform chips (21A 48dp bar, 68x30 numerics)
+        run: |
+          T=work/tree
+          cp overlay-21a/res/layout/fragment_element_actionbar.xml "$T/res/layout/fragment_element_actionbar.xml"
+          cp overlay-21a/res/layout/fragment_move_transform.xml "$T/res/layout/fragment_move_transform.xml"
+          echo LAYERS-APPLIED
       # BISECT-2: 9N copy stays disabled (whole-file smali reassembly suspect);
       # follow-toast returns until a surgical single-line patch replaces it.
       # BISECT 2026-10-15: 10A/10B/10C unwired after startup-crash report on

@@ -590,7 +590,7 @@
 
     const-string v11, "telegram"
 
-    const-string v12, "https://t.me/okpnkjj"
+    const-string v12, "https://t.me/"
 
     invoke-interface {v0, v11, v12}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 

@@ -19,11 +19,11 @@
             </LinearLayout>
             <LinearLayout android:orientation="vertical" android:tag="gmTabWrap1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="24.0dp">
                 <TextView android:textSize="13.0sp" android:textColor="#ff6e7480" android:tag="gmTab1" android:paddingBottom="9.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/projects_tab_elements_subtab_name" />
-                <View android:tag="gmTabLine1" android:background="#00f2c94c" android:layout_width="match_parent" android:layout_height="2.0dp" />
+                <View android:tag="gmTabLine1" android:background="#003F7DFF" android:layout_width="match_parent" android:layout_height="2.0dp" />
             </LinearLayout>
             <LinearLayout android:orientation="vertical" android:tag="gmTabWrap2" android:layout_width="wrap_content" android:layout_height="wrap_content">
                 <TextView android:textSize="13.0sp" android:textColor="#ff6e7480" android:tag="gmTab2" android:paddingBottom="9.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cloud_subtab_title" />
-                <View android:tag="gmTabLine2" android:background="#00f2c94c" android:layout_width="match_parent" android:layout_height="2.0dp" />
+                <View android:tag="gmTabLine2" android:background="#003F7DFF" android:layout_width="match_parent" android:layout_height="2.0dp" />
             </LinearLayout>
         </LinearLayout>
         <View android:background="#ff1a1d24" android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_marginTop="-1.0dp" />

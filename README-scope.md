@@ -216,3 +216,11 @@ Reconstruction work stays disabled until separately approved.
 - `overlay-31a/` — Elements rail entry via the proven sheet+tab delegation
   (object tab). Layers entry declined: no global layers destination exists.
   Effects entry pending launcher trace.
+- `overlay-32a/` + 9N-surgical — user punchlist: 69 gold drawables mapped by
+  role (active→mockup blue, neutral→white; warnings/errors/system untouched),
+  dev header blue, library transparent underlines blue, dead Telegram URL
+  strings stripped (4 files), support emails → sahilsahilimtiyaz@gmail.com,
+  Help Centre row gone (binding ID kept), follow-toast trigger deleted with
+  a one-line surgical CI patch (no whole-file copy), add-sheet gets a real
+  toggle handle wired to the working Add button, missing letterbox thumb
+  generated as a "GL" letter badge per the requested fallback.

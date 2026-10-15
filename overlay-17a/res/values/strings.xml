@@ -2357,7 +2357,7 @@ Size: %2$s"</string>
     <string name="in_progress">In progress</string>
     <string name="in_time">In</string>
     <string name="including_style">(including style)</string>
-    <string name="incompatible_version_body">This version of Gold Motion is not compatible with your device. Please download the latest official version from the Google Play Store. If you still encounter any difficulties, please contact support-android@alightmotion.com and include a screenshot of this screen.</string>
+    <string name="incompatible_version_body">This version of Gold Motion is not compatible with your device. Please download the latest official version from the Google Play Store. If you still encounter any difficulties, please contact sahilsahilimtiyaz@gmail.com and include a screenshot of this screen.</string>
     <string name="incompatible_version_title">INCOMPATIBLE VERSION</string>
     <string name="indeterminate">Partially checked</string>
     <string name="info">Info</string>
@@ -2961,7 +2961,7 @@ Do you want to recreate the linked project based on this element, or unlink this
     <string name="retry">Retry</string>
     <string name="review_feedback_msg">We care deeply about user satisfaction, and your feedback helps us make Beyond Effects better.</string>
     <string name="review_feedback_title">Would you mind giving us feedback?</string>
-    <string name="review_popup_msg">"By the way, you can reach us any time at support-android@alightmotion.com.
+    <string name="review_popup_msg">"By the way, you can reach us any time at sahilsahilimtiyaz@gmail.com.
 
 Would you consider rating Beyond Effects?"</string>
     <string name="review_popup_title">Enjoying Beyond Effects?</string>

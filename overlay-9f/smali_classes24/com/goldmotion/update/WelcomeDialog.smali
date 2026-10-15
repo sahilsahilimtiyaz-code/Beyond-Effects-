@@ -4,7 +4,7 @@
 
 
 # static fields
-.field private static final TELEGRAM_URL:Ljava/lang/String; = "https://t.me/okpnkjj"
+.field private static final TELEGRAM_URL:Ljava/lang/String; = "https://t.me/"
 
 
 # direct methods

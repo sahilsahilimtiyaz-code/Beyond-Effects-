@@ -323,7 +323,7 @@ Make smooth velocity edits for an impressive effect"</string>
     <string name="character_counter_content_description">Characters entered %1$d of %2$d</string>
     <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern">%1$d/%2$d</string>
-    <string name="SyamjaiDtz">MOD by pnkj</string>
+    <string name="SyamjaiDtz">Beyond Effects</string>
     <string name="SyamjaiDtz_desc">"
 Welcome to Beyond Effects
 
@@ -1890,7 +1890,7 @@ Please don't close the app or this screen."</string>
     <string name="effectpreset_xray">X-Ray</string>
     <string name="effects">Effects</string>
     <string name="element">Element</string>
-    <string name="element_create_err_title">MOD by pnkj</string>
+    <string name="element_create_err_title">Beyond Effects</string>
     <string name="element_properties">Element Properties</string>
     <string name="element_resolution">Element Resolution</string>
     <string name="elements_list_empty_state_second_row">create an element</string>
@@ -2646,8 +2646,8 @@ If you already have keyframes on another property, select that property before a
     <string name="not_really">Not Really</string>
     <string name="not_selected">Not selected</string>
     <string name="not_set">Not set</string>
-    <string name="JayLibu">JayLibu</string>
-    <string name="JayLibu_detail">Follow My IG : pnkj</string>
+    <string name="JayLibu">Beyond Effects</string>
+    <string name="JayLibu_detail">Thanks for using Beyond Effects</string>
     <string name="not_valid_font_file">This is not a font file, or is a font format that your operating system does not support.</string>
     <string name="ns_blending">Change the blending mode to control how a layer combines with layers behind it.</string>
     <string name="ns_easingcurve">Anticipate change. Ease in and out of motion to make it more natural.</string>
@@ -2860,7 +2860,7 @@ For more information about how we process your personal data through tracking te
     <string name="proj_import_storage_error_explain">Your %1$s needs at least %2$s of free storage to import this project.</string>
     <string name="proj_import_storage_error_title">Not Enough Storage</string>
     <string name="project">Project</string>
-    <string name="project_create_err_title">MOD by pnkj</string>
+    <string name="project_create_err_title">Beyond Effects</string>
     <string name="project_data_damage_popup_msg">"This project's data is damaged or missing."</string>
     <string name="project_element_create_err_size">Please enter a value between 32 and 4096.</string>
     <string name="project_id">alight-creative</string>
@@ -3016,7 +3016,7 @@ Effects and keyframes will adapt to the length of your new layer without replaci
     <string name="set_retiming_in_mark">Mark end of intro</string>
     <string name="set_retiming_out_mark">Mark start of outro</string>
     <string name="set_thumbnail_frame">Set thumbnail frame</string>
-    <string name="settings_legal_copyright_policy_button">MOD by pnkj</string>
+    <string name="settings_legal_copyright_policy_button">Beyond Effects</string>
     <string name="shadow">Shadow</string>
     <string name="shadow_x">X</string>
     <string name="shadow_y">Y</string>
@@ -3387,7 +3387,7 @@ You should use this option with caution, and only with the guidance of Alight Cr
     <string name="gold_motion_banner_message">Create bold edits with the Beyond Effects experience.</string>
     <string name="gold_motion_banner_title">Welcome to Beyond Effects</string>
     <string name="gold_motion_effects_label">Beyond Effects</string>
-    <string name="gold_motion_mod_credit">MOD by pnkj</string>
+    <string name="gold_motion_mod_credit">Beyond Effects</string>
     <string name="expressions">Expressions</string>
     <string name="fxcat2_gm01">Glow Up</string>
     <string name="fxcat2_gm02">Glitch World</string>

@@ -56,6 +56,11 @@
     .line 53
     :cond_0
     # Beyond Effects: promo holders unwired (views removed from drawer).
+    # Register-definition stubs (see overlay-9j): ART rejects the class if
+    # v2/v3 reach later String uses Undefined.
+    const-string v2, ""
+
+    const-string v3, ""
     # Register-definition stubs: later (unreachable) code consumes v2/v3
     # as Strings; deleting the consts left them Undefined on one path
     # and ART rejects the whole class (VerifyError at launch).
@@ -2149,6 +2154,8 @@
 
     invoke-virtual {p1, v2, v0}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
+    invoke-static {p0, p1}, Lcom/goldmotion/ui/StudioAppearance;->newProjectButton(Landroid/app/Activity;Landroid/widget/LinearLayout;)V
+
     return-void
 
     :cond_empty
@@ -2173,6 +2180,90 @@
     const/4 v3, -0x2
 
     invoke-direct {v1, v2, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+
+    invoke-virtual {p1, v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    invoke-static {p0, p1}, Lcom/goldmotion/ui/StudioAppearance;->newProjectButton(Landroid/app/Activity;Landroid/widget/LinearLayout;)V
+
+    :cond_done
+    return-void
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    :catchall_0
+    return-void
+.end method
+
+.method static newProjectButton(Landroid/app/Activity;Landroid/widget/LinearLayout;)V
+    .locals 5
+
+    .line 920
+    :try_start_0
+    const-string v0, "gmNewProject"
+
+    invoke-virtual {p1, v0}, Landroid/widget/LinearLayout;->findViewWithTag(Ljava/lang/Object;)Landroid/view/View;
+
+    move-result-object v0
+
+    if-nez v0, :cond_done
+
+    const-string v0, "+ New Project"
+
+    const/16 v1, 0xf
+
+    const/4 v2, -0x1
+
+    invoke-static {p0, v0, v1, v2}, Lcom/goldmotion/ui/StudioAppearance;->text(Landroid/content/Context;Ljava/lang/String;II)Landroid/widget/TextView;
+
+    move-result-object v0
+
+    const v1, -0x1ee2c1
+
+    invoke-static {p0, v1}, Lcom/goldmotion/ui/StudioAppearance;->card(Landroid/content/Context;I)Landroid/graphics/drawable/GradientDrawable;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
+
+    const/16 v1, 0x11
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setGravity(I)V
+
+    const/high16 v1, 0x41600000    # 14.0f
+
+    invoke-static {p0, v1}, Lcom/goldmotion/ui/StudioAppearance;->dp(Landroid/content/Context;F)I
+
+    move-result v1
+
+    const/high16 v2, 0x41200000    # 10.0f
+
+    invoke-static {p0, v2}, Lcom/goldmotion/ui/StudioAppearance;->dp(Landroid/content/Context;F)I
+
+    move-result v2
+
+    invoke-virtual {v0, v1, v2, v1, v2}, Landroid/widget/TextView;->setPadding(IIII)V
+
+    new-instance v1, Lcom/goldmotion/ui/GmNewProjectOpener;
+
+    invoke-direct {v1, p0}, Lcom/goldmotion/ui/GmNewProjectOpener;-><init>(Landroid/app/Activity;)V
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
+
+    const/4 v2, -0x1
+
+    const/4 v3, -0x2
+
+    invoke-direct {v1, v2, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+
+    const/high16 v2, 0x41000000    # 8.0f
+
+    invoke-static {p0, v2}, Lcom/goldmotion/ui/StudioAppearance;->dp(Landroid/content/Context;F)I
+
+    move-result v2
+
+    iput v2, v1, Landroid/widget/LinearLayout$LayoutParams;->topMargin:I
 
     invoke-virtual {p1, v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 

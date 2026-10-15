@@ -86,6 +86,11 @@ This repository revision contains ONLY:
   empty hint while the stock lister is cold. No fake projects/thumbnails.
 - `overlay-10c/` — effect rows grip-leading (drag, name, badges, visibility,
   expand). IDs preserved; adapter untouched.
+- **BISECT 2026-10-15**: run `38694780463` (incl. 10A/10B/10C) crashes at tap
+  on Galaxy A54. `10A/10B/10C` unwired in workflow (overlay dirs retained);
+  build output is `0a45c35`-equivalent. Static analysis: none of the 10x code
+  executes before MainActivity, and the 10B call sits behind a gate that
+  returns before reaching it — regression unproven, bisect artifact decides.
 - `overlay-9i/` — gallery card redesign (traced live path `GmProjectsPage`
   `render` → `cols` → `card`; dead `listitem_project_list.xml` untouched):
   thumbs 16:9 → 4:3, grid gap 13 → 16dp, card radius 13 → 18dp,

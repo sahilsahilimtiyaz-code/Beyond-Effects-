@@ -80,15 +80,6 @@ jobs:
           test -f overlay-9m/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali
           test -f overlay-9m/smali_classes22/android/support/annotation/B.smali
           test -f overlay-9n/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity.smali
-          test -f overlay-10a/res/layout/activity_edit.xml
-          test -f overlay-10a/res/layout/activity_edit_playbar.xml
-          test -f overlay-10a/res/layout/activity_edit_navbar.xml
-          test -f overlay-10a/res/layout/activity_edit_actionbar.xml
-          test -f overlay-10a/res/layout/activity_edit_selectbar.xml
-          test -f overlay-10b/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
-          test -f overlay-10b/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
-          test -f overlay-10b/smali_classes32/com/goldmotion/ui/GmContinueOpener.smali
-          test -f overlay-10c/res/layout/effect_list_item.xml
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -226,27 +217,11 @@ jobs:
           T=work/tree
           cp overlay-9n/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity.smali "$T/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity.smali"
           echo NOTOAST-APPLIED
-      - name: Apply editor cockpit (10A regrouped bars + timeline rows)
-        run: |
-          T=work/tree
-          cp overlay-10a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
-          cp overlay-10a/res/layout/activity_edit_playbar.xml "$T/res/layout/activity_edit_playbar.xml"
-          cp overlay-10a/res/layout/activity_edit_navbar.xml "$T/res/layout/activity_edit_navbar.xml"
-          cp overlay-10a/res/layout/activity_edit_actionbar.xml "$T/res/layout/activity_edit_actionbar.xml"
-          cp overlay-10a/res/layout/activity_edit_selectbar.xml "$T/res/layout/activity_edit_selectbar.xml"
-          echo COCKPIT-APPLIED
-      - name: Apply home continue card (10B recent-data accessors + injection)
-        run: |
-          T=work/tree
-          cp overlay-10b/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali "$T/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali"
-          cp overlay-10b/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
-          cp overlay-10b/smali_classes32/com/goldmotion/ui/GmContinueOpener.smali "$T/smali_classes32/com/goldmotion/ui/GmContinueOpener.smali"
-          echo CONTINUE-APPLIED
-      - name: Apply effect row regroup (10C grip-leading rows)
-        run: |
-          T=work/tree
-          cp overlay-10c/res/layout/effect_list_item.xml "$T/res/layout/effect_list_item.xml"
-          echo FXROW-APPLIED
+      # BISECT 2026-10-15: 10A/10B/10C unwired after startup-crash report on
+      # run 38694780463. Overlay dirs retained in repo for reintroduction.
+      #   - name: Apply editor cockpit (10A regrouped bars + timeline rows) [DISABLED]
+      #   - name: Apply home continue card (10B recent-data accessors + injection) [DISABLED]
+      #   - name: Apply effect row regroup (10C grip-leading rows) [DISABLED]
       - name: Apply storage fix (9F MANAGE redirect removal; MediaStore path kept)
         run: |
           T=work/tree

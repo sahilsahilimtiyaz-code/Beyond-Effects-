@@ -97,6 +97,9 @@ jobs:
           test -f overlay-13a/res/values/strings.xml
           test -f overlay-14a/res/layout/gm_projects_page.xml
           test -f overlay-14b/assets/GOLDMOTION.png
+          test -f overlay-15a/res/values/dimens.xml
+          test -f overlay-15a/res/layout/timeline_header.xml
+          test -f overlay-15a/res/layout/effect_search_frag.xml
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -122,6 +125,8 @@ jobs:
               ('overlay-12a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-12a/res/layout/activity_edit_addpopup.xml', 'work/tree/res/layout/activity_edit_addpopup.xml'),
               ('overlay-14a/res/layout/gm_projects_page.xml', 'work/tree/res/layout/gm_projects_page.xml'),
+              ('overlay-15a/res/layout/timeline_header.xml', 'work/tree/res/layout/timeline_header.xml'),
+              ('overlay-15a/res/layout/effect_search_frag.xml', 'work/tree/res/layout/effect_search_frag.xml'),
           ]
           bad = 0
           for o, t in pairs:
@@ -306,6 +311,13 @@ jobs:
           cp overlay-14a/res/layout/gm_projects_page.xml "$T/res/layout/gm_projects_page.xml"
           cp overlay-14b/assets/GOLDMOTION.png "$T/assets/GOLDMOTION.png"
           echo LIBRARY-APPLIED
+      - name: Apply timeline/search refinement (15A row alignment, header, search zone)
+        run: |
+          T=work/tree
+          cp overlay-15a/res/values/dimens.xml "$T/res/values/dimens.xml"
+          cp overlay-15a/res/layout/timeline_header.xml "$T/res/layout/timeline_header.xml"
+          cp overlay-15a/res/layout/effect_search_frag.xml "$T/res/layout/effect_search_frag.xml"
+          echo TIMELINE-APPLIED
       # BISECT-2: 9N copy stays disabled (whole-file smali reassembly suspect);
       # follow-toast returns until a surgical single-line patch replaces it.
       # BISECT 2026-10-15: 10A/10B/10C unwired after startup-crash report on

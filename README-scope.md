@@ -105,6 +105,11 @@ This repository revision contains ONLY:
   runtime-injected workspace logo killed at its source — `brandLogo()` loads
   `assets/GOLDMOTION.png`, so the asset is now a transparent 1×1 (decodes
   fine, slot collapses, zero branding, zero code change).
+- `overlay-15a/` — timeline/search refinement: `timeline_row_height` 30→34dp
+  aligned with `TimelineLayoutManager` (fixes 10A mismatch); static red
+  layer-type strip → neutral (native never recolors it); visibility toggle
+  40dp; search header 52dp charcoal zone with centered back action.
+  Export strings verified honest (failure + storage guidance, no fake success).
 - **BISECT 2026-10-15**: run `38694780463` (incl. 10A/10B/10C) crashes at tap
   on Galaxy A54. `10A/10B/10C` unwired in workflow (overlay dirs retained);
   build output is `0a45c35`-equivalent. Static analysis: none of the 10x code

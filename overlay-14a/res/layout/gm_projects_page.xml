@@ -8,14 +8,14 @@
                 <TextView android:textSize="20.0sp" android:textColor="#ffffffff" android:tag="gmTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/projects_tab_projects_subtab_name" android:fontFamily="@font/spacegrotesk_medium" />
                 <TextView android:textSize="11.0sp" android:textColor="#ff6e7480" android:tag="gmCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="1.0dp" />
             </LinearLayout>
-            <TextView android:textSize="12.0sp" android:textColor="#ff62e5ba" android:tag="gmBrand" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/app_name" android:fontFamily="@font/spacegrotesk_medium" />
+            <TextView android:textSize="12.0sp" android:textColor="#ff3F7DFF" android:tag="gmBrand" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/app_name" android:fontFamily="@font/spacegrotesk_medium" />
             <ImageView android:tag="gmViewToggle" android:padding="5.0dp" android:layout_width="32.0dp" android:layout_height="32.0dp" android:src="@drawable/gm_proj_ic_grid" android:scaleType="centerInside" android:contentDescription="View" />
             <ImageView android:tag="gmSearchIcon" android:padding="5.0dp" android:layout_width="32.0dp" android:layout_height="32.0dp" android:src="@drawable/gm_proj_ic_search" android:scaleType="centerInside" android:contentDescription="Search" android:layout_marginStart="4.0dp" />
         </LinearLayout>
         <LinearLayout android:orientation="horizontal" android:paddingTop="14.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingStart="16.0dp" android:paddingEnd="16.0dp">
             <LinearLayout android:orientation="vertical" android:tag="gmTabWrap0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="24.0dp">
                 <TextView android:textSize="13.0sp" android:textColor="#ffffffff" android:tag="gmTab0" android:paddingBottom="9.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/tab_bar_projects" android:fontFamily="@font/spacegrotesk_medium" />
-                <View android:tag="gmTabLine0" android:background="#ff62e5ba" android:layout_width="match_parent" android:layout_height="2.0dp" />
+                <View android:tag="gmTabLine0" android:background="#ff3F7DFF" android:layout_width="match_parent" android:layout_height="2.0dp" />
             </LinearLayout>
             <LinearLayout android:orientation="vertical" android:tag="gmTabWrap1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="24.0dp">
                 <TextView android:textSize="13.0sp" android:textColor="#ff6e7480" android:tag="gmTab1" android:paddingBottom="9.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/projects_tab_elements_subtab_name" />
@@ -49,7 +49,7 @@
     <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:tag="gmSelBar" android:background="#ff000000" android:visibility="gone" android:layout_width="match_parent" android:layout_height="48.0dp" android:paddingStart="8.0dp" android:paddingEnd="12.0dp">
         <ImageView android:tag="gmSelClose" android:padding="13.0dp" android:layout_width="50.0dp" android:layout_height="50.0dp" android:src="@drawable/ac_ic_cancel" android:scaleType="centerInside" android:tint="#ffffffff" android:contentDescription="Cancel" />
         <TextView android:textSize="15.0sp" android:textColor="#ffffffff" android:tag="gmSelCount" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0" android:fontFamily="@font/spacegrotesk_medium" android:layout_marginStart="4.0dp" />
-        <TextView android:textSize="12.0sp" android:textColor="#ff62e5ba" android:tag="gmSelAll" android:padding="10.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Select all" />
+        <TextView android:textSize="12.0sp" android:textColor="#ff3F7DFF" android:tag="gmSelAll" android:padding="10.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Select all" />
     </LinearLayout>
     <LinearLayout android:gravity="center" android:layout_gravity="bottom" android:orientation="horizontal" android:tag="gmActBar" android:background="#ff000000" android:visibility="gone" android:layout_width="match_parent" android:layout_height="58.0dp">
         <TextView android:textSize="12.5sp" android:textColor="#ffffffff" android:gravity="center" android:tag="gmActDuplicate" android:layout_width="0.0dp" android:layout_height="match_parent" android:text="Duplicate" android:layout_weight="1.0" />

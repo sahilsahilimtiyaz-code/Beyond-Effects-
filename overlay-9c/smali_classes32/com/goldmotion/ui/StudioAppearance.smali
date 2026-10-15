@@ -51,7 +51,7 @@
     .line 52
     invoke-virtual {v0, v2}, Landroid/view/View;->setAlpha(F)V
 
-    const v3, -0x9d1a46    # 0xFF62E5BA
+    const v3, -0xc08201    # 0xFF62E5BA
 
     invoke-virtual {v0, v3}, Landroid/view/View;->setBackgroundColor(I)V
 

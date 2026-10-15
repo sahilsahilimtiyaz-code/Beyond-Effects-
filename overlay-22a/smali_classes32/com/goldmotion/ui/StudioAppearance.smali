@@ -2219,7 +2219,7 @@
 
     move-result-object v0
 
-    const v1, -0x9d1a46
+    const v1, -0xc1a2
 
     invoke-static {p0, v1}, Lcom/goldmotion/ui/StudioAppearance;->card(Landroid/content/Context;I)Landroid/graphics/drawable/GradientDrawable;
 

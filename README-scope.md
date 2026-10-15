@@ -73,6 +73,19 @@ This repository revision contains ONLY:
   called disguised `B.mod` (custom "Follow @fwpnkj" toast over home on every
   resume; toast-only, no functional side effects). Single straight-line call
   deleted; resume flow otherwise byte-identical.
+- `overlay-10a/` — editor cockpit (native `onCreate` boundary documented;
+  bars are native-inflated by ID so order/geometry/tint edits are safe, but
+  no IDs/types/visibilities changed): playbar regrouped transport-first
+  with prominent Play (1.6 weight); actionbar Close-first; navbar/selectbar
+  42→48dp with 44dp targets, gold tints → white; play/info bars 46→52dp;
+  timeline rows 30→34dp (`TimelineLayoutManager` reads the attr).
+- `overlay-10b/` — home Continue card on real data: new public
+  `GmProjectsPage` accessors (`recentCount/Title/Meta`, `thumbRecent`,
+  `openRecent` via public `MainActivity.UG`, `ensureLoaded`); `StudioAppearance`
+  injects thumb + title + meta card opening the actual project, or a clean
+  empty hint while the stock lister is cold. No fake projects/thumbnails.
+- `overlay-10c/` — effect rows grip-leading (drag, name, badges, visibility,
+  expand). IDs preserved; adapter untouched.
 - `overlay-9i/` — gallery card redesign (traced live path `GmProjectsPage`
   `render` → `cols` → `card`; dead `listitem_project_list.xml` untouched):
   thumbs 16:9 → 4:3, grid gap 13 → 16dp, card radius 13 → 18dp,

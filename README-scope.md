@@ -229,3 +229,8 @@ Reconstruction work stays disabled until separately approved.
   pill with plus icon, "No recent projects" titled empty section (tappable),
   pink dash. Fixed shipped bug: the library tap listener had landed on the
   New Project button (now restored) instead of the empty hint.
+- `overlay-34a/` — mockup home details: two-tone greeting (name in export
+  pink via ForegroundColorSpan at the real setter; falls back to plain text
+  without spaces), code-drawn neon film illustration in the empty state,
+  gradient CTA with solid fallback. Subtitle untouched (live engine status),
+  bell/nav declined (no notifications feature, Compose-owned).

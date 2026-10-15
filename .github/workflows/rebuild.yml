@@ -74,6 +74,10 @@ jobs:
           test -f overlay-33a/res/layout/project_list_tab_view_homefeed.xml
           test -f overlay-33a/res/drawable/be_glass_card.xml
           test -f overlay-33a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
+          test -f overlay-34a/smali_classes25/com/goldmotion/customize/CustomizationManager.smali
+          test -f overlay-34a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
+          test -f overlay-34a/res/drawable/be_cta_gradient.xml
+          test -f overlay-34a/res/drawable/be_home_film.png
           test -f overlay-9j/res/layout/project_list_sidemenu_header.xml
           test -f overlay-9j/res/values/strings.xml
           test -f overlay-9j/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
@@ -524,6 +528,14 @@ jobs:
           T=work/tree
           cp overlay-33a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
           echo HOMECOMP-CODE-APPLIED
+      - name: Apply mockup home details (34A greeting span, film art, gradient CTA)
+        run: |
+          T=work/tree
+          cp overlay-34a/smali_classes25/com/goldmotion/customize/CustomizationManager.smali "$T/smali_classes25/com/goldmotion/customize/CustomizationManager.smali"
+          cp overlay-34a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
+          cp overlay-34a/res/drawable/be_cta_gradient.xml "$T/res/drawable/be_cta_gradient.xml"
+          cp overlay-34a/res/drawable/be_home_film.png "$T/res/drawable/be_home_film.png"
+          echo HOMEDETAIL-APPLIED
       - name: Apply dead-listener URL strip (11A telegram click)
         run: |
           T=work/tree

@@ -88,6 +88,12 @@ This repository revision contains ONLY:
   expand). IDs preserved; adapter untouched.
 - `overlay-11a/` — dead-code URL strip: `MainActivity$GoldTelegramClickListener`
   (zero instantiators in any dex; keeps well-formed `https://t.me/`).
+- `overlay-12a/` — editor stage + add panel (Stage 3 slice 1; native panel
+  switching untouched, no tab/list reordering since native may index children):
+  add-panel strip/rail 58→64dp with 10sp labels, gold active states →
+  shared `be_tab_state` crimson component, light tile neutralized; preview
+  stage 8dp charcoal frame, playhead zone 120×44, overflow 44dp with margins,
+  viewmode rail 56dp. All IDs/types/parents/visibilities preserved.
 - **BISECT 2026-10-15**: run `38694780463` (incl. 10A/10B/10C) crashes at tap
   on Galaxy A54. `10A/10B/10C` unwired in workflow (overlay dirs retained);
   build output is `0a45c35`-equivalent. Static analysis: none of the 10x code

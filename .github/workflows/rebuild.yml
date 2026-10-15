@@ -89,6 +89,9 @@ jobs:
           test -f overlay-10b/smali_classes32/com/goldmotion/ui/GmContinueOpener.smali
           test -f overlay-10b/smali_classes32/com/goldmotion/ui/GmNewProjectOpener.smali
           test -f overlay-10c/res/layout/effect_list_item.xml
+          test -f overlay-12a/res/layout/activity_edit.xml
+          test -f overlay-12a/res/layout/activity_edit_addpopup.xml
+          test -f overlay-12a/res/color/be_tab_state.xml
           test -f overlay-11a/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity\$GoldTelegramClickListener.smali
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
@@ -112,6 +115,8 @@ jobs:
               ('overlay-10a/res/layout/activity_edit_actionbar.xml', 'work/tree/res/layout/activity_edit_actionbar.xml'),
               ('overlay-10a/res/layout/activity_edit_selectbar.xml', 'work/tree/res/layout/activity_edit_selectbar.xml'),
               ('overlay-10c/res/layout/effect_list_item.xml', 'work/tree/res/layout/effect_list_item.xml'),
+              ('overlay-12a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-12a/res/layout/activity_edit_addpopup.xml', 'work/tree/res/layout/activity_edit_addpopup.xml'),
           ]
           bad = 0
           for o, t in pairs:
@@ -272,6 +277,13 @@ jobs:
           T=work/tree
           cp overlay-10c/res/layout/effect_list_item.xml "$T/res/layout/effect_list_item.xml"
           echo FXROW-APPLIED
+      - name: Apply editor stage + add panel (12A stage frame, touch zones, tab states)
+        run: |
+          T=work/tree
+          cp overlay-12a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-12a/res/layout/activity_edit_addpopup.xml "$T/res/layout/activity_edit_addpopup.xml"
+          cp overlay-12a/res/color/be_tab_state.xml "$T/res/color/be_tab_state.xml"
+          echo STAGE-APPLIED
       - name: Apply dead-listener URL strip (11A telegram click)
         run: |
           T=work/tree

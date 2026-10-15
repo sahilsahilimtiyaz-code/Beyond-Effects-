@@ -197,3 +197,8 @@ Reconstruction work stays disabled until separately approved.
   editTimeView and buttonAdd restored to their native includes; pill,
   undo/redo, and rail kept as pure additions. Rule hardened: IDs never cross
   include boundaries; additions only.
+- `overlay-28a/` — AI Tools rail entry (real engines verified: AITwixtorEngine,
+  AiUpscaleEngine, AudioConverterPanel): 5th rail button with original sparkle
+  icon launches ToolStudioActivity via the app's own intent pattern
+  (`gold_tool` extra); studio title chrome rebranded, functional help copy
+  untouched. Portrait-safe activity; back returns to editor.

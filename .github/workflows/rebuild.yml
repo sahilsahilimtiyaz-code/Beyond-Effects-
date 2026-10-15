@@ -118,6 +118,11 @@ jobs:
           test -f overlay-27a/res/layout/activity_edit_navbar.xml
           test -f overlay-27a/res/layout/activity_edit_playbar.xml
           test -f overlay-27a/res/layout/activity_edit.xml
+          test -f overlay-28a/res/drawable/be_ic_aitools.xml
+          test -f overlay-28a/res/layout/activity_edit.xml
+          test -f overlay-28a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
+          test -f overlay-28a/smali_classes32/com/goldmotion/ui/GmToolLauncher.smali
+          test -f overlay-28a/smali_classes25/com/goldmotion/tools/ToolStudioActivity.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali
           test -f overlay-22a/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
@@ -172,6 +177,7 @@ jobs:
               ('overlay-27a/res/layout/activity_edit_navbar.xml', 'work/tree/res/layout/activity_edit_navbar.xml'),
               ('overlay-27a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-27a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-28a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-19a/res/layout/effect_item_ver2.xml', 'work/tree/res/layout/effect_item_ver2.xml'),
               ('overlay-23a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-18a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
@@ -196,13 +202,14 @@ jobs:
                        'overlay-26a/res/layout/activity_edit.xml',
                        'overlay-27a/res/layout/activity_edit_navbar.xml',
                        'overlay-27a/res/layout/activity_edit_playbar.xml',
-                       'overlay-27a/res/layout/activity_edit.xml'):
+                       'overlay-27a/res/layout/activity_edit.xml',
+                       'overlay-28a/res/layout/activity_edit.xml'):
                   # editTimeView/buttonAdd intentionally reparented across the
                   # navbar/playbar/activity_edit includes: contract holds over
                   # the union of the shipped files in one tree.
                   oids = (ids('overlay-27a/res/layout/activity_edit_navbar.xml')
                           | ids('overlay-27a/res/layout/activity_edit_playbar.xml')
-                          | ids('overlay-27a/res/layout/activity_edit.xml'))
+                          | ids('overlay-28a/res/layout/activity_edit.xml'))
               else:
                   oids = ids(o)
               missing = ids(t) - oids
@@ -403,6 +410,15 @@ jobs:
           cp overlay-27a/res/layout/activity_edit_playbar.xml "$T/res/layout/activity_edit_playbar.xml"
           cp overlay-27a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
           echo COCKPIT3-APPLIED
+      - name: Apply AI tools rail entry (28A Twixtor launch + studio titles)
+        run: |
+          T=work/tree
+          cp overlay-28a/res/drawable/be_ic_aitools.xml "$T/res/drawable/be_ic_aitools.xml"
+          cp overlay-28a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-28a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
+          cp overlay-28a/smali_classes32/com/goldmotion/ui/GmToolLauncher.smali "$T/smali_classes32/com/goldmotion/ui/GmToolLauncher.smali"
+          cp overlay-28a/smali_classes25/com/goldmotion/tools/ToolStudioActivity.smali "$T/smali_classes25/com/goldmotion/tools/ToolStudioActivity.smali"
+          echo AITOOLS-APPLIED
       - name: Apply library navigation (20A tappable empty state via real tab API)
         run: |
           T=work/tree

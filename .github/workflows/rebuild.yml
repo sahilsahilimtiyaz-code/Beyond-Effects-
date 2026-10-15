@@ -79,7 +79,7 @@ jobs:
           test -f overlay-9l/res/layout/effect_browser_activity.xml
           test -f overlay-9m/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali
           test -f overlay-9m/smali_classes22/android/support/annotation/B.smali
-          test -f overlay-9n/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity.smali
+          # BISECT-2: 9n MainActivity whole-file copy unwired (pristine restored).
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -212,11 +212,8 @@ jobs:
           cp overlay-9m/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali "$T/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali"
           cp overlay-9m/smali_classes22/android/support/annotation/B.smali "$T/smali_classes22/android/support/annotation/B.smali"
           echo PROMO-APPLIED
-      - name: Apply follow-toast trigger removal (9N MainActivity.onResume)
-        run: |
-          T=work/tree
-          cp overlay-9n/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity.smali "$T/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity.smali"
-          echo NOTOAST-APPLIED
+      # BISECT-2: 9N copy disabled (whole-file smali reassembly suspect);
+      # follow-toast returns until a surgical single-line patch replaces it.
       # BISECT 2026-10-15: 10A/10B/10C unwired after startup-crash report on
       # run 38694780463. Overlay dirs retained in repo for reintroduction.
       #   - name: Apply editor cockpit (10A regrouped bars + timeline rows) [DISABLED]

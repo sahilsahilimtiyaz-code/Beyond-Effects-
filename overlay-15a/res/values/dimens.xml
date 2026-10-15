@@ -90,7 +90,7 @@
     <dimen name="add_button_radius">28.0dp</dimen>
     <dimen name="add_button_size">73.0dp</dimen>
     <dimen name="add_popup_bottom_panel_height">125.0dp</dimen>
-    <dimen name="add_popup_height">251.0dp</dimen>
+    <dimen name="add_popup_height">300.0dp</dimen>
     <dimen name="add_popup_small_radius">13.5dp</dimen>
     <dimen name="add_popup_tab_indicator_size">5.5dp</dimen>
     <dimen name="add_shape_margin">9.0dp</dimen>

@@ -175,3 +175,7 @@ Reconstruction work stays disabled until separately approved.
 - `overlay-21a/` — layer action bar 42→48dp with 44dp targets; transform
   numeric chips 63×25→68×30 with 7sp axis labels, mint active states,
   widened XY holder. Native gesture pads, spinners, link toggles untouched.
+- `overlay-23a/` — transport integration: the floating Add button moves into
+  the playbar chain first ([Add][transport][undo/redo][layers][preview]),
+  freeing the timeline corner; add sheet 251→300dp. Union ID-contract holds
+  (buttonAdd lives in the playbar include within the same tree).

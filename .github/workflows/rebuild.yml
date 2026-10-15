@@ -106,6 +106,8 @@ jobs:
           test -f overlay-16a/res/layout/activity_export_preview.xml
           test -f overlay-19a/res/layout/activity_edit.xml
           test -f overlay-19a/res/layout/effect_item_ver2.xml
+          test -f overlay-23a/res/layout/activity_edit.xml
+          test -f overlay-23a/res/layout/activity_edit_playbar.xml
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali
           test -f overlay-22a/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
@@ -153,7 +155,9 @@ jobs:
               ('overlay-16a/res/layout/effect_category_recommend_frag.xml', 'work/tree/res/layout/effect_category_recommend_frag.xml'),
               ('overlay-16a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
               ('overlay-19a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-23a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-19a/res/layout/effect_item_ver2.xml', 'work/tree/res/layout/effect_item_ver2.xml'),
+              ('overlay-23a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-18a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
               ('overlay-17a/res/layout/effect_setting_slider.xml', 'work/tree/res/layout/effect_setting_slider.xml'),
               ('overlay-17a/res/layout/effect_setting_color.xml', 'work/tree/res/layout/effect_setting_color.xml'),
@@ -168,7 +172,13 @@ jobs:
           ]
           bad = 0
           for o, t in pairs:
-              missing = ids(t) - ids(o)
+              if o == 'overlay-23a/res/layout/activity_edit.xml':
+                  # buttonAdd intentionally reparented into the playbar include:
+                  # contract holds over the union of both files in one tree.
+                  oids = ids(o) | ids('overlay-23a/res/layout/activity_edit_playbar.xml')
+              else:
+                  oids = ids(o)
+              missing = ids(t) - oids
               if missing:
                   print(f'ID-CONTRACT-FAIL {o} drops {sorted(missing)}')
                   bad += 1
@@ -338,6 +348,12 @@ jobs:
           cp overlay-19a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
           cp overlay-19a/res/layout/effect_item_ver2.xml "$T/res/layout/effect_item_ver2.xml"
           echo VIEWMODE-APPLIED
+      - name: Apply transport integration (23A Add joins playbar chain)
+        run: |
+          T=work/tree
+          cp overlay-23a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-23a/res/layout/activity_edit_playbar.xml "$T/res/layout/activity_edit_playbar.xml"
+          echo TRANSPORT-APPLIED
       - name: Apply library navigation (20A tappable empty state via real tab API)
         run: |
           T=work/tree

@@ -104,6 +104,7 @@ jobs:
           test -f overlay-16a/res/layout/effect_detail_frag.xml
           test -f overlay-16a/res/layout/effect_category_recommend_frag.xml
           test -f overlay-16a/res/layout/activity_export_preview.xml
+          test -f overlay-18a/res/layout/activity_export_preview.xml
           test -f overlay-17a/res/color/be_inspector_label_text.xml
           test -f overlay-17a/res/layout/effect_setting_slider.xml
           test -f overlay-17a/res/layout/effect_setting_text.xml
@@ -122,6 +123,7 @@ jobs:
               return {i for _, i in re.findall(r'android:id="@(\+?)id/([^"]+)"', open(p, encoding='utf-8').read())}
           pairs = [
               ('overlay-9j/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
+              ('overlay-9j/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
               ('overlay-9j/res/layout/project_list_tab_view_homefeed.xml', 'work/tree/res/layout/project_list_tab_view_homefeed.xml'),
               ('overlay-9k/res/layout/activity_home_screen.xml', 'work/tree/res/layout/activity_home_screen.xml'),
               ('overlay-9l/res/layout/effect_browser_activity.xml', 'work/tree/res/layout/effect_browser_activity.xml'),
@@ -139,6 +141,7 @@ jobs:
               ('overlay-16a/res/layout/effect_detail_frag.xml', 'work/tree/res/layout/effect_detail_frag.xml'),
               ('overlay-16a/res/layout/effect_category_recommend_frag.xml', 'work/tree/res/layout/effect_category_recommend_frag.xml'),
               ('overlay-16a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
+              ('overlay-18a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
               ('overlay-17a/res/layout/effect_setting_slider.xml', 'work/tree/res/layout/effect_setting_slider.xml'),
               ('overlay-17a/res/layout/effect_setting_color.xml', 'work/tree/res/layout/effect_setting_color.xml'),
               ('overlay-17a/res/layout/effect_setting_pos.xml', 'work/tree/res/layout/effect_setting_pos.xml'),
@@ -346,6 +349,11 @@ jobs:
           cp overlay-16a/res/layout/effect_category_recommend_frag.xml "$T/res/layout/effect_category_recommend_frag.xml"
           cp overlay-16a/res/layout/activity_export_preview.xml "$T/res/layout/activity_export_preview.xml"
           echo FXDEPTH-APPLIED
+      - name: Apply export hierarchy (18A save-primary stack + drawer sections)
+        run: |
+          T=work/tree
+          cp overlay-18a/res/layout/activity_export_preview.xml "$T/res/layout/activity_export_preview.xml"
+          echo EXPORT-APPLIED
       - name: Apply inspector + settings (17A mint label states, thumb, grouped prefs)
         run: |
           T=work/tree

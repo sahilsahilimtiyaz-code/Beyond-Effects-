@@ -110,6 +110,10 @@ This repository revision contains ONLY:
   layer-type strip → neutral (native never recolors it); visibility toggle
   40dp; search header 52dp charcoal zone with centered back action.
   Export strings verified honest (failure + storage guidance, no fake success).
+- `overlay-18a/` + drawer sections — export action hierarchy (SAVE full-width
+  primary; SHARE + Close secondary row) and drawer recomposition (WORKSPACE /
+  SUPPORT / DEVELOPER section headers with re-chained constraints; promo block
+  untouched-gone). All IDs preserved; progress honesty untouched.
 - `overlay-17a/` — inspector + settings: shared `be_inspector_label_text`
   mint active/pressed states across all 7 property rows, slider thumb 18→22dp
   for precise scrubbing, preferences grouped into 3 labeled categories

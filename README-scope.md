@@ -64,6 +64,11 @@ This repository revision contains ONLY:
   binding): 52→78dp two-line header (title 18sp + new subtitle string),
   vertically centered controls, charcoal surface. All IDs/types, fragment
   holders, listeners and search preserved.
+- `overlay-9m/` — promo-dialog purge (PROMO-GONE gate found the last dex
+  copies): `zenapp Customdialog` welcome text → Beyond Effects, fwpnkj +
+  Aftermotionex Telegram handles stripped (9 intents kept well-formed);
+  disguised `support/annotation/B` "Follow @fwpnkj" → Beyond Effects.
+  Reachability trace pending; texts neutralized at source regardless.
 - `overlay-9i/` — gallery card redesign (traced live path `GmProjectsPage`
   `render` → `cols` → `card`; dead `listitem_project_list.xml` untouched):
   thumbs 16:9 → 4:3, grid gap 13 → 16dp, card radius 13 → 18dp,

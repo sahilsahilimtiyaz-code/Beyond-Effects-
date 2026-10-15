@@ -77,6 +77,8 @@ jobs:
           test -f overlay-9j/smali_classes25/com/goldmotion/customize/CustomizationActivity.smali
           test -f overlay-9k/res/layout/activity_home_screen.xml
           test -f overlay-9l/res/layout/effect_browser_activity.xml
+          test -f overlay-9m/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali
+          test -f overlay-9m/smali_classes22/android/support/annotation/B.smali
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -203,6 +205,12 @@ jobs:
           T=work/tree
           cp overlay-9l/res/layout/effect_browser_activity.xml "$T/res/layout/effect_browser_activity.xml"
           echo EFFECTS-APPLIED
+      - name: Apply promo-dialog purge (9M zenapp/annotated dialog texts)
+        run: |
+          T=work/tree
+          cp overlay-9m/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali "$T/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali"
+          cp overlay-9m/smali_classes22/android/support/annotation/B.smali "$T/smali_classes22/android/support/annotation/B.smali"
+          echo PROMO-APPLIED
       - name: Apply storage fix (9F MANAGE redirect removal; MediaStore path kept)
         run: |
           T=work/tree

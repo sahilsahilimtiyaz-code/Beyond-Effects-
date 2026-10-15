@@ -1397,9 +1397,91 @@
     :goto_c
     iput v10, v7, Landroid/widget/LinearLayout$LayoutParams;->topMargin:I
 
+    sget-boolean v11, Lcom/goldmotion/projects/GmProjectsPage;->sListMode:Z
+
+    if-eqz v11, :cond_gridtitle
+
     .line 735
     invoke-virtual {v4, v5, v7}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
+    goto :cond_metastart
+
+    :cond_gridtitle
+    const/4 v11, 0x0
+
+    invoke-virtual {v3, v11}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
+
+    move-result-object v11
+
+    check-cast v11, Landroid/widget/FrameLayout;
+
+    new-instance v12, Landroid/widget/View;
+
+    invoke-direct {v12, v0}, Landroid/view/View;-><init>(Landroid/content/Context;)V
+
+    new-instance v13, Landroid/graphics/drawable/GradientDrawable;
+
+    invoke-direct {v13}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
+
+    const v7, -0x67000000
+
+    invoke-virtual {v13, v7}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
+
+    invoke-virtual {v12, v13}, Landroid/view/View;->setBackground(Landroid/graphics/drawable/Drawable;)V
+
+    const/high16 v7, 0x42600000    # 56.0f
+
+    invoke-static {v0, v7}, Lcom/goldmotion/projects/GmProjectsPage;->dpi(Landroid/app/Activity;F)I
+
+    move-result v7
+
+    new-instance v13, Landroid/widget/FrameLayout$LayoutParams;
+
+    invoke-direct {v13, v14, v7}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
+
+    const v7, 0x50
+
+    iput v7, v13, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
+
+    invoke-virtual {v11, v12, v13}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    new-instance v13, Landroid/widget/FrameLayout$LayoutParams;
+
+    const/4 v7, -0x2
+
+    invoke-direct {v13, v14, v7}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
+
+    const v7, 0x50
+
+    iput v7, v13, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
+
+    const/high16 v7, 0x41200000    # 10.0f
+
+    invoke-static {v0, v7}, Lcom/goldmotion/projects/GmProjectsPage;->dpi(Landroid/app/Activity;F)I
+
+    move-result v7
+
+    iput v7, v13, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
+
+    const/high16 v7, 0x42a80000    # 84.0f
+
+    invoke-static {v0, v7}, Lcom/goldmotion/projects/GmProjectsPage;->dpi(Landroid/app/Activity;F)I
+
+    move-result v7
+
+    iput v7, v13, Landroid/widget/FrameLayout$LayoutParams;->rightMargin:I
+
+    const/high16 v7, 0x41000000    # 8.0f
+
+    invoke-static {v0, v7}, Lcom/goldmotion/projects/GmProjectsPage;->dpi(Landroid/app/Activity;F)I
+
+    move-result v7
+
+    iput v7, v13, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
+
+    invoke-virtual {v11, v5, v13}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    :cond_metastart
     .line 737
     new-instance v5, Landroid/widget/TextView;
 

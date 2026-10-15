@@ -99,6 +99,12 @@ This repository revision contains ONLY:
   welcome-copy fix. New strings additive; `zNr` IDs preserved.
 - CI now proves APK contents: `aapt2 dump xmltree` markers for create/effects/
   add-panel/homefeed + dex markers for the injected home code.
+- `overlay-14a/14b` — library header reorganization + runtime-logo source fix:
+  toolbar merged to one 56dp row (menu, title+count, search, view toggle;
+  all 36 `gm*` tags preserved, none deleted/renamed), and the
+  runtime-injected workspace logo killed at its source — `brandLogo()` loads
+  `assets/GOLDMOTION.png`, so the asset is now a transparent 1×1 (decodes
+  fine, slot collapses, zero branding, zero code change).
 - **BISECT 2026-10-15**: run `38694780463` (incl. 10A/10B/10C) crashes at tap
   on Galaxy A54. `10A/10B/10C` unwired in workflow (overlay dirs retained);
   build output is `0a45c35`-equivalent. Static analysis: none of the 10x code

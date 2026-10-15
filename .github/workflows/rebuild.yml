@@ -95,6 +95,8 @@ jobs:
           test -f overlay-11a/smali_classes2/com/alightcreative/app/motion/activities/main/MainActivity\$GoldTelegramClickListener.smali
           test -f overlay-13a/res/layout/create_project_fragment.xml
           test -f overlay-13a/res/values/strings.xml
+          test -f overlay-14a/res/layout/gm_projects_page.xml
+          test -f overlay-14b/assets/GOLDMOTION.png
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -119,6 +121,7 @@ jobs:
               ('overlay-10c/res/layout/effect_list_item.xml', 'work/tree/res/layout/effect_list_item.xml'),
               ('overlay-12a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-12a/res/layout/activity_edit_addpopup.xml', 'work/tree/res/layout/activity_edit_addpopup.xml'),
+              ('overlay-14a/res/layout/gm_projects_page.xml', 'work/tree/res/layout/gm_projects_page.xml'),
           ]
           bad = 0
           for o, t in pairs:
@@ -297,6 +300,12 @@ jobs:
           cp overlay-13a/res/layout/create_project_fragment.xml "$T/res/layout/create_project_fragment.xml"
           cp overlay-13a/res/values/strings.xml "$T/res/values/strings.xml"
           echo CREATE-APPLIED
+      - name: Apply library header + logo asset (14A compact toolbar, 14B transparent mark)
+        run: |
+          T=work/tree
+          cp overlay-14a/res/layout/gm_projects_page.xml "$T/res/layout/gm_projects_page.xml"
+          cp overlay-14b/assets/GOLDMOTION.png "$T/assets/GOLDMOTION.png"
+          echo LIBRARY-APPLIED
       # BISECT-2: 9N copy stays disabled (whole-file smali reassembly suspect);
       # follow-toast returns until a surgical single-line patch replaces it.
       # BISECT 2026-10-15: 10A/10B/10C unwired after startup-crash report on

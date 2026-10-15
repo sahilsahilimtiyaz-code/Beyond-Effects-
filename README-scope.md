@@ -224,3 +224,8 @@ Reconstruction work stays disabled until separately approved.
   a one-line surgical CI patch (no whole-file copy), add-sheet gets a real
   toggle handle wired to the working Add button, missing letterbox thumb
   generated as a "GL" letter badge per the requested fallback.
+- `overlay-33a/` — mockup-faithful home composition: glass brand card
+  (emblem + title stack + chevron, tappable to library), 56dp New Project
+  pill with plus icon, "No recent projects" titled empty section (tappable),
+  pink dash. Fixed shipped bug: the library tap listener had landed on the
+  New Project button (now restored) instead of the empty hint.

@@ -71,6 +71,9 @@ jobs:
           test -f overlay-9h/res/drawable/gm_project_selection_bg.xml
           test -f overlay-9i/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
           test -f overlay-9j/res/layout/project_list_tab_view_homefeed.xml
+          test -f overlay-33a/res/layout/project_list_tab_view_homefeed.xml
+          test -f overlay-33a/res/drawable/be_glass_card.xml
+          test -f overlay-33a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-9j/res/layout/project_list_sidemenu_header.xml
           test -f overlay-9j/res/values/strings.xml
           test -f overlay-9j/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
@@ -170,6 +173,8 @@ jobs:
               ('overlay-9j/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
               ('overlay-9j/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
               ('overlay-9j/res/layout/project_list_tab_view_homefeed.xml', 'work/tree/res/layout/project_list_tab_view_homefeed.xml'),
+              ('overlay-33a/res/layout/project_list_tab_view_homefeed.xml', 'work/tree/res/layout/project_list_tab_view_homefeed.xml'),
+              ('overlay-33a/res/drawable/be_glass_card.xml', 'work/tree/res/drawable/be_glass_card.xml'),
               ('overlay-9k/res/layout/activity_home_screen.xml', 'work/tree/res/layout/activity_home_screen.xml'),
               ('overlay-9l/res/layout/effect_browser_activity.xml', 'work/tree/res/layout/effect_browser_activity.xml'),
               ('overlay-10a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
@@ -353,6 +358,12 @@ jobs:
           cp overlay-9j/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
           cp overlay-9j/smali_classes25/com/goldmotion/customize/CustomizationActivity.smali "$T/smali_classes25/com/goldmotion/customize/CustomizationActivity.smali"
           echo HOME-APPLIED
+      - name: Apply home composition (33A glass card)
+        run: |
+          T=work/tree
+          cp overlay-33a/res/layout/project_list_tab_view_homefeed.xml "$T/res/layout/project_list_tab_view_homefeed.xml"
+          cp overlay-33a/res/drawable/be_glass_card.xml "$T/res/drawable/be_glass_card.xml"
+          echo HOMECOMP-APPLIED
       - name: Apply loading compact (9K setup overlay)
         run: |
           T=work/tree
@@ -509,6 +520,11 @@ jobs:
           cp overlay-22a/smali_classes32/com/goldmotion/ui/GmNewProjectOpener.smali "$T/smali_classes32/com/goldmotion/ui/GmNewProjectOpener.smali"
           cp overlay-22a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali "$T/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali"
           echo RECENTS-APPLIED
+      - name: Apply home composition code (33A button, empty section, stage tap)
+        run: |
+          T=work/tree
+          cp overlay-33a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
+          echo HOMECOMP-CODE-APPLIED
       - name: Apply dead-listener URL strip (11A telegram click)
         run: |
           T=work/tree

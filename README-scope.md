@@ -47,6 +47,23 @@ This repository revision contains ONLY:
 - `overlay-9h/` — action surfaces: CREATE button, new-project FAB, and
   multi-select bar gold → crimson (pressed state darker). Shapes, states,
   radii, and users (creation/workspace only) unchanged.
+- `overlay-9j/` — home dashboard + promo purge (traced live path
+  `PerformanceInitProvider` → `GmUiFixes.install` → `apply` → `StudioAppearance`
+  → `find`, plus `CustomizationManager.visit` prefs styling): home hero
+  152dp centered emblem → compact left-aligned 72dp dashboard header
+  (title 27→22sp, "Motion, reimagined." caption, crimson rules); promo
+  `bindLink` calls + fwpnkj/Telegram URLs deleted at source; drawer sns block
+  (Follow me/Instagram/Telegram) removed from layout; 68 display strings
+  rebranded (7 legal/factual exclusions kept); `CustomizationActivity`
+  defaults + screen title rebranded. All IDs/types preserved; greeting,
+  profile, title/tagline, customize-link and settings rows functional.
+- `overlay-9k/` — loading compact: `setup_overlay` caption removed, emblem
+  108→96dp, tighter spacing. Startup engine screen (`showLoading` + codec
+  ticker) and launch panel verified button-free; no fake delays added.
+- `overlay-9l/` — effects browser header (verified live via `hoy/BXT`
+  binding): 52→78dp two-line header (title 18sp + new subtitle string),
+  vertically centered controls, charcoal surface. All IDs/types, fragment
+  holders, listeners and search preserved.
 - `overlay-9i/` — gallery card redesign (traced live path `GmProjectsPage`
   `render` → `cols` → `card`; dead `listitem_project_list.xml` untouched):
   thumbs 16:9 → 4:3, grid gap 13 → 16dp, card radius 13 → 18dp,

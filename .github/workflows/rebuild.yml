@@ -70,6 +70,13 @@ jobs:
           test -f overlay-9h/res/drawable/gm_projects_fab.xml
           test -f overlay-9h/res/drawable/gm_project_selection_bg.xml
           test -f overlay-9i/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
+          test -f overlay-9j/res/layout/project_list_tab_view_homefeed.xml
+          test -f overlay-9j/res/layout/project_list_sidemenu_header.xml
+          test -f overlay-9j/res/values/strings.xml
+          test -f overlay-9j/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
+          test -f overlay-9j/smali_classes25/com/goldmotion/customize/CustomizationActivity.smali
+          test -f overlay-9k/res/layout/activity_home_screen.xml
+          test -f overlay-9l/res/layout/effect_browser_activity.xml
           test -f overlay-9f/smali_classes29/com/goldmotion/backup/GMBackup.smali
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
@@ -177,6 +184,25 @@ jobs:
           T=work/tree
           cp overlay-9i/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali "$T/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali"
           echo GALLERY-APPLIED
+      - name: Apply home dashboard + promo purge (9J feed/studio/drawer/strings/customize)
+        run: |
+          T=work/tree
+          cp overlay-9j/res/layout/project_list_tab_view_homefeed.xml "$T/res/layout/project_list_tab_view_homefeed.xml"
+          cp overlay-9j/res/layout/project_list_sidemenu_header.xml "$T/res/layout/project_list_sidemenu_header.xml"
+          cp overlay-9j/res/values/strings.xml "$T/res/values/strings.xml"
+          cp overlay-9j/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
+          cp overlay-9j/smali_classes25/com/goldmotion/customize/CustomizationActivity.smali "$T/smali_classes25/com/goldmotion/customize/CustomizationActivity.smali"
+          echo HOME-APPLIED
+      - name: Apply loading compact (9K setup overlay)
+        run: |
+          T=work/tree
+          cp overlay-9k/res/layout/activity_home_screen.xml "$T/res/layout/activity_home_screen.xml"
+          echo LOADING-APPLIED
+      - name: Apply effects header (9L two-line browser header)
+        run: |
+          T=work/tree
+          cp overlay-9l/res/layout/effect_browser_activity.xml "$T/res/layout/effect_browser_activity.xml"
+          echo EFFECTS-APPLIED
       - name: Apply storage fix (9F MANAGE redirect removal; MediaStore path kept)
         run: |
           T=work/tree
@@ -213,6 +239,7 @@ jobs:
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -q 'ENTER BEYOND EFFECTS' && echo SMALI-ENTER-OK || exit 1
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -o 'Beyond Effects' | wc -l | grep -q -E '[1-9]' && echo WORDMARK-OK || exit 1
           test "$(unzip -p work/be-rebuilt-signed.apk AndroidManifest.xml | grep -a -c 'MANAGE_EXTERNAL_STORAGE')" = "0" && echo MANAGE-GONE || exit 1
+          test "$(unzip -p work/be-rebuilt-signed.apk 'classes*.dex' | grep -a -c 'fwpnkj' || true)" = "0" && echo PROMO-GONE || exit 1
           "$BT/aapt2" dump resources work/be-rebuilt-signed.apk 2>/dev/null | grep -c 'Beyond Effects' | grep -q -E '[1-9]' && echo STRINGS-OK || exit 1
           "$BT/aapt2" dump resources work/be-rebuilt-signed.apk 2>/dev/null | grep -c 'Beyond Effects' | grep -q -E '[1-9]' && echo STRINGS-OK || exit 1
           "$BT/aapt2" dump xmltree work/be-rebuilt-signed.apk --file res/layout/project_list_sidemenu_header.xml > /tmp/be_header.txt 2>&1; grep -c 'Beyond Effects' /tmp/be_header.txt | grep -q -E '[1-9]' && echo DRAWER-BRAND-OK || exit 1

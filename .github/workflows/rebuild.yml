@@ -108,6 +108,11 @@ jobs:
           test -f overlay-19a/res/layout/effect_item_ver2.xml
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-20a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali
+          test -f overlay-22a/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
+          test -f overlay-22a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
+          test -f overlay-22a/smali_classes32/com/goldmotion/ui/GmContinueOpener.smali
+          test -f overlay-22a/smali_classes32/com/goldmotion/ui/GmNewProjectOpener.smali
+          test -f overlay-22a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali
           test -f overlay-18a/res/layout/activity_export_preview.xml
           test -f overlay-17a/res/color/be_inspector_label_text.xml
           test -f overlay-17a/res/layout/effect_setting_slider.xml
@@ -339,6 +344,15 @@ jobs:
           cp overlay-20a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
           cp overlay-20a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali "$T/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali"
           echo NAV-APPLIED
+      - name: Apply home recent grid (22A attachRecents via card reuse)
+        run: |
+          T=work/tree
+          cp overlay-22a/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali "$T/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali"
+          cp overlay-22a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
+          cp overlay-22a/smali_classes32/com/goldmotion/ui/GmContinueOpener.smali "$T/smali_classes32/com/goldmotion/ui/GmContinueOpener.smali"
+          cp overlay-22a/smali_classes32/com/goldmotion/ui/GmNewProjectOpener.smali "$T/smali_classes32/com/goldmotion/ui/GmNewProjectOpener.smali"
+          cp overlay-22a/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali "$T/smali_classes32/com/goldmotion/ui/GmLibraryOpener.smali"
+          echo RECENTS-APPLIED
       - name: Apply dead-listener URL strip (11A telegram click)
         run: |
           T=work/tree

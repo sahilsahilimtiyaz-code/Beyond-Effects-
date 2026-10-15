@@ -91,6 +91,18 @@ This repository revision contains ONLY:
   build output is `0a45c35`-equivalent. Static analysis: none of the 10x code
   executes before MainActivity, and the 10B call sits behind a gate that
   returns before reaching it — regression unproven, bisect artifact decides.
+- **FIX 2026-10-15 (VerifyError)**: device log proved `StudioAppearance.apply`
+  failed ART verification (v2/v3 Undefined after 9J promo deletion) → whole
+  class rejected at launch. Fixed with empty-string register stubs (commit
+  `7d8be10`); `PROMO-GONE` still green.
+- **FIX 2026-10-15 (binding IDs)**: device log proved `hoy.MC` binding mandates
+  the drawer promo IDs I deleted (`Missing required view: followUs`) →
+  promo block restored present-but-`gone` with labels stripped (no listeners
+  attached). New CI `ID-CONTRACT` gate fails the build if any overlay layout
+  drops an ID the pristine layout has. Rule: hide, never delete, ID'd views.
+  build output is `0a45c35`-equivalent. Static analysis: none of the 10x code
+  executes before MainActivity, and the 10B call sits behind a gate that
+  returns before reaching it — regression unproven, bisect artifact decides.
 - `overlay-9i/` — gallery card redesign (traced live path `GmProjectsPage`
   `render` → `cols` → `card`; dead `listitem_project_list.xml` untouched):
   thumbs 16:9 → 4:3, grid gap 13 → 16dp, card radius 13 → 18dp,

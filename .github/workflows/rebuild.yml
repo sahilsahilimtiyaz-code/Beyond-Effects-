@@ -85,6 +85,34 @@ jobs:
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/WelcomeDialog.smali
           echo OVERLAYS-PRESENT
+      - name: Guard layout ID contracts (never drop IDs bindings require)
+        run: |
+          python3 - <<'PYEOF'
+          import re, sys
+          def ids(p):
+              return {i for _, i in re.findall(r'android:id="@(\+?)id/([^"]+)"', open(p, encoding='utf-8').read())}
+          pairs = [
+              ('overlay-9j/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
+              ('overlay-9j/res/layout/project_list_tab_view_homefeed.xml', 'work/tree/res/layout/project_list_tab_view_homefeed.xml'),
+              ('overlay-9k/res/layout/activity_home_screen.xml', 'work/tree/res/layout/activity_home_screen.xml'),
+              ('overlay-9l/res/layout/effect_browser_activity.xml', 'work/tree/res/layout/effect_browser_activity.xml'),
+              ('overlay-10a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-10a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
+              ('overlay-10a/res/layout/activity_edit_navbar.xml', 'work/tree/res/layout/activity_edit_navbar.xml'),
+              ('overlay-10a/res/layout/activity_edit_actionbar.xml', 'work/tree/res/layout/activity_edit_actionbar.xml'),
+              ('overlay-10a/res/layout/activity_edit_selectbar.xml', 'work/tree/res/layout/activity_edit_selectbar.xml'),
+              ('overlay-10c/res/layout/effect_list_item.xml', 'work/tree/res/layout/effect_list_item.xml'),
+          ]
+          bad = 0
+          for o, t in pairs:
+              missing = ids(t) - ids(o)
+              if missing:
+                  print(f'ID-CONTRACT-FAIL {o} drops {sorted(missing)}')
+                  bad += 1
+          if bad:
+              sys.exit(1)
+          print('ID-CONTRACT-OK')
+          PYEOF
       - name: Apply overlays additively (8C home + 8D icons)
         run: |
           T=work/tree

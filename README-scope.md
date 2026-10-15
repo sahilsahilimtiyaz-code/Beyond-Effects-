@@ -206,3 +206,10 @@ Reconstruction work stays disabled until separately approved.
   visibility first (no double-toggle when the sheet is already open), then
   fire the real tab control. Every new button audited end-to-end against an
   existing working target; null-guarded throughout.
+- `overlay-30a/` — runtime themer fix (from device screenshot): the mod's
+  `CustomizationManager$1` repainted editor icons/home with hardcoded GOLD
+  defaults (#FFF2C94C accent, Gold Motion/MOTION DESIGN titles) on every
+  launch, overriding all XML work — defaults now mockup-blue/Beyond.
+  Plus: layout-guarded editor wiring (fires post-layout when views exist),
+  compact centered rail (frees canvas), white eye icon, tap-diagnostic
+  toasts naming the fired control (temporary, removable).

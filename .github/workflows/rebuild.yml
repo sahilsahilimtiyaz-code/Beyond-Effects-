@@ -66,6 +66,18 @@ jobs:
           test -f overlay-fx/be_custom_vignettegrain.png
           test -f overlay-fx/be_custom_cornerpin.xml
           test -f overlay-fx/be_custom_cornerpin.png
+          test -f overlay-fx/be_custom_glitch.xml
+          test -f overlay-fx/be_custom_glitch.png
+          test -f overlay-fx/be_custom_shake.xml
+          test -f overlay-fx/be_custom_shake.png
+          test -f overlay-fx/be_custom_vhs.xml
+          test -f overlay-fx/be_custom_vhs.png
+          test -f overlay-fx/be_custom_sparkle.xml
+          test -f overlay-fx/be_custom_sparkle.png
+          test -f overlay-fx/be_custom_pulse.xml
+          test -f overlay-fx/be_custom_pulse.png
+          test -f overlay-fx/be_custom_backdropblur.xml
+          test -f overlay-fx/be_custom_backdropblur.png
           test -f overlay-8e/gold_motion_launcher.png
           test -f overlay-8e/gold_motion_logo_splash.png
           test -f overlay-9a/AndroidManifest.xml
@@ -341,7 +353,7 @@ jobs:
           cp overlay-fx/gm_custom_letterbox.png "$T/assets/thumb/gm_custom_letterbox.png"
           cp overlay-fx/gm_custom_bloom_saturation_plus.png "$T/assets/thumb/gm_custom_bloom_saturation_plus.png"
           cp overlay-fx/gm_custom_bloom_region_plus.png "$T/assets/thumb/gm_custom_bloom_region_plus.png"
-          for e in liftgammagain levels rgbshift tealorange vignettegrain cornerpin; do
+          for e in liftgammagain levels rgbshift tealorange vignettegrain cornerpin glitch shake vhs sparkle pulse backdropblur; do
             cp "overlay-fx/be_custom_$e.xml" "$T/assets/effects_custom/be_custom_$e.xml"
             cp "overlay-fx/be_custom_$e.png" "$T/assets/thumb/be_custom_$e.png"
           done

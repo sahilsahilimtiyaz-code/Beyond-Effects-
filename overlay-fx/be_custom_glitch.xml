@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<effect id="be.custom.glitch" name="BE Glitch" desc="Animated block glitch with RGB split and tear. Time-driven." category="custom" tags="be,custom,glitch,blocks,rgb,animated" thumb="thumb/be_custom_glitch.png" experimental="true">
+<params>
+<texture id="inputImg" srcType="content" />
+<section text="Glitch" />
+<spinner id="speed" default="8.0" min="0.0" max="30.0" step="0.5" label="Speed" />
+<spinner id="blocks" default="12.0" min="2.0" max="40.0" step="1.0" label="Block Count" />
+<spinner id="shift" default="6.0" min="0.0" max="30.0" step="0.5" label="Shift (px)" />
+<spinner id="rgb" default="3.0" min="0.0" max="12.0" step="0.5" label="RGB Split (px)" />
+<spinner id="tear" default="0.35" min="0.0" max="1.0" step="0.01" label="Tear Amount" />
+<spinner id="seed" default="1.0" min="0.0" max="100.0" step="1.0" label="Seed" />
+</params>
+<shader type="fragment" precision="medium"><![CDATA[
+float beHash(vec2 p, float t) { return fract(sin(dot(p + t, vec2(12.9898, 78.233))) * 43758.5453); }
+void main() {
+vec2 uv = acScreenNorm;
+vec2 px = vec2(1.0) / max(acScreenSize, vec2(1.0));
+float t = floor(acTime * max(speed, 0.0)) + seed * 17.0;
+float row = floor(uv.y * blocks);
+float r = beHash(vec2(row, 7.0), t);
+float on = step(1.0 - clamp(tear + 0.15, 0.0, 1.0), r);
+vec2 off = (vec2(beHash(vec2(row, 1.0), t), beHash(vec2(row, 2.0), t)) - 0.5) * 2.0 * shift * px * on;
+vec2 uvb = clamp(uv + off, vec2(0.0), vec2(1.0));
+vec2 ro = vec2(rgb * px.x, 0.0);
+float rr = texture2DCv(inputImg.texture, clamp(uvb - ro, vec2(0.0), vec2(1.0))).r;
+float gg = texture2DCv(inputImg.texture, uvb).g;
+float bb = texture2DCv(inputImg.texture, clamp(uvb + ro, vec2(0.0), vec2(1.0))).b;
+vec4 src = texture2DCv(inputImg.texture, uv);
+gl_FragColor = vec4(rr, gg, bb, src.a);
+}]]></shader>
+</effect>

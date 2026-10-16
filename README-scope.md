@@ -275,3 +275,9 @@ Reconstruction work stays disabled until separately approved.
   trackers, AI segmentation, 3D lights/extrusion, text animators, shape ops,
   curve-UI, optical flow, echo/time-displacement, .CUBE loading and audio
   reactors all REQUIRE native engine work (no param/render interfaces exist).
+- `overlay-fx/be_custom_{glitch,shake,vhs,sparkle,pulse,backdropblur}` —
+  animated pack using stock-proven `acTime`/backdrop/`comp` inputs: glitch,
+  camera shake, VHS, sparkle field, pulse glow, frosted backdrop blur.
+  Still impossible without engine work: temporal frame history (echo),
+  audio uniforms (reactors), simulation state (physics particles),
+  trackers/AI/3D/text/curve/matte/layer systems.

@@ -247,3 +247,8 @@ Reconstruction work stays disabled until separately approved.
   shows in letterbox/padding around the native surface), rounded transport
   bar inset from screen edges, blue-ring FAB. Timeline cells verified
   engine-painted (native bg/thumbs/keyframes) — correctly untouched.
+- `overlay-39a/` — unified home code: merges the diverged 34a/35a lines
+  (illustration, gradient CTA, 56dp pill, empty section, stage tap, guarded
+  span) into one StudioAppearance; 28sp greeting, gradient-border glass.
+  Supersedes 33a/34a smali copies (34a step now ships only the reverted
+  Manager + film art).

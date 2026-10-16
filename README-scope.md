@@ -300,3 +300,8 @@ Reconstruction work stays disabled until separately approved.
   a stable key from `BE_KEYSTORE_B64/PASS/ALIAS` secrets, else throwaway
   test key. versionCode now bumps per run (2e9+run_number).
 - Effect thumbs (all 15) upscaled 64x36 → 128x72 with glass-B badge.
+- Updater tag generalized to `be-<sha>` (was hardcoded `be-extra48a-`
+  prefix); dialog text neutral for stable-key world. Permanent release
+  key generated (`.be-key/`, never committed); signatures now stable via
+  `BE_KEYSTORE_B64/PASS/ALIAS` secrets — one last uninstall-first, then
+  updates work in place.

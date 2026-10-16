@@ -726,9 +726,9 @@ jobs:
           d = open(p, encoding='utf-8').read()
           old = 'be-BUILD_TAG'
           assert d.count(old) == 1, 'build-tag anchor'
-          d = d.replace(old, f'be-extra48a-{sha}')
+          d = d.replace(old, f'be-{sha}')
           open(p, 'w', encoding='utf-8').write(d)
-          print(f'BUILD-TAG-STAMPED be-extra48a-{sha}')
+          print(f'BUILD-TAG-STAMPED be-{sha}')
           PYEOF
           echo EXTRA48-APPLIED
       - name: Apply mockup home details (34A manager revert, film art)

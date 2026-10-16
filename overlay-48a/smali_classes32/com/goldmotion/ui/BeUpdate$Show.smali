@@ -49,7 +49,7 @@
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    const-string v2, ". Download it from GitHub? (Uninstall the old build first: test installs cannot update in place.)"
+    const-string v2, ". Get it from GitHub? (If the install is refused, uninstall the old build first.)"
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 

@@ -490,7 +490,7 @@ jobs:
           cp overlay-31a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
           cp overlay-31a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
           echo RAIL2-APPLIED
-      - name: Apply real pixels (36A cropped mockup art: rail, mark, film)
+      - name: 'Apply real pixels (36A cropped mockup art: rail, mark, film)'
         run: |
           T=work/tree
           cp overlay-36a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"

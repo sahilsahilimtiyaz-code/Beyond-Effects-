@@ -2,7 +2,7 @@
 .super Ljava/lang/Object;
 .source "BeUpdate"
 
-.field private static BE_BUILD_TAG:Ljava/lang/String; = "be-BUILD_TAG"
+.field public static BE_BUILD_TAG:Ljava/lang/String; = "be-BUILD_TAG"
 
 .method public static check(Landroid/app/Activity;)V
     .locals 2

@@ -1706,7 +1706,7 @@
 
     move-result v7
 
-    const-string v11, "Use Original Gold Motion Logo"
+    const-string v11, "Use Original Beyond Effects Logo"
 
     invoke-direct {v0, v11, v7, v9}, Lcom/goldmotion/customize/CustomizationActivity;->action(Ljava/lang/String;II)Landroid/widget/Button;
 
@@ -1746,7 +1746,7 @@
 
     move-result v7
 
-    const-string v11, "A photo replaces only the image inside the existing homepage logo frame. The original Gold Motion logo colours and Android launcher icon are never recoloured."
+    const-string v11, "A photo replaces only the image inside the existing homepage logo frame. The original Beyond Effects logo colours and Android launcher icon are never recoloured."
 
     invoke-direct {v0, v11, v3, v7, v13}, Lcom/goldmotion/customize/CustomizationActivity;->text(Ljava/lang/String;IIZ)Landroid/widget/TextView;
 
@@ -1772,7 +1772,7 @@
 
     invoke-virtual {v4, v3, v7}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    const-string v3, "Gold Motion Extra Features"
+    const-string v3, "Beyond Effects Extra Features"
 
     invoke-direct {v0, v3, v6, v9, v5}, Lcom/goldmotion/customize/CustomizationActivity;->text(Ljava/lang/String;IIZ)Landroid/widget/TextView;
 
@@ -1894,7 +1894,7 @@
 
     invoke-virtual {v4, v2, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    const-string v2, "Restore Gold Motion Defaults"
+    const-string v2, "Restore Beyond Effects Defaults"
 
     const/16 v3, 0x2e
 

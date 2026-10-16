@@ -168,6 +168,7 @@ jobs:
           test -f overlay-40a/res/drawable/gm_nav_ic_home_on.xml
           test -f overlay-40a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
           test -f overlay-40a/smali_classes32/com/goldmotion/ui/GmRailToggle.smali
+          test -f overlay-42a/res/layout/activity_edit.xml
           test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiActivity.smali
           test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiActivity\$1.smali
           test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiManager.smali
@@ -238,6 +239,8 @@ jobs:
               ('overlay-30a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-31a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-36a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-42a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-42a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-36a/res/layout/project_list_tab_view_homefeed.xml', 'work/tree/res/layout/project_list_tab_view_homefeed.xml'),
               ('overlay-36a/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
               ('overlay-32a/res/layout/activity_edit_addpopup.xml', 'work/tree/res/layout/activity_edit_addpopup.xml'),
@@ -271,13 +274,14 @@ jobs:
                        'overlay-31a/res/layout/activity_edit.xml',
                        'overlay-36a/res/layout/activity_edit.xml',
                        'overlay-38a/res/layout/activity_edit.xml',
-                       'overlay-38a/res/layout/activity_edit_playbar.xml'):
+                       'overlay-38a/res/layout/activity_edit_playbar.xml',
+                       'overlay-42a/res/layout/activity_edit.xml'):
                   # editTimeView/buttonAdd intentionally reparented across the
                   # navbar/playbar/activity_edit includes: contract holds over
                   # the union of the shipped files in one tree.
                   oids = (ids('overlay-27a/res/layout/activity_edit_navbar.xml')
                           | ids('overlay-27a/res/layout/activity_edit_playbar.xml')
-                          | ids('overlay-36a/res/layout/activity_edit.xml'))
+                          | ids('overlay-42a/res/layout/activity_edit.xml'))
               else:
                   oids = ids(o)
               missing = ids(t) - oids
@@ -591,6 +595,11 @@ jobs:
           cp overlay-40a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
           cp overlay-40a/smali_classes32/com/goldmotion/ui/GmRailToggle.smali "$T/smali_classes32/com/goldmotion/ui/GmRailToggle.smali"
           echo STRUCTURE-APPLIED
+      - name: Apply AI removal + drawer order (42A rail AI out, support first)
+        run: |
+          T=work/tree
+          cp overlay-42a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          echo AIMINUS-APPLIED
       - name: Apply Beyond AI rebrand (41A titles + colorful bubble)
         run: |
           T=work/tree

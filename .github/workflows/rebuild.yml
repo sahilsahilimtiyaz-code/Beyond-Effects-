@@ -104,6 +104,9 @@ jobs:
           test -f overlay-39a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-45a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-47a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
+          test -f overlay-48a/smali_classes25/com/goldmotion/tools/ExtraToolsManager.smali
+          test -f overlay-48a/smali_classes25/com/goldmotion/tools/ExtraToolsBubbleView.smali
+          test -f overlay-48a/smali_classes32/com/goldmotion/ui/BeUpdate.smali
           test -f overlay-34a/smali_classes25/com/goldmotion/customize/CustomizationManager.smali
           test -f overlay-34a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           test -f overlay-34a/res/drawable/be_cta_gradient.xml
@@ -323,16 +326,19 @@ jobs:
         run: |
           T=work/tree
           mkdir -p "$T/res/layout" "$T/res/drawable" "$T/res/mipmap-mdpi" "$T/res/mipmap-hdpi" "$T/res/mipmap-xhdpi" "$T/res/mipmap-xxhdpi" "$T/res/mipmap-xxxhdpi" "$T/res/mipmap-anydpi-v26"
-          python3 - "$T" "${{ github.sha }}" <<'PYEOF'
+          python3 - "$T" "${{ github.sha }}" "${{ github.run_number }}" <<'PYEOF'
           import sys
-          t, sha = sys.argv[1], sys.argv[2][:7]
+          t, sha, run = sys.argv[1], sys.argv[2][:7], int(sys.argv[3])
           p = t + '/apktool.yml'
           d = open(p, encoding='utf-8').read()
           old = '  versionName: 7.0.3'
           assert d.count(old) == 1, 'version anchor'
           d = d.replace(old, f'  versionName: 7.0.3-be{sha}')
+          old_vc = '  versionCode: 1000000011'
+          assert d.count(old_vc) == 1, 'versionCode anchor'
+          d = d.replace(old_vc, f'  versionCode: {2000000000 + run}')
           open(p, 'w', encoding='utf-8').write(d)
-          print(f'VERSION-STAMPED 7.0.3-be{sha}')
+          print(f'VERSION-STAMPED 7.0.3-be{sha} vc={2000000000 + run}')
           PYEOF
           cp overlay-8c/activity_home_screen.xml "$T/res/layout/activity_home_screen.xml"
           cp overlay-8d/be_final_launcher_192.png "$T/res/mipmap-xxxhdpi/ic_launcher.png"
@@ -703,6 +709,28 @@ jobs:
           T=work/tree
           cp overlay-47a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
           echo REGDISC-APPLIED
+      - name: "Apply EXTRA rainbow + updater (48A tools panel, bubble, BeUpdate)"
+        run: |
+          T=work/tree
+          cp overlay-48a/smali_classes25/com/goldmotion/tools/ExtraToolsManager.smali "$T/smali_classes25/com/goldmotion/tools/ExtraToolsManager.smali"
+          cp overlay-48a/smali_classes25/com/goldmotion/tools/ExtraToolsBubbleView.smali "$T/smali_classes25/com/goldmotion/tools/ExtraToolsBubbleView.smali"
+          cp overlay-48a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
+          cp overlay-48a/smali_classes32/com/goldmotion/ui/BeUpdate.smali "$T/smali_classes32/com/goldmotion/ui/BeUpdate.smali"
+          cp "overlay-48a/smali_classes32/com/goldmotion/ui/BeUpdate\$Fetch.smali" "$T/smali_classes32/com/goldmotion/ui/BeUpdate\$Fetch.smali"
+          cp "overlay-48a/smali_classes32/com/goldmotion/ui/BeUpdate\$Show.smali" "$T/smali_classes32/com/goldmotion/ui/BeUpdate\$Show.smali"
+          cp "overlay-48a/smali_classes32/com/goldmotion/ui/BeUpdate\$Go.smali" "$T/smali_classes32/com/goldmotion/ui/BeUpdate\$Go.smali"
+          python3 - "$T" "${{ github.sha }}" <<'PYEOF'
+          import sys
+          t, sha = sys.argv[1], sys.argv[2][:7]
+          p = t + '/smali_classes32/com/goldmotion/ui/BeUpdate.smali'
+          d = open(p, encoding='utf-8').read()
+          old = 'be-BUILD_TAG'
+          assert d.count(old) == 1, 'build-tag anchor'
+          d = d.replace(old, f'be-extra48a-{sha}')
+          open(p, 'w', encoding='utf-8').write(d)
+          print(f'BUILD-TAG-STAMPED be-extra48a-{sha}')
+          PYEOF
+          echo EXTRA48-APPLIED
       - name: Apply mockup home details (34A manager revert, film art)
         run: |
           T=work/tree
@@ -800,13 +828,24 @@ jobs:
           echo ENTRIES-OK
           unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'GmNewProjectOpener' | grep -q -E '[1-9]' && echo NEWPROJ-CODE-OK || exit 1
           unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'continueCard' | grep -q -E '[1-9]' && echo CONTINUE-CODE-OK || exit 1
-      - name: Align + sign with in-run throwaway key (test lineage only)
+      - name: "Align + sign (stable key if secrets set, else throwaway test key)"
+        env:
+          BE_KEYSTORE_B64: ${{ secrets.BE_KEYSTORE_B64 }}
+          BE_KEYSTORE_PASS: ${{ secrets.BE_KEYSTORE_PASS }}
+          BE_KEY_ALIAS: ${{ secrets.BE_KEY_ALIAS }}
         run: |
           BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"
           "$BT/zipalign" -f 4 work/be-rebuilt-unsigned.apk work/be-rebuilt-aligned.apk
-          keytool -genkeypair -keystore work/tmp/testkey.jks -alias test -keyalg RSA -keysize 2048 -validity 3650 -storepass testtest -keypass testtest -dname "CN=BeyondEffects-Test, OU=Test, O=Test, L=Test, ST=Test, C=US"
-          "$BT/apksigner" sign --ks work/tmp/testkey.jks --ks-pass pass:testtest --key-pass pass:testtest --out work/be-rebuilt-signed.apk work/be-rebuilt-aligned.apk
-          echo SIGNED
+          if [ -n "$BE_KEYSTORE_B64" ]; then
+            echo "$BE_KEYSTORE_B64" | base64 -d > work/tmp/release.jks
+            "$BT/apksigner" sign --ks work/tmp/release.jks --ks-pass "pass:$BE_KEYSTORE_PASS" --key-pass "pass:$BE_KEYSTORE_PASS" --ks-key-alias "$BE_KEY_ALIAS" --out work/be-rebuilt-signed.apk work/be-rebuilt-aligned.apk
+            shred -u work/tmp/release.jks
+            echo SIGNED-STABLE
+          else
+            keytool -genkeypair -keystore work/tmp/testkey.jks -alias test -keyalg RSA -keysize 2048 -validity 3650 -storepass testtest -keypass testtest -dname "CN=BeyondEffects-Test, OU=Test, O=Test, L=Test, ST=Test, C=US"
+            "$BT/apksigner" sign --ks work/tmp/testkey.jks --ks-pass pass:testtest --key-pass pass:testtest --out work/be-rebuilt-signed.apk work/be-rebuilt-aligned.apk
+            echo SIGNED-TESTKEY
+          fi
       - name: Verification gates (packaging only, never runtime)
         run: |
           BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"

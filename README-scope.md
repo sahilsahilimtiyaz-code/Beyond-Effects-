@@ -293,3 +293,10 @@ Reconstruction work stays disabled until separately approved.
   ViewGroup container (VerifyError). Both inserts moved into helper
   methods with their own register frames; `apply()` keeps `.locals 13`
   and zero clobbered registers. Supersedes 46a (register-count quirk).
+- `overlay-48a/` — EXTRA panel rainbow (per-char header spans, gradient
+  panel, per-row colors, sweep-gradient bubble) + "Beyond Effects EXTRA"
+  title + in-app update checker (`BeUpdate`: GitHub latest-release tag
+  vs stamped BUILD_TAG, dialog with Download/Later). Signing now prefers
+  a stable key from `BE_KEYSTORE_B64/PASS/ALIAS` secrets, else throwaway
+  test key. versionCode now bumps per run (2e9+run_number).
+- Effect thumbs (all 15) upscaled 64x36 → 128x72 with glass-B badge.

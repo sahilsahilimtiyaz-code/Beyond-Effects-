@@ -2467,7 +2467,7 @@
 
     instance-of v2, v1, Landroid/text/Spanned;
 
-    if-nez v2, :cond_done
+    if-eqz v2, :cond_done
 
     invoke-virtual {v1}, Ljava/lang/Object;->toString()Ljava/lang/String;
 

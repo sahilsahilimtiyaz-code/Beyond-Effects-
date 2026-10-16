@@ -281,3 +281,5 @@ Reconstruction work stays disabled until separately approved.
   Still impossible without engine work: temporal frame history (echo),
   audio uniforms (reactors), simulation state (physics particles),
   trackers/AI/3D/text/curve/matte/layer systems.
+- `overlay-45a/` — home Follow row (Support Developer → Instagram app-first
+  via the guarded link opener). Superset StudioAppearance wins last.

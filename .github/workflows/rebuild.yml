@@ -127,6 +127,12 @@ jobs:
           test -f overlay-27a/res/layout/activity_edit.xml
           test -f overlay-37a/res/layout/activity_edit_playbar.xml
           test -f overlay-37a/res/drawable/be_play_tile.xml
+          test -f overlay-38a/res/layout/activity_edit.xml
+          test -f overlay-38a/res/layout/activity_edit_playbar.xml
+          test -f overlay-38a/res/drawable/be_grid_tile.png
+          test -f overlay-38a/res/drawable/be_stage_grid.xml
+          test -f overlay-38a/res/drawable/be_transport_bar.xml
+          test -f overlay-38a/res/drawable/be_fab_ring.xml
           test -f overlay-28a/res/drawable/be_ic_aitools.xml
           test -f overlay-28a/res/layout/activity_edit.xml
           test -f overlay-28a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
@@ -208,6 +214,8 @@ jobs:
               ('overlay-27a/res/layout/activity_edit_navbar.xml', 'work/tree/res/layout/activity_edit_navbar.xml'),
               ('overlay-27a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-37a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
+              ('overlay-38a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-38a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-27a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-28a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-30a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
@@ -239,13 +247,13 @@ jobs:
                        'overlay-26a/res/layout/activity_edit_navbar.xml',
                        'overlay-26a/res/layout/activity_edit_playbar.xml',
                        'overlay-26a/res/layout/activity_edit.xml',
-                       'overlay-27a/res/layout/activity_edit_navbar.xml',
-                       'overlay-27a/res/layout/activity_edit_playbar.xml',
                        'overlay-27a/res/layout/activity_edit.xml',
                        'overlay-28a/res/layout/activity_edit.xml',
                        'overlay-30a/res/layout/activity_edit.xml',
                        'overlay-31a/res/layout/activity_edit.xml',
-                       'overlay-36a/res/layout/activity_edit.xml'):
+                       'overlay-36a/res/layout/activity_edit.xml',
+                       'overlay-38a/res/layout/activity_edit.xml',
+                       'overlay-38a/res/layout/activity_edit_playbar.xml'):
                   # editTimeView/buttonAdd intentionally reparented across the
                   # navbar/playbar/activity_edit includes: contract holds over
                   # the union of the shipped files in one tree.
@@ -464,6 +472,16 @@ jobs:
           cp overlay-37a/res/layout/activity_edit_playbar.xml "$T/res/layout/activity_edit_playbar.xml"
           cp overlay-37a/res/drawable/be_play_tile.xml "$T/res/drawable/be_play_tile.xml"
           echo PLAYTILE-APPLIED
+      - name: Apply stage chrome (38A grid backdrop, transport bar, FAB ring)
+        run: |
+          T=work/tree
+          cp overlay-38a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-38a/res/layout/activity_edit_playbar.xml "$T/res/layout/activity_edit_playbar.xml"
+          cp overlay-38a/res/drawable/be_grid_tile.png "$T/res/drawable/be_grid_tile.png"
+          cp overlay-38a/res/drawable/be_stage_grid.xml "$T/res/drawable/be_stage_grid.xml"
+          cp overlay-38a/res/drawable/be_transport_bar.xml "$T/res/drawable/be_transport_bar.xml"
+          cp overlay-38a/res/drawable/be_fab_ring.xml "$T/res/drawable/be_fab_ring.xml"
+          echo STAGECHROME-APPLIED
       - name: Apply AI tools rail entry (28A Twixtor launch + studio titles)
         run: |
           T=work/tree

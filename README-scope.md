@@ -243,3 +243,7 @@ Reconstruction work stays disabled until separately approved.
   prominent play control. Tool-grid panel declined with proof: target menu
   buttons live in a natively-inflated popup (absent until opened) and no
   duplicate-layer operation exists — grid buttons would be dead.
+- `overlay-38a/` — stage chrome: dotted-grid canvas backdrop (tiled,
+  shows in letterbox/padding around the native surface), rounded transport
+  bar inset from screen edges, blue-ring FAB. Timeline cells verified
+  engine-painted (native bg/thumbs/keyframes) — correctly untouched.

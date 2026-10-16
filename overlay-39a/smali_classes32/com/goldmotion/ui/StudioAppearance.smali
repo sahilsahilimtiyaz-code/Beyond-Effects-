@@ -58,6 +58,11 @@
     .line 53
     :cond_0
     # Beyond Effects: promo holders unwired (views removed from drawer).
+    const-string v0, "beSupportHolder"
+
+    const-string v2, "https://instagram.com/octavian6648"
+
+    invoke-static {p0, v0, v2}, Lcom/goldmotion/ui/StudioAppearance;->bindLink(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V
     # Register-definition stubs (see overlay-9j): ART rejects the class if
     # v2/v3 reach later String uses Undefined.
     const-string v2, ""
@@ -362,7 +367,9 @@
 
     move-result v11
 
-    if-eqz v11, :cond_9
+    # Beyond Effects: community follow block removed at its source (restored;
+    # the 9J fork dropped 9C's skip and re-exposed it on Home).
+    goto :cond_9
 
     .line 92
     const-string v11, "FOLLOW ME"

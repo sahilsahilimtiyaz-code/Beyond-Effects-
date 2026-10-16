@@ -63,6 +63,12 @@
     const-string v2, "https://instagram.com/octavian6648"
 
     invoke-static {p0, v0, v2}, Lcom/goldmotion/ui/StudioAppearance;->bindLink(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v0, "contactSupportHolder"
+
+    const-string v2, "mailto:sahilsahilimtiyaz@gmail.com"
+
+    invoke-static {p0, v0, v2}, Lcom/goldmotion/ui/StudioAppearance;->bindLink(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V
     # Register-definition stubs (see overlay-9j): ART rejects the class if
     # v2/v3 reach later String uses Undefined.
     const-string v2, ""

@@ -283,3 +283,8 @@ Reconstruction work stays disabled until separately approved.
   trackers/AI/3D/text/curve/matte/layer systems.
 - `overlay-45a/` — home Follow row (Support Developer → Instagram app-first
   via the guarded link opener). Superset StudioAppearance wins last.
+- `overlay-46a/` — launch-crash fix (device log): my link-row inserts
+  clobbered v0/v2 that the panel attach reads afterward (View passed as
+  ViewGroup → VerifyError). All inserts now save/restore via dedicated
+  locals. Icon note: launcher art is replaced in-APK; stale icons on device
+  are launcher cache — reboot or clear the launcher's cache.

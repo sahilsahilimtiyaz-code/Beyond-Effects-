@@ -263,3 +263,8 @@ Reconstruction work stays disabled until separately approved.
   floating face repainted (blue rim, white eyes, glowing red pupils, blue
   mouth, white shine — zero gold). Twin-dex checked (single copy).
   Contact-support wiring pending drawer-handler trace.
+- `overlay-43a/` — labs cube blue (text labels + 3D material default),
+  floating-AI toggle row deleted (pref stays false = bubble never shows),
+  per-build version stamp (`7.0.3-be<sha>`) + drawer build tag so the
+  installed build is always identifiable. Play Protect note: test-key-signed
+  sideloads always warn; fixed properly only via Play App Signing.

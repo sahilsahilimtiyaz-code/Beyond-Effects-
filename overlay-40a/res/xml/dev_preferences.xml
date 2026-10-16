@@ -3,7 +3,6 @@
   xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory android:layout="@layout/dev_pref_header" android:title="Mod by octavian" app:iconSpaceReserved="false">
         <PreferenceCategory android:layout="@layout/dev_pref_header" android:title="Mod Menu" app:iconSpaceReserved="false">
-            <SwitchPreference android:title="Enable Floating Beyond AI" android:key="gold.ai.floating.enabled" android:summary="Show the draggable Beyond AI assistant on Home and in the project editor" android:defaultValue="false" app:iconSpaceReserved="false" />
             <PreferenceScreen android:title="Mod Menu Settings" android:key="mod_menu_settings" android:summary="Configure extra mod options here" app:iconSpaceReserved="false">
                 <SwitchPreference android:title="Enable Secret Feature" android:key="com.mod.menu.feature1" android:summary="Turns on hidden functionality" android:defaultValue="false" app:iconSpaceReserved="false" />
                 <EditTextPreference android:title="Set Custom Label" android:key="com.mod.menu.customLabel" android:summary="Change the text shown on your Beyond Effects mod" android:defaultValue="Octavian" app:iconSpaceReserved="false" app:useSimpleSummaryProvider="true" />

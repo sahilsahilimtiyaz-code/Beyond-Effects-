@@ -169,6 +169,7 @@ jobs:
           test -f overlay-40a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
           test -f overlay-40a/smali_classes32/com/goldmotion/ui/GmRailToggle.smali
           test -f overlay-42a/res/layout/activity_edit.xml
+          test -f overlay-43a/smali_classes32/com/goldmotion/labs/GmLabsPage.smali
           test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiActivity.smali
           test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiActivity\$1.smali
           test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiManager.smali
@@ -296,6 +297,17 @@ jobs:
         run: |
           T=work/tree
           mkdir -p "$T/res/layout" "$T/res/drawable" "$T/res/mipmap-mdpi" "$T/res/mipmap-hdpi" "$T/res/mipmap-xhdpi" "$T/res/mipmap-xxhdpi" "$T/res/mipmap-xxxhdpi" "$T/res/mipmap-anydpi-v26"
+          python3 - "$T" "${{ github.sha }}" <<'PYEOF'
+          import sys
+          t, sha = sys.argv[1], sys.argv[2][:7]
+          p = t + '/apktool.yml'
+          d = open(p, encoding='utf-8').read()
+          old = '  versionName: 7.0.3'
+          assert d.count(old) == 1, 'version anchor'
+          d = d.replace(old, f'  versionName: 7.0.3-be{sha}')
+          open(p, 'w', encoding='utf-8').write(d)
+          print(f'VERSION-STAMPED 7.0.3-be{sha}')
+          PYEOF
           cp overlay-8c/activity_home_screen.xml "$T/res/layout/activity_home_screen.xml"
           cp overlay-8d/be_final_launcher_192.png "$T/res/mipmap-xxxhdpi/ic_launcher.png"
           cp overlay-8d/be_final_launcher_144.png "$T/res/mipmap-xxhdpi/ic_launcher.png"
@@ -399,6 +411,16 @@ jobs:
           T=work/tree
           cp overlay-9j/res/layout/project_list_tab_view_homefeed.xml "$T/res/layout/project_list_tab_view_homefeed.xml"
           cp overlay-9j/res/layout/project_list_sidemenu_header.xml "$T/res/layout/project_list_sidemenu_header.xml"
+          python3 - "$T" "${{ github.sha }}" <<'PYEOF'
+          import sys
+          t, sha = sys.argv[1], sys.argv[2][:7]
+          p = t + '/res/layout/project_list_sidemenu_header.xml'
+          d = open(p, encoding='utf-8').read()
+          assert d.count('@BUILD@') == 1, 'stamp anchor'
+          d = d.replace('@BUILD@', sha)
+          open(p, 'w', encoding='utf-8').write(d)
+          print(f'DRAWER-STAMPED {sha}')
+          PYEOF
           cp overlay-9j/res/values/strings.xml "$T/res/values/strings.xml"
           cp overlay-9j/smali_classes32/com/goldmotion/ui/StudioAppearance.smali "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
           cp overlay-9j/smali_classes25/com/goldmotion/customize/CustomizationActivity.smali "$T/smali_classes25/com/goldmotion/customize/CustomizationActivity.smali"
@@ -600,6 +622,11 @@ jobs:
           T=work/tree
           cp overlay-42a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
           echo AIMINUS-APPLIED
+      - name: Apply labs blue + build stamps (43A cube, version, drawer tag)
+        run: |
+          T=work/tree
+          cp overlay-43a/smali_classes32/com/goldmotion/labs/GmLabsPage.smali "$T/smali_classes32/com/goldmotion/labs/GmLabsPage.smali"
+          echo LABS-APPLIED
       - name: Apply Beyond AI rebrand (41A titles + colorful bubble)
         run: |
           T=work/tree

@@ -242,9 +242,7 @@ jobs:
                        'overlay-28a/res/layout/activity_edit.xml',
                        'overlay-30a/res/layout/activity_edit.xml',
                        'overlay-31a/res/layout/activity_edit.xml',
-                       'overlay-36a/res/layout/activity_edit.xml',
-                       'overlay-36a/res/layout/project_list_tab_view_homefeed.xml',
-                       'overlay-36a/res/layout/project_list_sidemenu_header.xml'):
+                       'overlay-36a/res/layout/activity_edit.xml'):
                   # editTimeView/buttonAdd intentionally reparented across the
                   # navbar/playbar/activity_edit includes: contract holds over
                   # the union of the shipped files in one tree.

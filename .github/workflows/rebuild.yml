@@ -160,6 +160,14 @@ jobs:
           test -f overlay-36a/res/drawable/be_rail_media.png
           test -f overlay-36a/res/drawable/be_mark.png
           test -f overlay-32a/res/drawable/be_sheet_handle.xml
+          test -f overlay-40a/res/xml/dev_preferences.xml
+          test -f overlay-40a/res/layout/activity_edit.xml
+          test -f overlay-40a/res/layout/gm_nav_bar.xml
+          test -f overlay-40a/res/drawable/be_nav_bar_bg.xml
+          test -f overlay-40a/res/drawable/be_nav_plus.xml
+          test -f overlay-40a/res/drawable/gm_nav_ic_home_on.xml
+          test -f overlay-40a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
+          test -f overlay-40a/smali_classes32/com/goldmotion/ui/GmRailToggle.smali
           test -f overlay-32a/res/layout/activity_edit_addpopup.xml
           test -f overlay-32a/res/layout/dev_pref_header.xml
           test -f overlay-32a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
@@ -230,6 +238,7 @@ jobs:
               ('overlay-36a/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
               ('overlay-32a/res/layout/activity_edit_addpopup.xml', 'work/tree/res/layout/activity_edit_addpopup.xml'),
               ('overlay-32a/res/layout/dev_pref_header.xml', 'work/tree/res/layout/dev_pref_header.xml'),
+              ('overlay-40a/res/layout/gm_nav_bar.xml', 'work/tree/res/layout/gm_nav_bar.xml'),
               ('overlay-19a/res/layout/effect_item_ver2.xml', 'work/tree/res/layout/effect_item_ver2.xml'),
               ('overlay-23a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-18a/res/layout/activity_export_preview.xml', 'work/tree/res/layout/activity_export_preview.xml'),
@@ -563,6 +572,21 @@ jobs:
           cp overlay-32a/res/layout/dev_pref_header.xml "$T/res/layout/dev_pref_header.xml"
           cp overlay-32a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
           echo PUNCHLIST-APPLIED
+      - name: Apply app-structure pass (40A dev prefs, collapsible rail, nav sheet)
+        run: |
+          T=work/tree
+          cp overlay-40a/res/xml/dev_preferences.xml "$T/res/xml/dev_preferences.xml"
+          cp overlay-40a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-40a/res/layout/gm_nav_bar.xml "$T/res/layout/gm_nav_bar.xml"
+          cp overlay-40a/res/drawable/be_nav_bar_bg.xml "$T/res/drawable/be_nav_bar_bg.xml"
+          cp overlay-40a/res/drawable/be_nav_plus.xml "$T/res/drawable/be_nav_plus.xml"
+          cp overlay-40a/res/drawable/gm_nav_ic_home_on.xml "$T/res/drawable/gm_nav_ic_home_on.xml"
+          cp overlay-40a/res/drawable/gm_nav_ic_projects_on.xml "$T/res/drawable/gm_nav_ic_projects_on.xml"
+          cp overlay-40a/res/drawable/gm_nav_ic_templates_on.xml "$T/res/drawable/gm_nav_ic_templates_on.xml"
+          cp overlay-40a/res/drawable/gm_nav_ic_cube_on.xml "$T/res/drawable/gm_nav_ic_cube_on.xml"
+          cp overlay-40a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
+          cp overlay-40a/smali_classes32/com/goldmotion/ui/GmRailToggle.smali "$T/smali_classes32/com/goldmotion/ui/GmRailToggle.smali"
+          echo STRUCTURE-APPLIED
       - name: Apply library navigation (20A tappable empty state via real tab API)
         run: |
           T=work/tree

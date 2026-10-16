@@ -252,3 +252,10 @@ Reconstruction work stays disabled until separately approved.
   span) into one StudioAppearance; 28sp greeting, gradient-border glass.
   Supersedes 33a/34a smali copies (34a step now ships only the reverted
   Manager + film art).
+- `overlay-40a/` — app-structure pass: dev prefs rebranded (Mod by octavian,
+  Beyond AI, fixed Customization target package), collapsible rail via edge
+  toggle tab (pure view visibility, zero native interaction), nav bar as
+  rounded-top sheet with red plus disc + pink selected tabs, AI-studio gold
+  already covered by the drawable sweep (no smali gold in tools code).
+  Optimization note: all wiring is one-time at inflation; zero per-frame
+  additions; rail/toast views are static.

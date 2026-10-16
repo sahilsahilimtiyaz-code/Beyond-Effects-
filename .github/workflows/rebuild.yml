@@ -142,6 +142,11 @@ jobs:
           test -f overlay-30a/res/drawable/gm_editor_eye.xml
           test -f overlay-31a/res/layout/activity_edit.xml
           test -f overlay-31a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
+          test -f overlay-36a/res/layout/activity_edit.xml
+          test -f overlay-36a/res/layout/project_list_tab_view_homefeed.xml
+          test -f overlay-36a/res/layout/project_list_sidemenu_header.xml
+          test -f overlay-36a/res/drawable/be_rail_media.png
+          test -f overlay-36a/res/drawable/be_mark.png
           test -f overlay-32a/res/drawable/be_sheet_handle.xml
           test -f overlay-32a/res/layout/activity_edit_addpopup.xml
           test -f overlay-32a/res/layout/dev_pref_header.xml
@@ -204,6 +209,9 @@ jobs:
               ('overlay-28a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-30a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-31a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-36a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-36a/res/layout/project_list_tab_view_homefeed.xml', 'work/tree/res/layout/project_list_tab_view_homefeed.xml'),
+              ('overlay-36a/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
               ('overlay-32a/res/layout/activity_edit_addpopup.xml', 'work/tree/res/layout/activity_edit_addpopup.xml'),
               ('overlay-32a/res/layout/dev_pref_header.xml', 'work/tree/res/layout/dev_pref_header.xml'),
               ('overlay-19a/res/layout/effect_item_ver2.xml', 'work/tree/res/layout/effect_item_ver2.xml'),
@@ -233,13 +241,16 @@ jobs:
                        'overlay-27a/res/layout/activity_edit.xml',
                        'overlay-28a/res/layout/activity_edit.xml',
                        'overlay-30a/res/layout/activity_edit.xml',
-                       'overlay-31a/res/layout/activity_edit.xml'):
+                       'overlay-31a/res/layout/activity_edit.xml',
+                       'overlay-36a/res/layout/activity_edit.xml',
+                       'overlay-36a/res/layout/project_list_tab_view_homefeed.xml',
+                       'overlay-36a/res/layout/project_list_sidemenu_header.xml'):
                   # editTimeView/buttonAdd intentionally reparented across the
                   # navbar/playbar/activity_edit includes: contract holds over
                   # the union of the shipped files in one tree.
                   oids = (ids('overlay-27a/res/layout/activity_edit_navbar.xml')
                           | ids('overlay-27a/res/layout/activity_edit_playbar.xml')
-                          | ids('overlay-31a/res/layout/activity_edit.xml'))
+                          | ids('overlay-36a/res/layout/activity_edit.xml'))
               else:
                   oids = ids(o)
               missing = ids(t) - oids
@@ -479,6 +490,20 @@ jobs:
           cp overlay-31a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
           cp overlay-31a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
           echo RAIL2-APPLIED
+      - name: Apply real pixels (36A cropped mockup art: rail, mark, film)
+        run: |
+          T=work/tree
+          cp overlay-36a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-36a/res/layout/project_list_tab_view_homefeed.xml "$T/res/layout/project_list_tab_view_homefeed.xml"
+          cp overlay-36a/res/layout/project_list_sidemenu_header.xml "$T/res/layout/project_list_sidemenu_header.xml"
+          cp overlay-36a/res/drawable/be_rail_media.png "$T/res/drawable/be_rail_media.png"
+          cp overlay-36a/res/drawable/be_rail_templates.png "$T/res/drawable/be_rail_templates.png"
+          cp overlay-36a/res/drawable/be_rail_audio.png "$T/res/drawable/be_rail_audio.png"
+          cp overlay-36a/res/drawable/be_rail_text.png "$T/res/drawable/be_rail_text.png"
+          cp overlay-36a/res/drawable/be_rail_elements.png "$T/res/drawable/be_rail_elements.png"
+          cp overlay-36a/res/drawable/be_rail_ai.png "$T/res/drawable/be_rail_ai.png"
+          cp overlay-36a/res/drawable/be_mark.png "$T/res/drawable/be_mark.png"
+          echo PIXELS-APPLIED
       - name: Apply follow-toast surgical removal (9N one-line trigger delete)
         run: |
           T=work/tree

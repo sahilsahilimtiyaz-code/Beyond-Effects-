@@ -234,3 +234,8 @@ Reconstruction work stays disabled until separately approved.
   without spaces), code-drawn neon film illustration in the empty state,
   gradient CTA with solid fallback. Subtitle untouched (live engine status),
   bell/nav declined (no notifications feature, Compose-owned).
+- `overlay-36a/` — real pixels cropped from the supplied mockups (pure-python
+  PNG codec, verified by re-reading each crop): 6 rail icons, neon B mark
+  (home emblem + drawer brand), full film illustration (empty state).
+  Nav icons already white vectors (kept). Bell declined again: zero backing
+  functionality exists to wire it to.

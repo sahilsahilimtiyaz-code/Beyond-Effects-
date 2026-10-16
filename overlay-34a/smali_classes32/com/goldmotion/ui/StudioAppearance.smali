@@ -35,6 +35,8 @@
 .method public static apply(Landroid/app/Activity;)V
     .locals 13
 
+    invoke-static {p0}, Lcom/goldmotion/ui/StudioAppearance;->styleGreeting(Landroid/app/Activity;)V
+
     .line 51
     const-string v0, "topBarDividerLine"
 
@@ -2435,6 +2437,71 @@
     iput v2, v1, Landroid/widget/LinearLayout$LayoutParams;->topMargin:I
 
     invoke-virtual {p1, v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    :cond_done
+    return-void
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    :catchall_0
+    return-void
+.end method
+
+.method static styleGreeting(Landroid/app/Activity;)V
+    .locals 6
+
+    :try_start_0
+    const v0, 0x7f0a08f7
+
+    invoke-virtual {p0, v0}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/TextView;
+
+    if-eqz v0, :cond_done
+
+    invoke-virtual {v0}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v1
+
+    instance-of v2, v1, Landroid/text/Spanned;
+
+    if-nez v2, :cond_done
+
+    invoke-virtual {v1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    const/16 v2, 0x20
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->lastIndexOf(I)I
+
+    move-result v2
+
+    if-lez v2, :cond_done
+
+    add-int/lit8 v2, v2, 0x1
+
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
+
+    move-result v3
+
+    new-instance v4, Landroid/text/SpannableString;
+
+    invoke-direct {v4, v1}, Landroid/text/SpannableString;-><init>(Ljava/lang/CharSequence;)V
+
+    new-instance v5, Landroid/text/style/ForegroundColorSpan;
+
+    const v1, -0xc1a2
+
+    invoke-direct {v5, v1}, Landroid/text/style/ForegroundColorSpan;-><init>(I)V
+
+    const/16 v1, 0x21
+
+    invoke-virtual {v4, v5, v2, v3, v1}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
+
+    invoke-virtual {v0, v4}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     :cond_done
     return-void

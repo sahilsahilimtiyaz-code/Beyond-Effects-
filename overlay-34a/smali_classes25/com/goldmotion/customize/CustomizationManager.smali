@@ -1388,7 +1388,7 @@
 .end method
 
 .method private static visit(Landroid/view/View;IIIIIZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 16
+    .locals 11
 
     .line 141
     const-string v1, ""
@@ -1605,61 +1605,6 @@
 
     invoke-virtual {v0, v2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    const/16 v11, 0x20
-
-    invoke-virtual {v2, v11}, Ljava/lang/String;->lastIndexOf(I)I
-
-    move-result v11
-
-    if-lez v11, :cond_be_nospan
-
-    add-int/lit8 v11, v11, 0x1
-
-    invoke-virtual {v2}, Ljava/lang/String;->length()I
-
-    move-result v12
-
-    new-instance v13, Landroid/text/SpannableString;
-
-    invoke-direct {v13, v2}, Landroid/text/SpannableString;-><init>(Ljava/lang/CharSequence;)V
-
-    new-instance v15, Landroid/text/style/ForegroundColorSpan;
-
-    const v14, -0xc1a2
-
-    invoke-direct {v15, v14}, Landroid/text/style/ForegroundColorSpan;-><init>(I)V
-
-    const/16 v14, 0x21
-
-    invoke-virtual {v13, v15, v11, v12, v14}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
-
-    invoke-virtual {v0, v13}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    :cond_be_nospan
-
-    add-int/lit8 v1, v1, 0x1
-
-    invoke-virtual {v2}, Ljava/lang/String;->length()I
-
-    move-result v5
-
-    new-instance v3, Landroid/text/SpannableString;
-
-    invoke-direct {v3, v2}, Landroid/text/SpannableString;-><init>(Ljava/lang/CharSequence;)V
-
-    new-instance v4, Landroid/text/style/ForegroundColorSpan;
-
-    const v2, -0xc1a2
-
-    invoke-direct {v4, v2}, Landroid/text/style/ForegroundColorSpan;-><init>(I)V
-
-    const/16 v2, 0x21
-
-    invoke-virtual {v3, v4, v1, v5, v2}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
-
-    invoke-virtual {v0, v3}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    :cond_be_nospan
     move-object/from16 v7, p7
 
     goto/16 :goto_2

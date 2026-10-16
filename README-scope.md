@@ -259,3 +259,7 @@ Reconstruction work stays disabled until separately approved.
   already covered by the drawable sweep (no smali gold in tools code).
   Optimization note: all wiring is one-time at inflation; zero per-frame
   additions; rail/toast views are static.
+- `overlay-41a/` — Beyond AI: titles/toasts/manager strings rebranded;
+  floating face repainted (blue rim, white eyes, glowing red pupils, blue
+  mouth, white shine — zero gold). Twin-dex checked (single copy).
+  Contact-support wiring pending drawer-handler trace.

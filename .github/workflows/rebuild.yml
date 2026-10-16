@@ -168,6 +168,10 @@ jobs:
           test -f overlay-40a/res/drawable/gm_nav_ic_home_on.xml
           test -f overlay-40a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
           test -f overlay-40a/smali_classes32/com/goldmotion/ui/GmRailToggle.smali
+          test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiActivity.smali
+          test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiActivity\$1.smali
+          test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiManager.smali
+          test -f overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiBubbleView.smali
           test -f overlay-32a/res/layout/activity_edit_addpopup.xml
           test -f overlay-32a/res/layout/dev_pref_header.xml
           test -f overlay-32a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
@@ -587,6 +591,14 @@ jobs:
           cp overlay-40a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali "$T/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali"
           cp overlay-40a/smali_classes32/com/goldmotion/ui/GmRailToggle.smali "$T/smali_classes32/com/goldmotion/ui/GmRailToggle.smali"
           echo STRUCTURE-APPLIED
+      - name: Apply Beyond AI rebrand (41A titles + colorful bubble)
+        run: |
+          T=work/tree
+          cp overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiActivity.smali "$T/smali_classes25/com/goldmotion/ai/GoldAiActivity.smali"
+          cp "overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiActivity\$1.smali" "$T/smali_classes25/com/goldmotion/ai/GoldAiActivity\$1.smali"
+          cp overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiManager.smali "$T/smali_classes25/com/goldmotion/ai/GoldAiManager.smali"
+          cp overlay-41a/smali_classes25/com/goldmotion/ai/GoldAiBubbleView.smali "$T/smali_classes25/com/goldmotion/ai/GoldAiBubbleView.smali"
+          echo AITHEME-APPLIED
       - name: Apply library navigation (20A tappable empty state via real tab API)
         run: |
           T=work/tree

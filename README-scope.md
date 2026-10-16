@@ -239,3 +239,7 @@ Reconstruction work stays disabled until separately approved.
   (home emblem + drawer brand), full film illustration (empty state).
   Nav icons already white vectors (kept). Bell declined again: zero backing
   functionality exists to wire it to.
+- `overlay-37a/` — gradient play tile (blue→purple→pink, 12dp) on the
+  prominent play control. Tool-grid panel declined with proof: target menu
+  buttons live in a natively-inflated popup (absent until opened) and no
+  duplicate-layer operation exists — grid buttons would be dead.

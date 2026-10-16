@@ -125,6 +125,8 @@ jobs:
           test -f overlay-27a/res/layout/activity_edit_navbar.xml
           test -f overlay-27a/res/layout/activity_edit_playbar.xml
           test -f overlay-27a/res/layout/activity_edit.xml
+          test -f overlay-37a/res/layout/activity_edit_playbar.xml
+          test -f overlay-37a/res/drawable/be_play_tile.xml
           test -f overlay-28a/res/drawable/be_ic_aitools.xml
           test -f overlay-28a/res/layout/activity_edit.xml
           test -f overlay-28a/smali_classes32/com/goldmotion/ui/GmEditorWiring.smali
@@ -205,6 +207,7 @@ jobs:
               ('overlay-26a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-27a/res/layout/activity_edit_navbar.xml', 'work/tree/res/layout/activity_edit_navbar.xml'),
               ('overlay-27a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
+              ('overlay-37a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-27a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-28a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-30a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
@@ -455,6 +458,12 @@ jobs:
           cp overlay-27a/res/layout/activity_edit_playbar.xml "$T/res/layout/activity_edit_playbar.xml"
           cp overlay-27a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
           echo COCKPIT3-APPLIED
+      - name: Apply play tile (37A gradient play button)
+        run: |
+          T=work/tree
+          cp overlay-37a/res/layout/activity_edit_playbar.xml "$T/res/layout/activity_edit_playbar.xml"
+          cp overlay-37a/res/drawable/be_play_tile.xml "$T/res/drawable/be_play_tile.xml"
+          echo PLAYTILE-APPLIED
       - name: Apply AI tools rail entry (28A Twixtor launch + studio titles)
         run: |
           T=work/tree

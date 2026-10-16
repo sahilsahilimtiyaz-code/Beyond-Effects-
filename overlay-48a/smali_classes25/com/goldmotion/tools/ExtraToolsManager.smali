@@ -1662,17 +1662,15 @@
 
     invoke-direct {v1, v2, v0}, Landroid/graphics/drawable/GradientDrawable;-><init>(Landroid/graphics/drawable/GradientDrawable$Orientation;[I)V
 
-    const v0, 0x3f800000    # 1.0f
-
-    invoke-virtual {v1, v0}, Landroid/graphics/drawable/GradientDrawable;->setGradientType(I)V
-
     const/high16 v0, 0x41800000    # 16.0f
 
     invoke-virtual {v1, v0}, Landroid/graphics/drawable/GradientDrawable;->setCornerRadius(F)V
 
-    const v0, -0xbbbbbc
+    const/4 v0, 0x2
 
-    invoke-virtual {v1, v0}, Landroid/graphics/drawable/GradientDrawable;->setStroke(II)V
+    const v2, -0xbbbbbc
+
+    invoke-virtual {v1, v0, v2}, Landroid/graphics/drawable/GradientDrawable;->setStroke(II)V
 
     invoke-virtual {p0, v1}, Landroid/widget/LinearLayout;->setBackground(Landroid/graphics/drawable/Drawable;)V
 

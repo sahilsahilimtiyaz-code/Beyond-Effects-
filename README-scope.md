@@ -288,3 +288,8 @@ Reconstruction work stays disabled until separately approved.
   ViewGroup → VerifyError). All inserts now save/restore via dedicated
   locals. Icon note: launcher art is replaced in-APK; stale icons on device
   are launcher cache — reboot or clear the launcher's cache.
+- `overlay-47a/` — launch-crash fix, round 2 (device log): 45a's inline
+  follow row left v0 holding a TextView where later code reuses v0 as the
+  ViewGroup container (VerifyError). Both inserts moved into helper
+  methods with their own register frames; `apply()` keeps `.locals 13`
+  and zero clobbered registers. Supersedes 46a (register-count quirk).

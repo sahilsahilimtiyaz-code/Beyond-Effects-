@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<effect id="be.custom.cornerpin" name="BE Corner Pin" desc="Four-corner perspective warp (UV space, Y-up)." category="custom" tags="be,custom,warp,corner,perspective" thumb="thumb/be_custom_cornerpin.png" experimental="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<section text="Bottom Edge" />
+<spinner id="blx" default="0.0" min="-0.5" max="1.5" step="0.01" label="Bottom-Left X" />
+<spinner id="bly" default="0.0" min="-0.5" max="1.5" step="0.01" label="Bottom-Left Y" />
+<spinner id="brx" default="1.0" min="-0.5" max="1.5" step="0.01" label="Bottom-Right X" />
+<spinner id="bry" default="0.0" min="-0.5" max="1.5" step="0.01" label="Bottom-Right Y" />
+<section text="Top Edge" />
+<spinner id="tlx" default="0.0" min="-0.5" max="1.5" step="0.01" label="Top-Left X" />
+<spinner id="tly" default="1.0" min="-0.5" max="1.5" step="0.01" label="Top-Left Y" />
+<spinner id="trx" default="1.0" min="-0.5" max="1.5" step="0.01" label="Top-Right X" />
+<spinner id="try" default="1.0" min="-0.5" max="1.5" step="0.01" label="Top-Right Y" />
+</params>
+<shader type="fragment" precision="medium"><![CDATA[
+void main() {
+vec2 uv = acScreenNorm;
+vec2 top = mix(vec2(tlx, tly), vec2(trx, try), uv.x);
+vec2 bot = mix(vec2(blx, bly), vec2(brx, bry), uv.x);
+vec2 suv = mix(bot, top, uv.y);
+vec4 src = texture2DCv(inputImg.texture, clamp(suv, vec2(0.0), vec2(1.0)));
+gl_FragColor = vec4(src.rgb, src.a);
+}]]></shader>
+</effect>

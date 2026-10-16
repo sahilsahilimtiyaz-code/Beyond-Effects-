@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<effect id="be.custom.liftgammagain" name="BE Lift Gamma Gain" desc="ASC-style primary grade: lift, gamma and gain with output mix." category="custom" tags="be,custom,grade,lift,gamma,gain,color" thumb="thumb/be_custom_liftgammagain.png" experimental="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<section text="Primary" />
+<color id="liftColor" default="#FF000000" label="Lift" alpha="false" />
+<spinner id="gamma" default="1.0" min="0.1" max="3.0" step="0.01" label="Gamma" />
+<color id="gainColor" default="#FFFFFFFF" label="Gain" alpha="false" />
+<section text="Output" />
+<spinner id="mix" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" type="percent" />
+</params>
+<shader type="fragment" precision="medium"><![CDATA[
+void main() {
+vec2 uv = acScreenNorm;
+vec4 src = texture2DCv(inputImg.texture, uv);
+vec3 c = src.rgb + liftColor.rgb;
+c = max(c, vec3(0.0));
+c = pow(c, vec3(1.0 / max(gamma, 0.001)));
+c = c * gainColor.rgb;
+vec3 outRgb = mix(src.rgb, clamp(c, vec3(0.0), vec3(1.0)), mix);
+gl_FragColor = vec4(outRgb, src.a);
+}]]></shader>
+</effect>

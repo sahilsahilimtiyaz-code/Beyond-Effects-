@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<effect id="be.custom.vignettegrain" name="BE Vignette Grain" desc="Soft vignette with seeded film grain." category="custom" tags="be,custom,vignette,grain,film,finish" thumb="thumb/be_custom_vignettegrain.png" experimental="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<section text="Vignette" />
+<spinner id="amount" default="0.45" min="0.0" max="1.0" step="0.01" label="Amount" />
+<spinner id="feather" default="0.6" min="0.1" max="1.0" step="0.01" label="Feather" />
+<section text="Grain" />
+<spinner id="grain" default="0.06" min="0.0" max="0.3" step="0.005" label="Grain" />
+<spinner id="seed" default="7.0" min="0.0" max="100.0" step="1.0" label="Seed" />
+</params>
+<shader type="fragment" precision="medium"><![CDATA[
+void main() {
+vec2 uv = acScreenNorm;
+vec4 src = texture2DCv(inputImg.texture, uv);
+vec2 q = uv - vec2(0.5);
+q.x *= acScreenSize.x / max(acScreenSize.y, 1.0);
+float d = length(q);
+float outer = clamp(amount, 0.0, 1.0);
+float inner = outer * (1.0 - clamp(feather, 0.05, 1.0));
+float m = 1.0 - smoothstep(inner, outer, d);
+vec3 outRgb = src.rgb * mix(1.0, m, step(0.001, outer));
+float g = fract(sin(dot(floor(uv * vec2(480.0, 270.0)) + seed, vec2(12.9898, 78.233))) * 43758.5453);
+outRgb += (g - 0.5) * clamp(grain, 0.0, 0.3);
+gl_FragColor = vec4(clamp(outRgb, vec3(0.0), vec3(1.0)), src.a);
+}]]></shader>
+</effect>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<effect id="be.custom.rgbshift" name="BE RGB Split" desc="Chromatic aberration: red/cyan channel separation." category="custom" tags="be,custom,rgb,split,chromatic,glitch" thumb="thumb/be_custom_rgbshift.png" experimental="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<section text="Split" />
+<spinner id="amount" default="2.0" min="0.0" max="20.0" step="0.1" label="Amount (px)" />
+<spinner id="angle" default="0.0" min="0.0" max="360.0" step="1.0" label="Angle" />
+</params>
+<shader type="fragment" precision="medium"><![CDATA[
+void main() {
+vec2 uv = acScreenNorm;
+vec2 px = vec2(amount) / max(acScreenSize, vec2(1.0));
+float a = radians(angle);
+vec2 o = vec2(cos(a), sin(a)) * px;
+float r = texture2DCv(inputImg.texture, clamp(uv - o, vec2(0.0), vec2(1.0))).r;
+float g = texture2DCv(inputImg.texture, uv).g;
+float b = texture2DCv(inputImg.texture, clamp(uv + o, vec2(0.0), vec2(1.0))).b;
+vec4 src = texture2DCv(inputImg.texture, uv);
+gl_FragColor = vec4(r, g, b, src.a);
+}]]></shader>
+</effect>

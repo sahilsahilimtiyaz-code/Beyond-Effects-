@@ -54,6 +54,18 @@ jobs:
           test -f overlay-fx/gm_custom_letterbox.png
           test -f overlay-fx/gm_custom_bloom_saturation_plus.png
           test -f overlay-fx/gm_custom_bloom_region_plus.png
+          test -f overlay-fx/be_custom_liftgammagain.xml
+          test -f overlay-fx/be_custom_liftgammagain.png
+          test -f overlay-fx/be_custom_levels.xml
+          test -f overlay-fx/be_custom_levels.png
+          test -f overlay-fx/be_custom_rgbshift.xml
+          test -f overlay-fx/be_custom_rgbshift.png
+          test -f overlay-fx/be_custom_tealorange.xml
+          test -f overlay-fx/be_custom_tealorange.png
+          test -f overlay-fx/be_custom_vignettegrain.xml
+          test -f overlay-fx/be_custom_vignettegrain.png
+          test -f overlay-fx/be_custom_cornerpin.xml
+          test -f overlay-fx/be_custom_cornerpin.png
           test -f overlay-8e/gold_motion_launcher.png
           test -f overlay-8e/gold_motion_logo_splash.png
           test -f overlay-9a/AndroidManifest.xml
@@ -329,6 +341,10 @@ jobs:
           cp overlay-fx/gm_custom_letterbox.png "$T/assets/thumb/gm_custom_letterbox.png"
           cp overlay-fx/gm_custom_bloom_saturation_plus.png "$T/assets/thumb/gm_custom_bloom_saturation_plus.png"
           cp overlay-fx/gm_custom_bloom_region_plus.png "$T/assets/thumb/gm_custom_bloom_region_plus.png"
+          for e in liftgammagain levels rgbshift tealorange vignettegrain cornerpin; do
+            cp "overlay-fx/be_custom_$e.xml" "$T/assets/effects_custom/be_custom_$e.xml"
+            cp "overlay-fx/be_custom_$e.png" "$T/assets/thumb/be_custom_$e.png"
+          done
           echo FX-APPLIED
       - name: Apply displayed-surface fixes (8E icon + splash, manifest/theme live paths)
         run: |

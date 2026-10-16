@@ -268,3 +268,10 @@ Reconstruction work stays disabled until separately approved.
   per-build version stamp (`7.0.3-be<sha>`) + drawer build tag so the
   installed build is always identifiable. Play Protect note: test-key-signed
   sideloads always warn; fixed properly only via Play App Signing.
+- `overlay-fx/be_custom_*` — six real shader effects (verified XML tags +
+  builtins only): Lift/Gamma/Gain, Levels, RGB Split, Teal&Orange,
+  Vignette+Grain, Corner Pin. Effect-list verdict: shader-composable looks
+  CAN ship; adjustment layers, track mattes, masks-per-layer, particles,
+  trackers, AI segmentation, 3D lights/extrusion, text animators, shape ops,
+  curve-UI, optical flow, echo/time-displacement, .CUBE loading and audio
+  reactors all REQUIRE native engine work (no param/render interfaces exist).

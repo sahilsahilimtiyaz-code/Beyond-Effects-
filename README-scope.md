@@ -317,3 +317,7 @@ Reconstruction work stays disabled until separately approved.
   one flag (`beSheetHandle` 0dp+dual-constraint = correct stretch idiom),
   zero duplicate IDs, no sub-40dp targets. Onboarding/tutorial copy clean.
 - Item-6: broken releases relabeled DO NOT INSTALL (assets preserved).
+- Updater v2: api.github.com rate-limits the carrier NAT (proven live:
+  403 body with 200 code; old code stayed silent = safe but useless).
+  Now reads the /releases/latest 302 Location header directly from
+  github.com (no API, no auth, no rate limit). Tag extracted from URL.

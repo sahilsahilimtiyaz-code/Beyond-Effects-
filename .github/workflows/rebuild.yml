@@ -226,6 +226,41 @@ jobs:
           test -f overlay-9f/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
           test -f overlay-9f/smali_classes24/com/goldmotion/update/WelcomeDialog.smali
+          test -f overlay-49a/res/drawable/be_cta_gradient.xml
+          test -f overlay-49a/res/drawable/be_dot_red.xml
+          test -f overlay-49a/res/drawable/be_glass_card.xml
+          test -f overlay-49a/res/drawable/be_ic_bell.xml
+          test -f overlay-49a/res/drawable/be_ic_chevron.xml
+          test -f overlay-49a/res/drawable/be_ic_clock.xml
+          test -f overlay-49a/res/drawable/be_ic_sliders.xml
+          test -f overlay-49a/res/drawable/be_mark_b.png
+          test -f overlay-49a/res/drawable/be_mark_card.png
+          test -f overlay-49a/res/drawable/be_panel_row.xml
+          test -f overlay-49a/res/drawable/gm_nav_ic_cube_on.xml
+          test -f overlay-49a/res/drawable/gm_nav_ic_plus.xml
+          test -f overlay-49a/res/drawable/gold_home_emblem_frame.xml
+          test -f overlay-49a/res/layout/activity_edit_addpopup.xml
+          test -f overlay-49a/res/layout/activity_home_screen.xml
+          test -f overlay-49a/res/layout/project_list_tab_view_homefeed.xml
+          test -f overlay-49a/res/values/colors.xml
+          test -f overlay-49a/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali
+          test -f overlay-49a/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali
+          test -f overlay-49a/smali_classes24/com/goldmotion/update/WelcomeDialog.smali
+          test -f overlay-49a/smali_classes25/com/goldmotion/customize/CustomizationManager.smali
+          test -f overlay-49a/smali_classes25/com/goldmotion/startup/GoldStartupActivity.smali
+          test -f overlay-49a/smali_classes25/com/goldmotion/tools/ExtraToolsBubbleView.smali
+          test -f overlay-49a/smali_classes25/com/goldmotion/tools/ExtraToolsManager.smali
+          test -f overlay-49a/smali_classes25/com/goldmotion/tools/ToolStudioActivity.smali
+          test -f overlay-49a/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali
+          test -f overlay-49a/smali_classes25/com/goldmotion/update/WelcomeDialog.smali
+          test -f overlay-49a/smali_classes32/com/goldmotion/labs/GmLabsPage.smali
+          test -f overlay-49a/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali
+          test -f overlay-49a/smali_classes32/com/goldmotion/ui/BeFollow.smali
+          test -f overlay-49a/smali_classes32/com/goldmotion/ui/BeFollowLink.smali
+          test -f overlay-49a/smali_classes32/com/goldmotion/ui/BeNotify\$Click.smali
+          test -f overlay-49a/smali_classes32/com/goldmotion/ui/BeNotify\$Follow.smali
+          test -f overlay-49a/smali_classes32/com/goldmotion/ui/BeNotify.smali
+          test -f overlay-49a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
           echo OVERLAYS-PRESENT
       - name: Guard layout ID contracts (never drop IDs bindings require)
         run: |
@@ -814,6 +849,45 @@ jobs:
           cp overlay-9f/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali "$T/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali"
           cp overlay-9f/smali_classes24/com/goldmotion/update/WelcomeDialog.smali "$T/smali_classes24/com/goldmotion/update/WelcomeDialog.smali"
           echo STORAGE-APPLIED
+      - name: Apply final home pass (49A bell, notify, pink marks, crimson CTA)
+        run: |
+          T=work/tree
+          cp "overlay-49a/res/drawable/be_cta_gradient.xml" "$T/res/drawable/be_cta_gradient.xml"
+          cp "overlay-49a/res/drawable/be_dot_red.xml" "$T/res/drawable/be_dot_red.xml"
+          cp "overlay-49a/res/drawable/be_glass_card.xml" "$T/res/drawable/be_glass_card.xml"
+          cp "overlay-49a/res/drawable/be_ic_bell.xml" "$T/res/drawable/be_ic_bell.xml"
+          cp "overlay-49a/res/drawable/be_ic_chevron.xml" "$T/res/drawable/be_ic_chevron.xml"
+          cp "overlay-49a/res/drawable/be_ic_clock.xml" "$T/res/drawable/be_ic_clock.xml"
+          cp "overlay-49a/res/drawable/be_ic_sliders.xml" "$T/res/drawable/be_ic_sliders.xml"
+          cp "overlay-49a/res/drawable/be_mark_b.png" "$T/res/drawable/be_mark_b.png"
+          cp "overlay-49a/res/drawable/be_mark_card.png" "$T/res/drawable/be_mark_card.png"
+          cp "overlay-49a/res/drawable/be_panel_row.xml" "$T/res/drawable/be_panel_row.xml"
+          cp "overlay-49a/res/drawable/gm_nav_ic_cube_on.xml" "$T/res/drawable/gm_nav_ic_cube_on.xml"
+          cp "overlay-49a/res/drawable/gm_nav_ic_plus.xml" "$T/res/drawable/gm_nav_ic_plus.xml"
+          cp "overlay-49a/res/drawable/gold_home_emblem_frame.xml" "$T/res/drawable/gold_home_emblem_frame.xml"
+          cp "overlay-49a/res/layout/activity_edit_addpopup.xml" "$T/res/layout/activity_edit_addpopup.xml"
+          cp "overlay-49a/res/layout/activity_home_screen.xml" "$T/res/layout/activity_home_screen.xml"
+          cp "overlay-49a/res/layout/project_list_tab_view_homefeed.xml" "$T/res/layout/project_list_tab_view_homefeed.xml"
+          cp "overlay-49a/res/values/colors.xml" "$T/res/values/colors.xml"
+          cp "overlay-49a/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali" "$T/smali_classes21/com/zenapp/custom/dialog/Customdialog.smali"
+          cp "overlay-49a/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali" "$T/smali_classes24/com/goldmotion/update/ForceUpdateManager.smali"
+          cp "overlay-49a/smali_classes24/com/goldmotion/update/WelcomeDialog.smali" "$T/smali_classes24/com/goldmotion/update/WelcomeDialog.smali"
+          cp "overlay-49a/smali_classes25/com/goldmotion/customize/CustomizationManager.smali" "$T/smali_classes25/com/goldmotion/customize/CustomizationManager.smali"
+          cp "overlay-49a/smali_classes25/com/goldmotion/startup/GoldStartupActivity.smali" "$T/smali_classes25/com/goldmotion/startup/GoldStartupActivity.smali"
+          cp "overlay-49a/smali_classes25/com/goldmotion/tools/ExtraToolsBubbleView.smali" "$T/smali_classes25/com/goldmotion/tools/ExtraToolsBubbleView.smali"
+          cp "overlay-49a/smali_classes25/com/goldmotion/tools/ExtraToolsManager.smali" "$T/smali_classes25/com/goldmotion/tools/ExtraToolsManager.smali"
+          cp "overlay-49a/smali_classes25/com/goldmotion/tools/ToolStudioActivity.smali" "$T/smali_classes25/com/goldmotion/tools/ToolStudioActivity.smali"
+          cp "overlay-49a/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali" "$T/smali_classes25/com/goldmotion/update/ForceUpdateManager.smali"
+          cp "overlay-49a/smali_classes25/com/goldmotion/update/WelcomeDialog.smali" "$T/smali_classes25/com/goldmotion/update/WelcomeDialog.smali"
+          cp "overlay-49a/smali_classes32/com/goldmotion/labs/GmLabsPage.smali" "$T/smali_classes32/com/goldmotion/labs/GmLabsPage.smali"
+          cp "overlay-49a/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali" "$T/smali_classes32/com/goldmotion/projects/GmProjectsPage.smali"
+          cp "overlay-49a/smali_classes32/com/goldmotion/ui/BeFollow.smali" "$T/smali_classes32/com/goldmotion/ui/BeFollow.smali"
+          cp "overlay-49a/smali_classes32/com/goldmotion/ui/BeFollowLink.smali" "$T/smali_classes32/com/goldmotion/ui/BeFollowLink.smali"
+          cp "overlay-49a/smali_classes32/com/goldmotion/ui/BeNotify\$Click.smali" "$T/smali_classes32/com/goldmotion/ui/BeNotify\$Click.smali"
+          cp "overlay-49a/smali_classes32/com/goldmotion/ui/BeNotify\$Follow.smali" "$T/smali_classes32/com/goldmotion/ui/BeNotify\$Follow.smali"
+          cp "overlay-49a/smali_classes32/com/goldmotion/ui/BeNotify.smali" "$T/smali_classes32/com/goldmotion/ui/BeNotify.smali"
+          cp "overlay-49a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali" "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
+          echo FINAL49-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Inspect APK contents (prove structures shipped, not just sources)
@@ -828,6 +902,15 @@ jobs:
           echo ENTRIES-OK
           unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'GmNewProjectOpener' | grep -q -E '[1-9]' && echo NEWPROJ-CODE-OK || exit 1
           unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'continueCard' | grep -q -E '[1-9]' && echo CONTINUE-CODE-OK || exit 1
+          grep -q "beBellHolder" work/tree/res/layout/activity_home_screen.xml && echo BELL-LAYOUT-OK || exit 1
+          grep -q "beBellDot" work/tree/res/layout/activity_home_screen.xml && echo BELLDOT-LAYOUT-OK || exit 1
+          grep -q "be_mark_b" work/tree/res/layout/activity_home_screen.xml && echo MARKB-LAYOUT-OK || exit 1
+          grep -q "be_mark_card" work/tree/res/layout/project_list_tab_view_homefeed.xml && echo MARKCARD-LAYOUT-OK || exit 1
+          grep -q "MOTION, REIMAGINED" work/tree/res/layout/project_list_tab_view_homefeed.xml && echo TAGLINE-OK || exit 1
+          unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'BeNotify' | grep -q -E '[1-9]' && echo NOTIFY-CODE-OK || exit 1
+          unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'Your motion workspace is ready' | grep -q -E '[1-9]' && echo GREETING-OK || exit 1
+          unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'instagram.com/octavian6648' | grep -q -E '[1-9]' && echo FOLLOWLINK-OK || exit 1
+          unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'be_cta_gradient' | grep -q -E '[1-9]' && echo CTA-GRAD-OK || exit 1
       - name: "Align + sign (stable key if secrets set, else throwaway test key)"
         env:
           BE_KEYSTORE_B64: ${{ secrets.BE_KEYSTORE_B64 }}

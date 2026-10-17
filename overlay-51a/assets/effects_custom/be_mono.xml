@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="be.custom.be_mono" name="Black and White" desc="Weighted monochrome conversion with channel weights and smooth mix." category="color" tags="mono,grayscale,desaturate" thumb="thumb/be_mono.png" experimental="false" deprecated="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<spinner id="wR" default="0.299" min="0.0" max="2.0" step="0.001" label="Red Weight" />
+<spinner id="wG" default="0.587" min="0.0" max="2.0" step="0.001" label="Green Weight" />
+<spinner id="wB" default="0.114" min="0.0" max="2.0" step="0.001" label="Blue Weight" />
+<spinner id="mixAmt" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" />
+</params>
+<shader type="fragment" precision="high"><![CDATA[vec4 tex(vec2 p){ return texture2DCv(inputImg.texture, p); }
+void main(){
+vec4 src = tex(acScreenNorm);
+vec3 wgt = vec3(wR, wG, wB) / max(wR + wG + wB, 0.0001);
+float g = dot(src.rgb, wgt);
+gl_FragColor = vec4(mix(src.rgb, vec3(g), mixAmt), src.a);
+}]]></shader>
+</effect>

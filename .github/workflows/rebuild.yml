@@ -293,6 +293,33 @@ jobs:
           test -f overlay-50a/res/drawable/gm_ic_preset_star.xml
           test -f overlay-50a/res/drawable/ac_ic_effects.xml
           test -f overlay-50a/res/drawable/ac_ic_audio.xml
+          test -f overlay-51a/res/drawable/export_btn_bg.xml
+          test -f overlay-51a/res/drawable/export_choice_bg.xml
+          test -f overlay-51a/res/drawable/ic_favorite_select.xml
+          test -f overlay-51a/res/drawable/ic_warning.xml
+          test -f "overlay-51a/res/drawable-v24/\$ic_bi_bg_none__0.xml"
+          test -f "overlay-51a/res/drawable-v24/\$ic_bi_bg_none__1.xml"
+          test -f "overlay-51a/res/drawable-v24/\$ic_bi_bg_none__2.xml"
+          test -f "overlay-51a/res/drawable-v24/\$ic_bi_bg_none__3.xml"
+          test -f overlay-51a/res/layout/export_list_popup_frag.xml
+          test -f overlay-51a/res/layout/activity_project_list_main.xml
+          python3 - <<'PYEOF'
+          import glob, os, xml.etree.ElementTree as ET, sys
+          xs = sorted(glob.glob('overlay-51a/assets/effects_custom/*.xml'))
+          if len(xs) != 18:
+              print('EFFECTS51-COUNT-FAIL', len(xs)); sys.exit(1)
+          for f in xs:
+              r = ET.parse(f).getroot()
+              th = r.get('thumb') or ''
+              if not (r.get('id') and r.get('name') and r.get('category') and th):
+                  print('EFFECTS51-FIELDS-FAIL', f); sys.exit(1)
+              if not os.path.exists('overlay-51a/assets/' + th):
+                  print('EFFECTS51-THUMB-FAIL', f, th); sys.exit(1)
+          tps = sorted(glob.glob('overlay-51a/assets/thumb/*.png'))
+          if len(tps) != 18:
+              print('EFFECTS51-PNG-FAIL', len(tps)); sys.exit(1)
+          print('EFFECTS51-PRESENT')
+          PYEOF
           echo OVERLAYS-PRESENT
       - name: Guard layout ID contracts (never drop IDs bindings require)
         run: |
@@ -342,6 +369,8 @@ jobs:
               ('overlay-50a/res/layout/activity_edit_navbar.xml', 'work/tree/res/layout/activity_edit_navbar.xml'),
               ('overlay-50a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
               ('overlay-50a/res/layout/fragment_element_edit.xml', 'work/tree/res/layout/fragment_element_edit.xml'),
+              ('overlay-51a/res/layout/export_list_popup_frag.xml', 'work/tree/res/layout/export_list_popup_frag.xml'),
+              ('overlay-51a/res/layout/activity_project_list_main.xml', 'work/tree/res/layout/activity_project_list_main.xml'),
               ('overlay-36a/res/layout/project_list_tab_view_homefeed.xml', 'work/tree/res/layout/project_list_tab_view_homefeed.xml'),
               ('overlay-36a/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
               ('overlay-32a/res/layout/activity_edit_addpopup.xml', 'work/tree/res/layout/activity_edit_addpopup.xml'),
@@ -938,6 +967,25 @@ jobs:
             cp "overlay-50a/res/drawable/$f.xml" "$T/res/drawable/$f.xml"
           done
           echo COCKPIT50-APPLIED
+      - name: Apply gold-clean export + FX batch 1 (51A colorful export, keystore strip, 18 effects)
+        run: |
+          T=work/tree
+          cp overlay-51a/res/drawable/export_btn_bg.xml "$T/res/drawable/export_btn_bg.xml"
+          cp overlay-51a/res/drawable/export_choice_bg.xml "$T/res/drawable/export_choice_bg.xml"
+          cp overlay-51a/res/drawable/ic_favorite_select.xml "$T/res/drawable/ic_favorite_select.xml"
+          cp overlay-51a/res/drawable/ic_warning.xml "$T/res/drawable/ic_warning.xml"
+          cp 'overlay-51a/res/drawable-v24/$ic_bi_bg_none__0.xml' "$T/res/drawable-v24/\$ic_bi_bg_none__0.xml"
+          cp 'overlay-51a/res/drawable-v24/$ic_bi_bg_none__1.xml' "$T/res/drawable-v24/\$ic_bi_bg_none__1.xml"
+          cp 'overlay-51a/res/drawable-v24/$ic_bi_bg_none__2.xml' "$T/res/drawable-v24/\$ic_bi_bg_none__2.xml"
+          cp 'overlay-51a/res/drawable-v24/$ic_bi_bg_none__3.xml' "$T/res/drawable-v24/\$ic_bi_bg_none__3.xml"
+          cp overlay-51a/res/layout/export_list_popup_frag.xml "$T/res/layout/export_list_popup_frag.xml"
+          cp overlay-51a/res/layout/activity_project_list_main.xml "$T/res/layout/activity_project_list_main.xml"
+          mkdir -p "$T/assets/effects_custom/thumb" "$T/assets/thumb"
+          cp overlay-51a/assets/effects_custom/*.xml "$T/assets/effects_custom/"
+          cp overlay-51a/assets/thumb/*.png "$T/assets/thumb/"
+          cp overlay-51a/assets/effects_custom/thumb/*.png "$T/assets/effects_custom/thumb/"
+          rm -f "$T/assets/bin/A.jks" "$T/assets/bin/B.jks" "$T/assets/bin/ori.jks"
+          echo FX51-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Inspect APK contents (prove structures shipped, not just sources)
@@ -971,6 +1019,17 @@ jobs:
           unzip -l work/be-rebuilt-unsigned.apk | grep -q "res/layout/fragment_element_edit.xml" || exit 1
           unzip -l work/be-rebuilt-unsigned.apk | grep -q "res/drawable/be_rail_card.xml" || exit 1
           echo COCKPIT50-ENTRIES-OK
+          test "$(ls work/tree/assets/effects_custom/be_*.xml | wc -l)" = "18" && echo FX51-COUNT-OK || exit 1
+          test "$(ls work/tree/assets/effects_custom/thumb/be_*.png | wc -l)" = "18" && echo FX51-THUMB-OK || exit 1
+          grep -q "be.custom.inner_shadow" work/tree/assets/effects_custom/be_inner_shadow.xml && echo FX51-XML-OK || exit 1
+          test "$(ls work/tree/assets/bin/*.jks 2>/dev/null | wc -l)" = "0" && echo KEYSTORES-STRIPPED || exit 1
+          GOLDFILES=$(grep -rEl 'ffd700|f6c945|ffcc00|ffcd4b|ffc400|f2c94c' work/tree/res/layout work/tree/res/drawable work/tree/res/drawable-v24 work/tree/res/values 2>/dev/null | head -20)
+          if [ -n "$GOLDFILES" ]; then echo "GOLD-LEFT $GOLDFILES"; exit 1; fi
+          echo NO-GOLD-OK
+          unzip -l work/be-rebuilt-unsigned.apk | grep -q "assets/effects_custom/be_inner_shadow.xml" || exit 1
+          unzip -l work/be-rebuilt-unsigned.apk | grep -q "assets/thumb/be_inner_shadow.png" || exit 1
+          test "$(unzip -l work/be-rebuilt-unsigned.apk | grep -c '\.jks')" = "0" || exit 1
+          echo FX51-ENTRIES-OK
       - name: "Align + sign (stable key if secrets set, else throwaway test key)"
         env:
           BE_KEYSTORE_B64: ${{ secrets.BE_KEYSTORE_B64 }}
@@ -1003,6 +1062,12 @@ jobs:
           unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_launcher\.png/ && $1 == 226477 {bad=1} END {exit bad}' && echo ICON-REPLACED
           unzip -l work/be-rebuilt-signed.apk | grep 'gold_motion_logo_splash.png'
           unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_logo_splash\.png/ && $1 == 77662 {bad=1} END {exit bad}' && echo SPLASH-REPLACED
+          test "$(unzip -l work/be-rebuilt-signed.apk | grep -c 'assets/effects_custom/be_.*\.xml')" = "18" && echo FX51B-XML-OK || exit 1
+          test "$(unzip -l work/be-rebuilt-signed.apk | grep -c 'assets/thumb/be_.*\.png')" = "18" && echo FX51B-THUMB-OK || exit 1
+          unzip -l work/be-rebuilt-signed.apk | grep -q 'res/layout/export_list_popup_frag.xml' || exit 1
+          unzip -l work/be-rebuilt-signed.apk | grep -q 'res/drawable/export_btn_bg.xml' || exit 1
+          test "$(unzip -l work/be-rebuilt-signed.apk | grep -c '\.jks')" = "0" && echo NO-KEYSTORES-IN-APK || exit 1
+          echo EXPORT51-PACKAGED
           CNT=$(for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -o 'BEYOND EFFECTS' | wc -l); echo "BEYOND-DEX-COUNT=$CNT"
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -q 'WELCOME TO BEYOND EFFECTS' && echo SMALI-WELCOME-OK || exit 1
           for d in $(unzip -l work/be-rebuilt-signed.apk | awk '/classes[0-9]+\.dex/ {print $4}'); do unzip -p work/be-rebuilt-signed.apk "$d"; done | grep -a -q 'ENTER BEYOND EFFECTS' && echo SMALI-ENTER-OK || exit 1

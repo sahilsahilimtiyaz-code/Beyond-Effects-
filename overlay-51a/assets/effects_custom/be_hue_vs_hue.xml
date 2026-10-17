@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="be.custom.be_hue_vs_hue" name="Hue vs Hue" desc="Remap one hue band to a target hue with adjustable band width and strength." category="color" tags="hue,remap,range" thumb="thumb/be_hue_vs_hue.png" experimental="false" deprecated="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<spinner id="srcHue" default="30.0" min="0.0" max="360.0" step="1.0" label="Source Hue (deg)" />
+<spinner id="tgtHue" default="210.0" min="0.0" max="360.0" step="1.0" label="Target Hue (deg)" />
+<spinner id="band" default="60.0" min="2.0" max="180.0" step="1.0" label="Band Width (deg)" />
+<spinner id="strength" default="1.0" min="0.0" max="1.0" step="0.01" label="Strength" />
+<spinner id="mixAmt" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" />
+</params>
+<shader type="fragment" precision="high"><![CDATA[vec4 tex(vec2 p){ return texture2DCv(inputImg.texture, p); }
+
+vec3 rgb2hsv(vec3 c){
+  vec4 K = vec4(0.0, -1.0/3.0, 2.0/3.0, -1.0);
+  vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+  vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+  float d = q.x - min(q.w, q.y);
+  float e = 1.0e-6;
+  return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+}
+vec3 hsv2rgb(vec3 c){
+  vec3 p = abs(fract(c.xxx + vec3(0.0, 2.0/3.0, 1.0/3.0)) * 6.0 - 3.0);
+  return c.z * mix(vec3(1.0), clamp(p - 1.0, 0.0, 1.0), c.y);
+}
+void main(){
+vec4 src = tex(acScreenNorm);
+vec3 hsv = rgb2hsv(clamp(src.rgb, 0.0, 1.0));
+float d = abs(fract(hsv.x - srcHue / 360.0 + 0.5) - 0.5) * 360.0;
+float wgt = 1.0 - smoothstep(band * 0.5, band, d);
+float sh = fract((tgtHue - srcHue) / 360.0 + 0.5) - 0.5;
+hsv.x = fract(hsv.x + sh * wgt * strength);
+gl_FragColor = vec4(mix(src.rgb, hsv2rgb(hsv), mixAmt), src.a);
+}]]></shader>
+</effect>

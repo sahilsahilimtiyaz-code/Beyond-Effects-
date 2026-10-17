@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="be.custom.be_radio_waves" name="Radio Waves" desc="Animated concentric radio rings from any centre with frequency, speed and sharpness." category="procedural" tags="rings,waves,signal,procedural" thumb="thumb/be_radio_waves.png" experimental="false" deprecated="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<spinner id="cx" default="0.5" min="0.0" max="1.0" step="0.005" label="Centre X" />
+<spinner id="cy" default="0.5" min="0.0" max="1.0" step="0.005" label="Centre Y" />
+<spinner id="freq" default="14.0" min="1.0" max="60.0" step="0.5" label="Frequency" />
+<spinner id="speed" default="1.2" min="-5.0" max="5.0" step="0.05" label="Speed" />
+<spinner id="sharp" default="4.0" min="1.0" max="16.0" step="0.1" label="Sharpness" />
+<spinner id="strength" default="1.0" min="0.0" max="1.0" step="0.01" label="Strength" />
+<color id="waveColor" default="#ff5b8def" label="Wave Colour" alpha="false" />
+<spinner id="mixAmt" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" />
+</params>
+<shader type="fragment" precision="high"><![CDATA[vec4 tex(vec2 p){ return texture2DCv(inputImg.texture, p); }
+void main(){
+vec2 uv = acScreenNorm;
+vec4 src = tex(uv);
+float aspect = acScreenSize.x / max(acScreenSize.y, 1.0);
+vec2 q = uv - vec2(cx, cy);
+q.x *= aspect;
+float r = length(q);
+float ph = r * freq * 6.28318530718 - acTime * speed * 6.28318530718;
+float ring = pow(0.5 + 0.5 * sin(ph), sharp);
+float k = clamp(ring * strength * waveColor.a, 0.0, 1.0) * mixAmt;
+gl_FragColor = vec4(mix(src.rgb, waveColor.rgb, k), src.a);
+}]]></shader>
+</effect>

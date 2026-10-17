@@ -1,4 +1,6 @@
 name: rebuild-beyond-effects
+permissions:
+  contents: write
 on:
   workflow_dispatch:
     inputs:
@@ -12,6 +14,11 @@ on:
         default: 'f81cc7874b694d192cb5bb381242c26a82347b1c8a967299e7544eb2f62f36cd'
       upload_artifact:
         description: 'Upload rebuilt APK as a run artifact (publicly downloadable while the repo is public)'
+        required: false
+        default: false
+        type: boolean
+      push_source:
+        description: 'Publish the fully-merged decoded tree to branch "source" (generated branch; force-refreshed when re-run)'
         required: false
         default: false
         type: boolean
@@ -1149,3 +1156,46 @@ jobs:
           name: be-rebuilt-signed
           path: work/be-rebuilt-signed.apk
           retention-days: 7
+      - name: "Publish merged decoded source tree to branch 'source' (only when requested)"
+        if: ${{ inputs.push_source }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -eo pipefail
+          TAG="be-$(git -C "$GITHUB_WORKSPACE" rev-parse --short=7 HEAD)"
+          MAIN_SHA="$(git -C "$GITHUB_WORKSPACE" rev-parse HEAD)"
+          rm -rf /tmp/sourcepush
+          mkdir -p /tmp/sourcepush
+          cd /tmp/sourcepush
+          git init -q -b source
+          git config user.email "actions@users.noreply.github.com"
+          git config user.name "beyond-effects-ci"
+          git config http.postBuffer 524288000
+          cp -a "$GITHUB_WORKSPACE/work/tree/." .
+          echo "SOURCE-SIZE-MB $(du -sm . | cut -f1)"
+          echo "SOURCE-FILES $(find . -type f | wc -l)"
+          SEC="$(find . \( -name '*.jks' -o -name '*.keystore' -o -name '*.p12' -o -name '*.pk8' -o -name '*.pem' \) -print)"
+          if [ -n "$SEC" ]; then echo "SECRET-FILES-FOUND"; echo "$SEC"; exit 1; fi
+          BIG="$(find . -type f -size +95M)"
+          if [ -n "$BIG" ]; then echo "BIG-FILES-FOUND"; echo "$BIG"; exit 1; fi
+          test ! -f README.md || mv README.md README-app.md
+          {
+            echo "# Beyond Effects - full decoded source (generated branch)"
+            echo
+            echo "Snapshot of the fully-merged apktool tree built by CI run $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo "Workflow commit: $MAIN_SHA (build tag stamped in smali: $TAG)."
+            echo
+            echo "Rebuild: java -jar apktool_3.0.3.jar b . -o beyond-effects-unsigned.apk  (aapt2 from build-tools 35.0.0 on PATH)"
+            echo "Note: decompiled smali + resources after all Beyond Effects overlays were applied; not original Java source."
+            echo "This branch is regenerated (force-updated) by rebuild-beyond-effects when push_source=true."
+          } > README.md
+          git add -A -f
+          git commit -qm "Beyond Effects source snapshot $TAG"
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code origin source >/dev/null 2>&1; then
+            echo "SOURCE-BRANCH-EXISTS force-refresh"
+            git push -f origin source 2>&1 | sed -E 's#(x-access-token:)[^@]*@#\1***@#g'
+          else
+            git push origin source 2>&1 | sed -E 's#(x-access-token:)[^@]*@#\1***@#g'
+          fi
+          echo "SOURCE-PUSH-OK $TAG $(git rev-parse HEAD)"

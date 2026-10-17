@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<effect id="be.custom.be_radio_waves" name="Radio Waves" desc="Animated concentric radio rings from any centre with frequency, speed and sharpness." category="procedural" tags="rings,waves,signal,procedural" thumb="thumb/be_radio_waves.png" experimental="false" deprecated="false">
+<effect id="be.custom.radio_waves" name="Radio Waves" desc="Animated concentric radio rings from any centre with frequency, speed and sharpness." category="procedural" tags="rings,waves,signal,procedural" thumb="thumb/be_radio_waves.png" experimental="false" deprecated="false">
 <params>
 <texture id="inputImg" srcType="content" />
 <spinner id="cx" default="0.5" min="0.0" max="1.0" step="0.005" label="Centre X" />

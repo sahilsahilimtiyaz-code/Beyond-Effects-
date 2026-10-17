@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<effect id="be.custom.be_hue_vs_sat" name="Hue vs Saturation" desc="Scale saturation only inside a chosen hue band, with soft falloff." category="color" tags="hue,saturation,range" thumb="thumb/be_hue_vs_sat.png" experimental="false" deprecated="false">
+<effect id="be.custom.hue_vs_sat" name="Hue vs Saturation" desc="Scale saturation only inside a chosen hue band, with soft falloff." category="color" tags="hue,saturation,range" thumb="thumb/be_hue_vs_sat.png" experimental="false" deprecated="false">
 <params>
 <texture id="inputImg" srcType="content" />
 <spinner id="srcHue" default="200.0" min="0.0" max="360.0" step="1.0" label="Source Hue (deg)" />

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<effect id="be.custom.be_inner_shadow" name="Inner Shadow" desc="Soft inner shadow cast inside the layer edges. Direction, distance, softness and colour." category="stylize" tags="shadow,inner,lighting" thumb="thumb/be_inner_shadow.png" experimental="false" deprecated="false">
+<effect id="be.custom.inner_shadow" name="Inner Shadow" desc="Soft inner shadow cast inside the layer edges. Direction, distance, softness and colour." category="stylize" tags="shadow,inner,lighting" thumb="thumb/be_inner_shadow.png" experimental="false" deprecated="false">
 <params>
 <texture id="inputImg" srcType="content" />
 <spinner id="dir" default="135.0" min="0.0" max="360.0" step="1.0" label="Direction (deg)" />

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<effect id="be.custom.be_emboss" name="Emboss" desc="Classic emboss relief from luminance difference with direction, colour tint and mix." category="stylize" tags="emboss,relief,edge" thumb="thumb/be_emboss.png" experimental="false" deprecated="false">
+<effect id="be.custom.emboss" name="Emboss" desc="Classic emboss relief from luminance difference with direction, colour tint and mix." category="stylize" tags="emboss,relief,edge" thumb="thumb/be_emboss.png" experimental="false" deprecated="false">
 <params>
 <texture id="inputImg" srcType="content" />
 <spinner id="dir" default="135.0" min="0.0" max="360.0" step="1.0" label="Direction (deg)" />

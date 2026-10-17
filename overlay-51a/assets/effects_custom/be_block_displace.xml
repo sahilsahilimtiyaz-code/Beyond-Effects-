@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<effect id="be.custom.be_block_displace" name="Block Displacement" desc="Random per-block displacement refreshed over time. Grid size, amount and speed." category="glitch" tags="glitch,block,displace" thumb="thumb/be_block_displace.png" experimental="false" deprecated="false">
+<effect id="be.custom.block_displace" name="Block Displacement" desc="Random per-block displacement refreshed over time. Grid size, amount and speed." category="glitch" tags="glitch,block,displace" thumb="thumb/be_block_displace.png" experimental="false" deprecated="false">
 <params>
 <texture id="inputImg" srcType="content" />
 <spinner id="grid" default="24.0" min="2.0" max="80.0" step="1.0" label="Grid" />

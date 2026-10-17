@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<effect id="be.custom.be_selective_color" name="Selective Color" desc="Target a hue range and shift its hue, saturation and lightness without touching the rest." category="color" tags="hue,selective,range" thumb="thumb/be_selective_color.png" experimental="false" deprecated="false">
+<effect id="be.custom.selective_color" name="Selective Color" desc="Target a hue range and shift its hue, saturation and lightness without touching the rest." category="color" tags="hue,selective,range" thumb="thumb/be_selective_color.png" experimental="false" deprecated="false">
 <params>
 <texture id="inputImg" srcType="content" />
 <spinner id="center" default="30.0" min="0.0" max="360.0" step="1.0" label="Target Hue (deg)" />

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<effect id="be.custom.be_blinds" name="Venetian Blinds" desc="Venetian blinds strips open from their centres revealing the composite below." category="transition" tags="transition,blinds,stripes" thumb="thumb/be_blinds.png" experimental="false" deprecated="false">
+<effect id="be.custom.blinds" name="Venetian Blinds" desc="Venetian blinds strips open from their centres revealing the composite below." category="transition" tags="transition,blinds,stripes" thumb="thumb/be_blinds.png" experimental="false" deprecated="false">
 <params>
 <texture id="inputImg" srcType="content" />
 <texture id="inputImg2" srcType="comp" />

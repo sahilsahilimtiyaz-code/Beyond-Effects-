@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<effect id="be.custom.be_hue_vs_hue" name="Hue vs Hue" desc="Remap one hue band to a target hue with adjustable band width and strength." category="color" tags="hue,remap,range" thumb="thumb/be_hue_vs_hue.png" experimental="false" deprecated="false">
+<effect id="be.custom.hue_vs_hue" name="Hue vs Hue" desc="Remap one hue band to a target hue with adjustable band width and strength." category="color" tags="hue,remap,range" thumb="thumb/be_hue_vs_hue.png" experimental="false" deprecated="false">
 <params>
 <texture id="inputImg" srcType="content" />
 <spinner id="srcHue" default="30.0" min="0.0" max="360.0" step="1.0" label="Source Hue (deg)" />

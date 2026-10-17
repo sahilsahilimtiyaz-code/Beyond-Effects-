@@ -75,12 +75,12 @@
     <string name="agree_and_sign_in">Agree and Sign In</string>
     <string name="agree_collection_use_personal_info">I agree to the collection and use of my personal information</string>
     <string name="agree_older_than_14">I am 14 years old or older</string>
-    <string name="agree_popup_sub_desc">Your use of Gold Motion is governed by the Alight Creative Terms of Service and Privacy Policy, portions of which apply exclusively to users with Alight Creative accounts. In order to create or sign in to an Alight Creative account, for compliance with PIPA and related privacy laws, you must read and consent to the collection and use of personal information as follows, and the Terms of Service.</string>
+    <string name="agree_popup_sub_desc">Your use of Beyond Effects is governed by the Alight Creative Terms of Service and Privacy Policy, portions of which apply exclusively to users with Alight Creative accounts. In order to create or sign in to an Alight Creative account, for compliance with PIPA and related privacy laws, you must read and consent to the collection and use of personal information as follows, and the Terms of Service.</string>
     <string name="agree_popup_title">Consent for Collection and Use of Personal Information and Terms of Service</string>
     <string name="agree_popup_update_not_agree">I do not agree</string>
-    <string name="agree_popup_update_not_agree_desc">"You must agree to these updated terms to continue using Gold Motion.
+    <string name="agree_popup_update_not_agree_desc">"You must agree to these updated terms to continue using Beyond Effects.
 
-If you do not agree, please uninstall Gold Motion."</string>
+If you do not agree, please uninstall Beyond Effects."</string>
     <string name="agree_to_all_and_continue">Agree to All and Continue</string>
     <string name="agree_tos_and_privacy_policy">I agree to the Alight Creative [a href=https://alightcreative.com/tos/]Terms of Service[/a] and [a href=https://alightcreative.com/privacy/]Privacy Policy[/a]</string>
     <string name="al_exo_controls_cc_disabled_description">Enable subtitles</string>
@@ -166,7 +166,7 @@ To preview, edit, or share this project, Beyond Effects requires access to your 
     <string name="anonymous_user">Anonymous User</string>
     <string name="app_info_item">App Version and Build number</string>
     <string name="app_name">Beyond Effects</string>
-    <string name="app_name_transliterated">Gold Motion</string>
+    <string name="app_name_transliterated">Beyond Effects</string>
     <string name="app_version">App Version</string>
     <string name="appbar_scrolling_view_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="applovin_list_item_image_description">Displays more info about the list item.</string>
@@ -548,7 +548,7 @@ Please send this ID to Alight Creative support for further assistance."</string>
     <string name="creator_ranking_suspended_title">The Top Creators Ranking has been temporarily suspended.</string>
     <string name="creator_ranking_template_downloads">%1$d template downloads</string>
     <string name="creator_ranking_terms_and_policy_body">By tapping “Accept and Continue” you accept the {tos}Additional Terms for the Top Creators Ranking,{/tos} and acknowledge receipt of our {pp}Privacy Policy{/pp}.</string>
-    <string name="creator_ranking_terms_and_policy_subtitle">Share your stunning templates and climb the ranking to become one of our Top Creators, recognized and celebrated by millions of Gold Motion users!</string>
+    <string name="creator_ranking_terms_and_policy_subtitle">Share your stunning templates and climb the ranking to become one of our Top Creators, recognized and celebrated by millions of Beyond Effects users!</string>
     <string name="creator_ranking_title">Top Creators Ranking</string>
     <string name="cretor_program_reward_home_feed_body">Attention all creatives! Want to earn rewards for your amazing creations? Join our Creator Program and start sharing your templates to earn tokens. You can redeem them for shopping vouchers or a pro subscription. Share your talent with the world and get rewarded for your skills!</string>
     <string name="cretor_program_reward_home_feed_title">We launched the Creator Program!</string>
@@ -2039,7 +2039,7 @@ For privacy concerns and size limitations, consider using placeholder media from
     <string name="feed_category_updates">Updates</string>
     <string name="feed_network_error">Connect to the internet for the latest Beyond Effects news, information, and tutorials.</string>
     <string name="file_size_estimate">File size (estimate)</string>
-    <string name="files_alight_motion">Files ‣ Gold Motion</string>
+    <string name="files_alight_motion">Files ‣ Beyond Effects</string>
     <string name="fill_composition_area">Fill Composition Area</string>
     <string name="fill_screen">Fill Screen</string>
     <string name="firebase_database_url">https://alight-creative.firebaseio.com</string>
@@ -2344,7 +2344,7 @@ For this flow to successfully connect your %2$s account with this email, you hav
     <string name="import_complete">Import complete</string>
     <string name="import_failed">Import Failed</string>
     <string name="import_font">Import Fonts</string>
-    <string name="import_font_details">To import fonts into Gold Motion, simply use the Files app to copy a .ttf or .otf file into the Gold Motion folder on your phone, then check the Imported Fonts category in the Gold Motion font browser.</string>
+    <string name="import_font_details">To import fonts into Beyond Effects, simply use the Files app to copy a .ttf or .otf file into the Beyond Effects folder on your phone, then check the Imported Fonts category in the Beyond Effects font browser.</string>
     <string name="import_font_title">Importing Fonts</string>
     <string name="import_project">Import Project</string>
     <string name="imported_font_details">"Imported: %1$s
@@ -2357,7 +2357,7 @@ Size: %2$s"</string>
     <string name="in_progress">In progress</string>
     <string name="in_time">In</string>
     <string name="including_style">(including style)</string>
-    <string name="incompatible_version_body">This version of Gold Motion is not compatible with your device. Please download the latest official version from the Google Play Store. If you still encounter any difficulties, please contact sahilsahilimtiyaz@gmail.com and include a screenshot of this screen.</string>
+    <string name="incompatible_version_body">This version of Beyond Effects is not compatible with your device. Please download the latest official version from the official download page. If you still encounter any difficulties, please contact sahilsahilimtiyaz@gmail.com and include a screenshot of this screen.</string>
     <string name="incompatible_version_title">INCOMPATIBLE VERSION</string>
     <string name="indeterminate">Partially checked</string>
     <string name="info">Info</string>

@@ -305,3 +305,15 @@ Reconstruction work stays disabled until separately approved.
   key generated (`.be-key/`, never committed); signatures now stable via
   `BE_KEYSTORE_B64/PASS/ALIAS` secrets — one last uninstall-first, then
   updates work in place.
+- Item-3 audit (crash classes): every hand-written smali insert in the
+  live chain re-reviewed — editor wiring/rail/toggle/launcher/performClick
+  call arities verified, all foreign calls public, listener classes carry
+  their own frames. No remaining register-clobber/arity/access/stub bugs.
+- Item-4 strings: last 8 "Gold Motion" mentions rebranded (consent
+  dialogs, transliterated name, ranking subtitle, Files label, font
+  import help, incompatible-version body; Play-Store pointer replaced
+  with official download page). Legal Alight references kept.
+- Item-4 polish audit: live-layout scan (32 files, last-writer set) —
+  one flag (`beSheetHandle` 0dp+dual-constraint = correct stretch idiom),
+  zero duplicate IDs, no sub-40dp targets. Onboarding/tutorial copy clean.
+- Item-6: broken releases relabeled DO NOT INSTALL (assets preserved).

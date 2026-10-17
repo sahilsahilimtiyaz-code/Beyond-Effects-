@@ -1115,7 +1115,7 @@ jobs:
           unzip -l work/be-rebuilt-signed.apk | grep 'gold_motion_logo_splash.png'
           unzip -l work/be-rebuilt-signed.apk | awk '/gold_motion_logo_splash\.png/ && $1 == 77662 {bad=1} END {exit bad}' && echo SPLASH-REPLACED
           test "$(unzip -l work/be-rebuilt-signed.apk | grep -oE 'assets/effects_custom/be_[a-z0-9_]+\.xml' | grep -vc 'be_custom_')" = "18" && echo FX51B-XML-OK || exit 1
-          test "$(unzip -l work/be-rebuilt-signed.apk | grep -oE 'assets/thumb/be_[a-z0-9_]+\.png' | grep -vc 'be_custom_')" = "18" && echo FX51B-THUMB-OK || exit 1
+          test "$(unzip -l work/be-rebuilt-signed.apk | grep -oE 'assets/thumb/be_[a-z0-9_]+\.png' | grep -vE 'be_custom_|be_logo_thumb' | wc -l)" = "18" && echo FX51B-THUMB-OK || exit 1
           unzip -l work/be-rebuilt-signed.apk | grep -q 'res/layout/export_list_popup_frag.xml' || exit 1
           unzip -l work/be-rebuilt-signed.apk | grep -q 'res/drawable/export_btn_bg.xml' || exit 1
           test "$(unzip -l work/be-rebuilt-signed.apk | grep -c '\.jks')" = "0" && echo NO-KEYSTORES-IN-APK || exit 1

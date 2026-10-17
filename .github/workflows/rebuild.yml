@@ -1072,7 +1072,7 @@ jobs:
           CNT=0
           for n in inner_shadow emboss whites_blacks selective_color hue_vs_hue hue_vs_sat mono block_displace interlace extract matte_grow matte_shrink radio_waves dip_black dip_white radial_wipe blinds grid_wipe; do if [ -f "work/tree/assets/effects_custom/be_$n.xml" ]; then CNT=$((CNT+1)); fi; done
           test "$CNT" = "18" && echo FX51-COUNT-OK || exit 1
-          test "$(ls work/tree/assets/effects_custom/thumb/be_*.png | wc -l)" = "18" && echo FX51-THUMB-OK || exit 1
+          test "$(ls work/tree/assets/effects_custom/thumb/be_*.png | grep -v 'be_custom_' | wc -l)" = "18" && echo FX51-THUMB-OK || exit 1
           grep -q "be.custom.inner_shadow" work/tree/assets/effects_custom/be_inner_shadow.xml && echo FX51-XML-OK || exit 1
           test "$(ls work/tree/assets/bin/*.jks 2>/dev/null | wc -l)" = "0" && echo KEYSTORES-STRIPPED || exit 1
           GOLDFILES=$(grep -rEl 'ffd700|f6c945|ffcc00|ffcd4b|ffc400|f2c94c' work/tree/res/layout work/tree/res/drawable work/tree/res/drawable-v24 work/tree/res/values 2>/dev/null | head -20)

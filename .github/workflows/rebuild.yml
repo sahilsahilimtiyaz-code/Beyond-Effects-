@@ -261,6 +261,38 @@ jobs:
           test -f overlay-49a/smali_classes32/com/goldmotion/ui/BeNotify\$Follow.smali
           test -f overlay-49a/smali_classes32/com/goldmotion/ui/BeNotify.smali
           test -f overlay-49a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali
+          test -f overlay-50a/res/layout/activity_edit.xml
+          test -f overlay-50a/res/layout/activity_edit_navbar.xml
+          test -f overlay-50a/res/layout/activity_edit_playbar.xml
+          test -f overlay-50a/res/layout/fragment_element_edit.xml
+          test -f overlay-50a/res/values/colors.xml
+          test -f overlay-50a/res/drawable/be_rail_card.xml
+          test -f overlay-50a/res/drawable/be_rail_ai_tile.xml
+          test -f overlay-50a/res/drawable/be_rail_ai_inset.xml
+          test -f overlay-50a/res/drawable/be_rail_handle.xml
+          test -f overlay-50a/res/drawable/be_export_pill.xml
+          test -f overlay-50a/res/drawable/be_stage_bg.xml
+          test -f overlay-50a/res/drawable/be_timeline_bg.xml
+          test -f overlay-50a/res/drawable/be_transport_bar.xml
+          test -f overlay-50a/res/drawable/be_fab_ring.xml
+          test -f overlay-50a/res/drawable/be_fab_plus.xml
+          test -f overlay-50a/res/drawable/be_panel_card.xml
+          test -f overlay-50a/res/drawable/be_panel_tile.xml
+          test -f overlay-50a/res/drawable/be_panel_tile_big.xml
+          test -f overlay-50a/res/drawable/be_panel_group_l.xml
+          test -f overlay-50a/res/drawable/be_panel_group_c.xml
+          test -f overlay-50a/res/drawable/be_panel_group_r.xml
+          test -f overlay-50a/res/drawable/ac_ic_speed.xml
+          test -f overlay-50a/res/drawable/ac_ic_split.xml
+          test -f overlay-50a/res/drawable/ac_ic_trimleft.xml
+          test -f overlay-50a/res/drawable/ac_ic_trimright.xml
+          test -f overlay-50a/res/drawable/ac_ic_colorfill.xml
+          test -f overlay-50a/res/drawable/ac_ic_bordersh.xml
+          test -f overlay-50a/res/drawable/ac_ic_movetransform.xml
+          test -f overlay-50a/res/drawable/ac_add_shape.xml
+          test -f overlay-50a/res/drawable/gm_ic_preset_star.xml
+          test -f overlay-50a/res/drawable/ac_ic_effects.xml
+          test -f overlay-50a/res/drawable/ac_ic_audio.xml
           echo OVERLAYS-PRESENT
       - name: Guard layout ID contracts (never drop IDs bindings require)
         run: |
@@ -306,6 +338,10 @@ jobs:
               ('overlay-36a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-42a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
               ('overlay-42a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-50a/res/layout/activity_edit.xml', 'work/tree/res/layout/activity_edit.xml'),
+              ('overlay-50a/res/layout/activity_edit_navbar.xml', 'work/tree/res/layout/activity_edit_navbar.xml'),
+              ('overlay-50a/res/layout/activity_edit_playbar.xml', 'work/tree/res/layout/activity_edit_playbar.xml'),
+              ('overlay-50a/res/layout/fragment_element_edit.xml', 'work/tree/res/layout/fragment_element_edit.xml'),
               ('overlay-36a/res/layout/project_list_tab_view_homefeed.xml', 'work/tree/res/layout/project_list_tab_view_homefeed.xml'),
               ('overlay-36a/res/layout/project_list_sidemenu_header.xml', 'work/tree/res/layout/project_list_sidemenu_header.xml'),
               ('overlay-32a/res/layout/activity_edit_addpopup.xml', 'work/tree/res/layout/activity_edit_addpopup.xml'),
@@ -340,7 +376,9 @@ jobs:
                        'overlay-36a/res/layout/activity_edit.xml',
                        'overlay-38a/res/layout/activity_edit.xml',
                        'overlay-38a/res/layout/activity_edit_playbar.xml',
-                       'overlay-42a/res/layout/activity_edit.xml'):
+                       'overlay-42a/res/layout/activity_edit.xml',
+                       'overlay-50a/res/layout/activity_edit.xml',
+                       'overlay-50a/res/layout/activity_edit_playbar.xml'):
                   # editTimeView/buttonAdd intentionally reparented across the
                   # navbar/playbar/activity_edit includes: contract holds over
                   # the union of the shipped files in one tree.
@@ -888,6 +926,18 @@ jobs:
           cp "overlay-49a/smali_classes32/com/goldmotion/ui/BeNotify.smali" "$T/smali_classes32/com/goldmotion/ui/BeNotify.smali"
           cp "overlay-49a/smali_classes32/com/goldmotion/ui/StudioAppearance.smali" "$T/smali_classes32/com/goldmotion/ui/StudioAppearance.smali"
           echo FINAL49-APPLIED
+      - name: Apply editor cockpit pixel pass (50A rail card, transport, element panel, gradient icons)
+        run: |
+          T=work/tree
+          cp overlay-50a/res/layout/activity_edit.xml "$T/res/layout/activity_edit.xml"
+          cp overlay-50a/res/layout/activity_edit_navbar.xml "$T/res/layout/activity_edit_navbar.xml"
+          cp overlay-50a/res/layout/activity_edit_playbar.xml "$T/res/layout/activity_edit_playbar.xml"
+          cp overlay-50a/res/layout/fragment_element_edit.xml "$T/res/layout/fragment_element_edit.xml"
+          cp overlay-50a/res/values/colors.xml "$T/res/values/colors.xml"
+          for f in be_rail_card be_rail_ai_tile be_rail_ai_inset be_rail_handle be_export_pill be_stage_bg be_timeline_bg be_transport_bar be_fab_ring be_fab_plus be_panel_card be_panel_tile be_panel_tile_big be_panel_group_l be_panel_group_c be_panel_group_r ac_ic_speed ac_ic_split ac_ic_trimleft ac_ic_trimright ac_ic_colorfill ac_ic_bordersh ac_ic_movetransform ac_add_shape gm_ic_preset_star ac_ic_effects ac_ic_audio; do
+            cp "overlay-50a/res/drawable/$f.xml" "$T/res/drawable/$f.xml"
+          done
+          echo COCKPIT50-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Inspect APK contents (prove structures shipped, not just sources)
@@ -911,6 +961,16 @@ jobs:
           unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'Your motion workspace is ready' | grep -q -E '[1-9]' && echo GREETING-OK || exit 1
           unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'instagram.com/octavian6648' | grep -q -E '[1-9]' && echo FOLLOWLINK-OK || exit 1
           unzip -p work/be-rebuilt-unsigned.apk 'classes*.dex' | grep -a -c 'be_cta_gradient' | grep -q -E '[1-9]' && echo CTA-GRAD-OK || exit 1
+          grep -q "beRailAI" work/tree/res/layout/activity_edit.xml && echo RAILAI-OK || exit 1
+          grep -q "be_rail_card" work/tree/res/layout/activity_edit.xml && echo RAILCARD-OK || exit 1
+          grep -q "be_fab_plus" work/tree/res/layout/activity_edit.xml && echo FABPLUS-OK || exit 1
+          grep -q "be_rail_handle" work/tree/res/layout/activity_edit.xml && echo RAILHANDLE-OK || exit 1
+          grep -q "be_export_pill" work/tree/res/layout/activity_edit_navbar.xml && echo COCKPITTOP-OK || exit 1
+          grep -q "be_panel_card" work/tree/res/layout/fragment_element_edit.xml && echo ELEMENTPANEL-OK || exit 1
+          grep -q "be_panel_group_l" work/tree/res/layout/fragment_element_edit.xml && echo TRIMGROUP-OK || exit 1
+          unzip -l work/be-rebuilt-unsigned.apk | grep -q "res/layout/fragment_element_edit.xml" || exit 1
+          unzip -l work/be-rebuilt-unsigned.apk | grep -q "res/drawable/be_rail_card.xml" || exit 1
+          echo COCKPIT50-ENTRIES-OK
       - name: "Align + sign (stable key if secrets set, else throwaway test key)"
         env:
           BE_KEYSTORE_B64: ${{ secrets.BE_KEYSTORE_B64 }}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 1. rainbow sweep ring (visible 2.2dp around the inset fill) -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="14.0dp" />
+            <gradient android:type="sweep">
+                <item android:offset="0.0" android:color="#ff64b0da" />
+                <item android:offset="0.197" android:color="#ffa959d6" />
+                <item android:offset="0.25" android:color="#ffe35287" />
+                <item android:offset="0.3" android:color="#ff6985ea" />
+                <item android:offset="0.386" android:color="#ff42cddf" />
+                <item android:offset="0.556" android:color="#ff74d6a8" />
+                <item android:offset="0.653" android:color="#ffcbd27f" />
+                <item android:offset="0.719" android:color="#ffdf5565" />
+                <item android:offset="0.781" android:color="#fff2846c" />
+                <item android:offset="0.917" android:color="#ffc560b0" />
+                <item android:offset="1.0" android:color="#ff64b0da" />
+            </gradient>
+        </shape>
+    </item>
+    <!-- 2. translucent plum glass fill -->
+    <item android:left="2.2dp" android:top="2.2dp" android:right="2.2dp" android:bottom="2.2dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="12.0dp" />
+            <gradient android:angle="270" android:startColor="#e64a3644" android:centerColor="#e62a2340" android:endColor="#ed1e2130" />
+        </shape>
+    </item>
+    <!-- 3. soft mist toward the upper third -->
+    <item android:left="2.2dp" android:top="2.2dp" android:right="2.2dp" android:bottom="2.2dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="12.0dp" />
+            <gradient android:type="radial" android:centerX="0.5" android:centerY="0.3" android:gradientRadius="150.0dp" android:startColor="#2effffff" android:endColor="#00ffffff" />
+        </shape>
+    </item>
+    <!-- 4. bottom shade -->
+    <item android:left="2.2dp" android:top="2.2dp" android:right="2.2dp" android:bottom="2.2dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="12.0dp" />
+            <gradient android:angle="270" android:startColor="#00000000" android:centerColor="#140a0a14" android:endColor="#4007070f" />
+        </shape>
+    </item>
+</layer-list>

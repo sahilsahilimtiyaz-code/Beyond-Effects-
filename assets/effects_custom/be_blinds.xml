@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="be.custom.blinds" name="Venetian Blinds" desc="Venetian blinds strips open from their centres revealing the composite below." category="transition" tags="transition,blinds,stripes" thumb="thumb/be_blinds.png" experimental="false" deprecated="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<texture id="inputImg2" srcType="comp" />
+<spinner id="progress" default="0.0" min="0.0" max="1.0" step="0.01" label="Progress" />
+<spinner id="count" default="14.0" min="2.0" max="80.0" step="1.0" label="Bars" />
+<spinner id="feather" default="0.05" min="0.001" max="0.5" step="0.001" label="Feather" />
+<spinner id="vertical" default="0.0" min="0.0" max="1.0" step="1.0" label="Vertical (0/1)" />
+<spinner id="mixAmt" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" />
+</params>
+<shader type="fragment" precision="high"><![CDATA[vec4 tex2(vec2 p){ return texture2DCv(inputImg2.texture, p); }
+vec4 tex(vec2 p){ return texture2DCv(inputImg.texture, p); }
+void main(){
+vec2 uv = acScreenNorm;
+vec4 a = tex(uv);
+vec4 b = tex2(uv);
+float axis = mix(uv.y, uv.x, clamp(vertical, 0.0, 1.0));
+float cell = fract(axis * max(count, 1.0));
+float d = abs(cell - 0.5) * 2.0;
+float p = clamp(progress, 0.0, 1.0);
+float soft = max(feather, 0.001);
+float m = 1.0 - smoothstep(p - soft, p + soft, d);
+float k = m * mixAmt;
+gl_FragColor = vec4(mix(a.rgb, b.rgb, k), mix(a.a, b.a, k));
+}]]></shader>
+</effect>

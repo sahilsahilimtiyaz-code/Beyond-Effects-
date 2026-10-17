@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="be.custom.radial_wipe" name="Radial Wipe" desc="Clockwise radial wipe revealing the composite below. Keyable progress with feather." category="transition" tags="transition,wipe,radial" thumb="thumb/be_radial_wipe.png" experimental="false" deprecated="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<texture id="inputImg2" srcType="comp" />
+<spinner id="progress" default="0.0" min="0.0" max="1.0" step="0.01" label="Progress" />
+<spinner id="feather" default="0.05" min="0.001" max="0.5" step="0.001" label="Feather" />
+<spinner id="reverse" default="0.0" min="0.0" max="1.0" step="1.0" label="Reverse (0/1)" />
+<spinner id="mixAmt" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" />
+</params>
+<shader type="fragment" precision="high"><![CDATA[vec4 tex2(vec2 p){ return texture2DCv(inputImg2.texture, p); }
+vec4 tex(vec2 p){ return texture2DCv(inputImg.texture, p); }
+void main(){
+vec2 uv = acScreenNorm;
+vec4 a = tex(uv);
+vec4 b = tex2(uv);
+vec2 q = uv - vec2(0.5);
+q.x *= acScreenSize.x / max(acScreenSize.y, 1.0);
+float ang = atan(q.y, q.x) / 6.28318530718 + 0.5;
+float p = clamp(progress, 0.0, 1.0);
+float soft = max(feather, 0.001);
+float m = smoothstep(p - soft, p + soft, ang);
+m = mix(m, 1.0 - m, clamp(reverse, 0.0, 1.0));
+vec4 c = mix(b, a, m);
+gl_FragColor = vec4(mix(a, c, mixAmt));
+}]]></shader>
+</effect>

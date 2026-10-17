@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 1. gradient border -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="14.0dp" />
+            <gradient android:angle="0" android:startColor="#ff7a5060" android:centerColor="#ff6e5a86" android:endColor="#ff6478ac" />
+        </shape>
+    </item>
+    <!-- 2. plum glass fill -->
+    <item android:left="1.4dp" android:top="1.4dp" android:right="1.4dp" android:bottom="1.4dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="12.6dp" />
+            <gradient android:angle="0" android:startColor="#ff2e1d33" android:endColor="#ff3a2439" />
+        </shape>
+    </item>
+    <!-- 3. blue tint toward the right edge -->
+    <item android:left="1.4dp" android:top="1.4dp" android:right="1.4dp" android:bottom="1.4dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="12.6dp" />
+            <gradient android:angle="0" android:startColor="#00000000" android:endColor="#332f4a6e" />
+        </shape>
+    </item>
+</layer-list>

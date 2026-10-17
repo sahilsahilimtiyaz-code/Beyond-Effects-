@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="be.custom.grid_wipe" name="Grid Wipe" desc="A grid of cells opens from each cell centre revealing the composite below." category="transition" tags="transition,grid,wipe" thumb="thumb/be_grid_wipe.png" experimental="false" deprecated="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<texture id="inputImg2" srcType="comp" />
+<spinner id="progress" default="0.0" min="0.0" max="1.0" step="0.01" label="Progress" />
+<spinner id="cols" default="10.0" min="2.0" max="40.0" step="1.0" label="Columns" />
+<spinner id="rows" default="6.0" min="2.0" max="40.0" step="1.0" label="Rows" />
+<spinner id="feather" default="0.05" min="0.001" max="0.5" step="0.001" label="Feather" />
+<spinner id="mixAmt" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" />
+</params>
+<shader type="fragment" precision="high"><![CDATA[vec4 tex2(vec2 p){ return texture2DCv(inputImg2.texture, p); }
+vec4 tex(vec2 p){ return texture2DCv(inputImg.texture, p); }
+void main(){
+vec2 uv = acScreenNorm;
+vec4 a = tex(uv);
+vec4 b = tex2(uv);
+float dx = abs(fract(uv.x * max(cols, 1.0)) - 0.5) * 2.0;
+float dy = abs(fract(uv.y * max(rows, 1.0)) - 0.5) * 2.0;
+float d = max(dx, dy);
+float p = clamp(progress, 0.0, 1.0);
+float soft = max(feather, 0.001);
+float m = 1.0 - smoothstep(p - soft, p + soft, d);
+float k = m * mixAmt;
+gl_FragColor = vec4(mix(a.rgb, b.rgb, k), mix(a.a, b.a, k));
+}]]></shader>
+</effect>

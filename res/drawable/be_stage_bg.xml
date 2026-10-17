@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:angle="270" android:startColor="#ff240e1e" android:centerColor="#ff1b1b33" android:endColor="#ff141726" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/be_stage_grid" />
+</layer-list>

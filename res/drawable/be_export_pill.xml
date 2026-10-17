@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 1. soft red glow -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="22.0dp" />
+            <gradient android:type="radial" android:centerX="0.5" android:centerY="0.5" android:gradientRadius="40.0dp" android:startColor="#59ff5a66" android:endColor="#00ff5a66" />
+        </shape>
+    </item>
+    <!-- 2. pill -->
+    <item android:left="1.5dp" android:top="1.5dp" android:right="1.5dp" android:bottom="1.5dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="20.0dp" />
+            <gradient android:angle="0" android:startColor="#fff8837f" android:centerColor="#fff5605e" android:endColor="#fff45151" />
+        </shape>
+    </item>
+    <!-- 3. top sheen -->
+    <item android:left="1.5dp" android:top="1.5dp" android:right="1.5dp" android:bottom="1.5dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="20.0dp" />
+            <gradient android:angle="270">
+                <item android:offset="0.0" android:color="#33ffffff" />
+                <item android:offset="0.45" android:color="#00ffffff" />
+            </gradient>
+        </shape>
+    </item>
+</layer-list>

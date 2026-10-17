@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<effect id="be.custom.backdropblur" name="BE Backdrop Blur" desc="Soft frosted blur of the composition behind." category="custom" tags="be,custom,blur,backdrop,glass" thumb="thumb/be_custom_backdropblur.png" experimental="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<texture id="comp" srcType="comp" />
+<section text="Frost" />
+<spinner id="radius" default="6.0" min="0.0" max="16.0" step="0.5" label="Radius (px)" />
+<spinner id="mix" default="0.7" min="0.0" max="1.0" step="0.01" label="Mix" type="percent" />
+</params>
+<shader type="fragment" precision="medium"><![CDATA[
+void main() {
+vec2 uv = acScreenNorm;
+vec2 px = vec2(1.0) / max(acScreenSize, vec2(1.0));
+float r = clamp(radius, 0.0, 16.0);
+vec3 acc = vec3(0.0);
+float wsum = 0.0;
+for (int i = -2; i <= 2; i++) {
+for (int j = -2; j <= 2; j++) {
+float w = 1.0 / (1.0 + float(abs(i) + abs(j)));
+acc += texture2DCv(comp.texture, clamp(uv + vec2(float(i), float(j)) * px * r * 0.25, vec2(0.0), vec2(1.0))).rgb * w;
+wsum += w;
+}
+}
+vec3 blur = acc / max(wsum, 0.0001);
+vec4 src = texture2DCv(inputImg.texture, uv);
+vec3 outRgb = mix(src.rgb, blur, clamp(mix, 0.0, 1.0));
+gl_FragColor = vec4(outRgb, src.a);
+}]]></shader>
+</effect>

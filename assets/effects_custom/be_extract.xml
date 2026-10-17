@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="be.custom.extract" name="Extract" desc="Luminance-to-alpha extraction between black and white points, with invert." category="matte" tags="luma,key,alpha,extract" thumb="thumb/be_extract.png" experimental="false" deprecated="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<spinner id="black" default="0.1" min="0.0" max="1.0" step="0.005" label="Black Point" />
+<spinner id="white" default="0.9" min="0.0" max="1.0" step="0.005" label="White Point" />
+<spinner id="invert" default="0.0" min="0.0" max="1.0" step="1.0" label="Invert (0/1)" />
+<spinner id="mixAmt" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" />
+</params>
+<shader type="fragment" precision="high"><![CDATA[vec4 tex(vec2 p){ return texture2DCv(inputImg.texture, p); }
+void main(){
+vec4 src = tex(acScreenNorm);
+float l = dot(src.rgb, vec3(0.2126, 0.7152, 0.0722));
+float a = clamp((l - black) / max(white - black, 0.001), 0.0, 1.0);
+a = mix(a, 1.0 - a, clamp(invert, 0.0, 1.0));
+gl_FragColor = vec4(src.rgb, mix(src.a, src.a * a, mixAmt));
+}]]></shader>
+</effect>

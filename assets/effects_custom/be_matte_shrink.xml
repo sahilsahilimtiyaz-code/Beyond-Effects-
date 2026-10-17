@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="be.custom.matte_shrink" name="Matte Erosion" desc="Shrink the alpha matte inward with a soft 24-tap gather." category="matte" tags="matte,shrink,erode,alpha" thumb="thumb/be_matte_shrink.png" experimental="false" deprecated="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<spinner id="radius" default="6.0" min="0.0" max="64.0" step="0.5" label="Radius (px)" />
+<spinner id="mixAmt" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" />
+</params>
+<shader type="fragment" precision="high"><![CDATA[vec4 tex(vec2 p){ return texture2DCv(inputImg.texture, p); }
+void main(){
+vec2 uv = acScreenNorm;
+vec4 src = tex(uv);
+vec2 st = 1.0 / max(acScreenSize, vec2(1.0));
+float m = src.a;
+for (int i = 0; i < 16; i++){
+  float a = 6.28318530718 * float(i) / 16.0;
+  m = min(m, tex(uv + vec2(cos(a), sin(a)) * radius * st).a);
+}
+for (int i = 0; i < 8; i++){
+  float a = 6.28318530718 * float(i) / 8.0 + 0.3926990817;
+  m = min(m, tex(uv + vec2(cos(a), sin(a)) * radius * 0.55 * st).a);
+}
+gl_FragColor = vec4(src.rgb, mix(src.a, min(src.a, m), mixAmt));
+}]]></shader>
+</effect>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<effect id="be.custom.whites_blacks" name="Whites and Blacks" desc="Set the black point and white point independently to crush or lift tonal extremes." category="color" tags="tones,blacks,whites,levels" thumb="thumb/be_whites_blacks.png" experimental="false" deprecated="false">
+<params>
+<texture id="inputImg" srcType="content" />
+<spinner id="blacks" default="0.0" min="-0.5" max="0.5" step="0.005" label="Blacks" />
+<spinner id="whites" default="0.0" min="-0.5" max="0.5" step="0.005" label="Whites" />
+<spinner id="mixAmt" default="1.0" min="0.0" max="1.0" step="0.01" label="Mix" />
+</params>
+<shader type="fragment" precision="high"><![CDATA[vec4 tex(vec2 p){ return texture2DCv(inputImg.texture, p); }
+void main(){
+vec4 src = tex(acScreenNorm);
+float span = max(1.0 - blacks - whites, 0.02);
+vec3 c = clamp((src.rgb - vec3(blacks)) / span, 0.0, 1.0);
+gl_FragColor = vec4(mix(src.rgb, c, mixAmt), src.a);
+}]]></shader>
+</effect>

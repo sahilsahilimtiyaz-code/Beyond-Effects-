@@ -320,6 +320,37 @@ jobs:
               print('EFFECTS51-PNG-FAIL', len(tps)); sys.exit(1)
           print('EFFECTS51-PRESENT')
           PYEOF
+          test -f overlay-52a/smali_classes32/com/goldmotion/ui/BeBeat.smali
+          test -f "overlay-52a/smali_classes32/com/goldmotion/ui/BeBeat\$1.smali"
+          test -f "overlay-52a/smali_classes32/com/goldmotion/ui/BeUpdate\$Show.smali"
+          test -f "overlay-52a/smali_classes32/com/goldmotion/ui/StudioLaunch\$Mark.smali"
+          test -f overlay-52a/smali_classes32/com/goldmotion/ui/StudioLaunch.smali
+          test -f "overlay-52a/smali_classes31/com/goldmotion/beatmark/BeatMarkHook\$1.smali"
+          test -f "overlay-52a/smali_classes31/com/goldmotion/beatmark/BeatMarkHook\$2.smali"
+          test -f overlay-52a/res/drawable/be_rail_beat.xml
+          test -f overlay-52a/assets/effects/thumb/be_logo_thumb.png
+          test -f overlay-52a/assets/thumb/be_logo_thumb.png
+          python3 - <<'PYEOF'
+          import glob, sys
+          xs = sorted(glob.glob('overlay-52a/assets/effects/**/*.xml', recursive=True))
+          if len(xs) != 228:
+              print('THUMB52-COUNT-FAIL', len(xs)); sys.exit(1)
+          for f in xs:
+              if 'thumb/be_logo_thumb.png' not in open(f, encoding='utf-8').read():
+                  print('THUMB52-REF-FAIL', f); sys.exit(1)
+          cps = sorted(glob.glob('overlay-52a/assets/effects_custom/thumb/*.png'))
+          if len(cps) != 15:
+              print('CUSTOM52-COUNT-FAIL', len(cps)); sys.exit(1)
+          for f in ['overlay-52a/smali_classes32/com/goldmotion/ui/BeBeat.smali',
+                    'overlay-52a/smali_classes32/com/goldmotion/ui/StudioLaunch$Mark.smali',
+                    'overlay-52a/smali_classes32/com/goldmotion/ui/BeUpdate$Show.smali',
+                    'overlay-52a/smali_classes31/com/goldmotion/beatmark/BeatMarkHook$1.smali']:
+              if 'BE52' not in open(f, encoding='utf-8').read():
+                  print('BE52-MARKER-FAIL', f); sys.exit(1)
+          if 'sparkly-monstera-25fb3d.netlify.app' not in open('overlay-52a/smali_classes32/com/goldmotion/ui/BeUpdate$Show.smali', encoding='utf-8').read():
+              print('UPD52-NETLIFY-FAIL'); sys.exit(1)
+          print('OVERLAY52A-PRESENT')
+          PYEOF
           echo OVERLAYS-PRESENT
       - name: Guard layout ID contracts (never drop IDs bindings require)
         run: |
@@ -986,6 +1017,25 @@ jobs:
           cp overlay-51a/assets/effects_custom/thumb/*.png "$T/assets/effects_custom/thumb/"
           rm -f "$T/assets/bin/A.jks" "$T/assets/bin/B.jks" "$T/assets/bin/ori.jks"
           echo FX51-APPLIED
+      - name: Apply 52A overlay (update popup link, premium launch animation, beat rail entry, effect thumbs)
+        run: |
+          T=work/tree
+          cp "overlay-52a/smali_classes32/com/goldmotion/ui/BeUpdate\$Show.smali" "$T/smali_classes32/com/goldmotion/ui/BeUpdate\$Show.smali"
+          cp overlay-52a/smali_classes32/com/goldmotion/ui/StudioLaunch.smali "$T/smali_classes32/com/goldmotion/ui/StudioLaunch.smali"
+          cp "overlay-52a/smali_classes32/com/goldmotion/ui/StudioLaunch\$Mark.smali" "$T/smali_classes32/com/goldmotion/ui/StudioLaunch\$Mark.smali"
+          cp overlay-52a/smali_classes32/com/goldmotion/ui/BeBeat.smali "$T/smali_classes32/com/goldmotion/ui/BeBeat.smali"
+          cp "overlay-52a/smali_classes32/com/goldmotion/ui/BeBeat\$1.smali" "$T/smali_classes32/com/goldmotion/ui/BeBeat\$1.smali"
+          cp "overlay-52a/smali_classes31/com/goldmotion/beatmark/BeatMarkHook\$1.smali" "$T/smali_classes31/com/goldmotion/beatmark/BeatMarkHook\$1.smali"
+          cp "overlay-52a/smali_classes31/com/goldmotion/beatmark/BeatMarkHook\$2.smali" "$T/smali_classes31/com/goldmotion/beatmark/BeatMarkHook\$2.smali"
+          cp overlay-52a/res/drawable/be_rail_beat.xml "$T/res/drawable/be_rail_beat.xml"
+          mkdir -p "$T/assets/thumb"
+          mkdir -p "$T/assets/effects/thumb"
+          mkdir -p "$T/assets/effects_custom/thumb"
+          cp -r overlay-52a/assets/effects/. "$T/assets/effects/"
+          cp -r overlay-52a/assets/effects_custom/. "$T/assets/effects_custom/"
+          cp overlay-52a/assets/thumb/be_logo_thumb.png "$T/assets/thumb/be_logo_thumb.png"
+          echo "52A-XML-COUNT $(find overlay-52a/assets/effects -name '*.xml' | wc -l)"
+          echo OVERLAY52A-APPLIED
       - name: Rebuild with apktool (aapt2 from build-tools 35.0.0)
         run: java -jar /tmp/apktool.jar b work/tree -o work/be-rebuilt-unsigned.apk
       - name: Inspect APK contents (prove structures shipped, not just sources)
@@ -1079,6 +1129,18 @@ jobs:
           "$BT/aapt2" dump resources work/be-rebuilt-signed.apk 2>/dev/null | grep -c 'Beyond Effects' | grep -q -E '[1-9]' && echo STRINGS-OK || exit 1
           "$BT/aapt2" dump resources work/be-rebuilt-signed.apk 2>/dev/null | grep -c 'Beyond Effects' | grep -q -E '[1-9]' && echo STRINGS-OK || exit 1
           "$BT/aapt2" dump xmltree work/be-rebuilt-signed.apk --file res/layout/project_list_sidemenu_header.xml > /tmp/be_header.txt 2>&1; grep -c 'Beyond Effects' /tmp/be_header.txt | grep -q -E '[1-9]' && echo DRAWER-BRAND-OK || exit 1
+          unzip -p work/be-rebuilt-signed.apk 'classes*.dex' | grep -a -q 'sparkly-monstera-25fb3d.netlify.app' && echo UPD52-LINK-OK || exit 1
+          unzip -p work/be-rebuilt-signed.apk 'classes*.dex' | grep -a -q 'be.beat.wired' && echo BEAT52-CODE-OK || exit 1
+          grep -q 'BE52' work/tree/smali_classes32/com/goldmotion/ui/StudioLaunch.smali && echo INTRO52-OK || exit 1
+          grep -q 'BE52' 'work/tree/smali_classes32/com/goldmotion/ui/StudioLaunch$Mark.smali' && echo MARK52-OK || exit 1
+          grep -q 'BE52' work/tree/smali_classes32/com/goldmotion/ui/BeBeat.smali && echo BEATFILE52-OK || exit 1
+          grep -q 'BeBeat' 'work/tree/smali_classes31/com/goldmotion/beatmark/BeatMarkHook$1.smali' && echo HOOK52-OK || exit 1
+          test "$(find work/tree/assets/effects -name '*.xml' -exec grep -l 'thumb/be_logo_thumb.png' {} + | wc -l)" = "228" && echo THUMB52-XML-OK || exit 1
+          test "$(ls work/tree/assets/effects_custom/thumb/*.png | wc -l)" = "33" && echo THUMB52-CUSTOM-OK || exit 1
+          unzip -l work/be-rebuilt-signed.apk | grep -q 'assets/effects/thumb/be_logo_thumb.png' || exit 1
+          unzip -l work/be-rebuilt-signed.apk | grep -q 'assets/thumb/be_logo_thumb.png' || exit 1
+          unzip -l work/be-rebuilt-signed.apk | grep -q 'res/drawable/be_rail_beat.xml' || exit 1
+          echo OVERLAY52-GATES-OK
           sha256sum work/be-rebuilt-signed.apk
       - name: Upload rebuilt APK (only if requested)
         if: ${{ inputs.upload_artifact }}
